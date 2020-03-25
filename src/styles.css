@@ -16,13 +16,18 @@ label {
   }
 }
 
-.col-valor {
+.col-valor-header {
   width: 120px;
+}
+.col-valor-content {
   text-align: right;
 }
 
-.col-data {
+.col-data-header {
   width: 120px;
+}
+
+.col-data-content {
   text-align: center;
 }
 
