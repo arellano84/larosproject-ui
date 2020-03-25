@@ -21,4 +21,25 @@
         <button pButton type="submit" label="Buscar" ></button>
     </div>
   </div>
+
+  <div class="ui-g">
+    <div class="ui-g-12">
+        <p-table [value]="lanzamientos">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Tipo</th>
+                    <th>Descripción</th>
+                    <th>Fecha Vencimiento</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-lanz>
+                <tr>
+                    <td>{{lanz.tipo}}</td>
+                    <td>{{lanz.descricao}}</td>
+                    <td>{{lanz.dataVencimento}}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+  </div>
 </div>

@@ -13,6 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "aot": true,
             "outputPath": "dist/larosproject-ui",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -46,12 +47,16 @@
               "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": true,
+              "buildOptimizer": false,
               "budgets": [
                 {
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
                 }
               ]
             }
@@ -134,5 +139,8 @@
       }
     }
   },
-  "defaultProject": "larosproject-ui"
+  "defaultProject": "larosproject-ui",
+  "cli": {
+    "analytics": "9c7bb3a9-ddc6-411a-b05f-b206ad61c911"
+  }
 }
