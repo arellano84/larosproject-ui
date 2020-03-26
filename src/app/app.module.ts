@@ -10,12 +10,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LanzamientosBusquedaComponent } from './lanzamientos-busqueda/lanzamientos-busqueda.component';
 import { BarraNavComponent } from './barra-nav/barra-nav.component';
+import { PersonasBusquedaComponent } from './personas-busqueda/personas-busqueda.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LanzamientosBusquedaComponent,
-    BarraNavComponent
+    BarraNavComponent,
+    PersonasBusquedaComponent
   ],
   imports: [
     BrowserModule,
