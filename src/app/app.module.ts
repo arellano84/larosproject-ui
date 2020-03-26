@@ -9,11 +9,13 @@ import {TooltipModule} from 'primeng/tooltip';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LanzamientosBusquedaComponent } from './lanzamientos-busqueda/lanzamientos-busqueda.component';
+import { BarraNavComponent } from './barra-nav/barra-nav.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LanzamientosBusquedaComponent
+    LanzamientosBusquedaComponent,
+    BarraNavComponent
   ],
   imports: [
     BrowserModule,
