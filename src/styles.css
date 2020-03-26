@@ -31,6 +31,10 @@ label {
   text-align: center;
 }
 
+.col-actions-header {
+  width: 100px;
+}
 
-
-
+.col-actions-content {
+  text-align: center;
+}
