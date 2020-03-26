@@ -2,8 +2,16 @@
   <div class="container">
     <div class="ui-g">
       <div class="ui-g-12">
-          <a href="javascript:;" class="barranav-toggle"><i class="pi pi-bars"> </i></a>
+          <a href="javascript:;" class="barranav-toggle" (click)="mostrandoMenu = !mostrandoMenu"><i class="pi pi-bars"> </i></a>
       </div>
     </div>
   </div>
+
+  <ul class="barranav-menu" [hidden]="!mostrandoMenu">
+    <li class="barranav-usuario">Luis</li>
+    <li class="barranav-menuitem"><a href="#">Lanzamientos</a></li>
+    <li class="barranav-menuitem"><a href="#">Personas</a></li>
+    <li class="barranav-menuitem"><a href="#">Logout</a></li>
+  </ul>
+
 </nav>

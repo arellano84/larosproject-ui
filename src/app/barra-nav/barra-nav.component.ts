@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BarraNavComponent implements OnInit {
 
+  mostrandoMenu = false;
+
   constructor() { }
 
   ngOnInit(): void {
