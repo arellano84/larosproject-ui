@@ -41,12 +41,12 @@
                       <td>{{lanz.pessoa}}</td>
                       <td>{{lanz.tipo}}</td>
                       <td>{{lanz.descricao}}</td>
-                      <td class="col-data-content">{{lanz.dataVencimento}}</td>
-                      <td class="col-data-content">{{lanz.dataPagamento}}</td>
+                      <td class="col-data-content">{{lanz.dataVencimento | date:'dd/MMM/yy'}}</td>
+                      <td class="col-data-content">{{lanz.dataPagamento | date:'dd/MMM/yy'}}</td>
                       <td class="col-valor-content">
                           <!--span [ngStyle]="{color: lanz.tipo=='DESPESA' ? 'red' : 'blue'}"-->
                           <span [style.color]="lanz.tipo=='DESPESA' ? 'red' : 'blue'">
-                              {{lanz.valor}}
+                              {{lanz.valor | currency:'EUR':'€' }}
                           </span>
                       </td>
                       <td class="col-actions-content">
