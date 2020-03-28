@@ -7,6 +7,7 @@ import {ButtonModule} from 'primeng/button';
 import {TableModule} from 'primeng/table';
 import {TooltipModule} from 'primeng/tooltip';
 import {CalendarModule} from 'primeng/calendar';
+import {SelectButtonModule} from 'primeng/selectbutton';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -34,7 +35,8 @@ import { LanzamientoRegistroComponent } from './lanzamiento-registro/lanzamiento
     TableModule,
     TooltipModule,
     InputTextareaModule,
-    CalendarModule
+    CalendarModule,
+    SelectButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

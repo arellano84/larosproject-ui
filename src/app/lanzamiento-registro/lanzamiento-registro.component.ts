@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {SelectItem} from 'primeng/api';
 
 @Component({
   selector: 'app-lanzamiento-registro',
@@ -7,7 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LanzamientoRegistroComponent implements OnInit {
 
-  constructor() { }
+  tiposLanzamiento;
+
+  constructor() {
+    // SelectItem API with label-value pairs
+    this.tiposLanzamiento = [
+      {label:'Receta', value:'0'},
+      {label:'Despesa', value:'1'}
+    ];
+  }
 
   ngOnInit(): void {
   }
