@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {InputTextModule} from 'primeng/inputtext';
+import {InputTextareaModule} from 'primeng/inputtextarea';
 import {ButtonModule} from 'primeng/button';
 import {TableModule} from 'primeng/table';
 import {TooltipModule} from 'primeng/tooltip';
@@ -11,13 +12,15 @@ import { AppComponent } from './app.component';
 import { LanzamientosBusquedaComponent } from './lanzamientos-busqueda/lanzamientos-busqueda.component';
 import { BarraNavComponent } from './barra-nav/barra-nav.component';
 import { PersonasBusquedaComponent } from './personas-busqueda/personas-busqueda.component';
+import { LanzamientoRegistroComponent } from './lanzamiento-registro/lanzamiento-registro.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LanzamientosBusquedaComponent,
     BarraNavComponent,
-    PersonasBusquedaComponent
+    PersonasBusquedaComponent,
+    LanzamientoRegistroComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +28,8 @@ import { PersonasBusquedaComponent } from './personas-busqueda/personas-busqueda
     InputTextModule,
     ButtonModule,
     TableModule,
-    TooltipModule
+    TooltipModule,
+    InputTextareaModule
   ],
   providers: [],
   bootstrap: [AppComponent]
