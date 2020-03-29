@@ -30,12 +30,14 @@
         <input pInputText type="text" placeholder="0,00">
       </div>
       <div class="ui-g-12 ui-md-6 ui-fluid">
-        <label>Categoria</label>
-        <input pInputText type="text">
+        <label>Categoria - {{instCategoria.value}}</label>
+        <p-dropdown [options]="categorias" [filter]="false" placeholder="Seleccione"
+        #instCategoria></p-dropdown>
       </div>
       <div class="ui-g-12 ui-md-6 ui-fluid">
-        <label>Persona</label>
-        <input pInputText type="text">
+        <label>Persona - {{instPersona.value }}</label>
+        <p-dropdown [options]="personas" [filter]="true" placeholder="Seleccione"
+        #instPersona></p-dropdown>
       </div>
       <div class="ui-g-12 ui-fluid">
         <label>Observación</label>
