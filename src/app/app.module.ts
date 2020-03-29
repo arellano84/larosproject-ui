@@ -19,6 +19,7 @@ import { LanzamientosBusquedaComponent } from './lanzamientos-busqueda/lanzamien
 import { BarraNavComponent } from './barra-nav/barra-nav.component';
 import { PersonasBusquedaComponent } from './personas-busqueda/personas-busqueda.component';
 import { LanzamientoRegistroComponent } from './lanzamiento-registro/lanzamiento-registro.component';
+import { PersonasRegistroComponent } from './personas-registro/personas-registro.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { LanzamientoRegistroComponent } from './lanzamiento-registro/lanzamiento
     LanzamientosBusquedaComponent,
     BarraNavComponent,
     PersonasBusquedaComponent,
-    LanzamientoRegistroComponent
+    LanzamientoRegistroComponent,
+    PersonasRegistroComponent
   ],
   imports: [
     BrowserModule,
