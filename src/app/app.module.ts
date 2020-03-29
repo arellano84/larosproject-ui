@@ -9,6 +9,9 @@ import {TooltipModule} from 'primeng/tooltip';
 import {CalendarModule} from 'primeng/calendar';
 import {SelectButtonModule} from 'primeng/selectbutton';
 import {DropdownModule} from 'primeng/dropdown';
+import {InputMaskModule} from 'primeng/inputmask';
+
+import { NgxCurrencyModule } from "ngx-currency";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,6 +33,8 @@ import { LanzamientoRegistroComponent } from './lanzamiento-registro/lanzamiento
     AppRoutingModule,
     BrowserAnimationsModule,
 
+    NgxCurrencyModule,
+
     InputTextModule,
     ButtonModule,
     TableModule,
@@ -37,7 +42,8 @@ import { LanzamientoRegistroComponent } from './lanzamiento-registro/lanzamiento
     InputTextareaModule,
     CalendarModule,
     SelectButtonModule,
-    DropdownModule
+    DropdownModule,
+    InputMaskModule
   ],
   providers: [],
   bootstrap: [AppComponent]

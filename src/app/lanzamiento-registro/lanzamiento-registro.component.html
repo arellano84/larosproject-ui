@@ -27,7 +27,7 @@
       </div>
       <div class="ui-g-12 ui-md-3 ui-fluid">
         <label>Valor</label>
-        <input pInputText type="text" placeholder="0,00">
+        <input pInputText currencyMask placeholder="0,00" [options]="{ prefix: ' ', thousands: '.', decimal: ',', allowNegative: true }"/>
       </div>
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Categoria - {{instCategoria.value}}</label>
