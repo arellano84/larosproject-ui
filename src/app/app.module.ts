@@ -22,6 +22,8 @@ import { LanzamientoRegistroComponent } from './lanzamiento-registro/lanzamiento
 import { PersonasRegistroComponent } from './personas-registro/personas-registro.component';
 import { FormsModule } from '@angular/forms';
 import { MensajesValidacionComponent } from './mensajes-validacion/mensajes-validacion.component';
+import { PersonasListaComponent } from './personas-lista/personas-lista.component';
+import { LanzamientosListaComponent } from './lanzamientos-lista/lanzamientos-lista.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { MensajesValidacionComponent } from './mensajes-validacion/mensajes-vali
     PersonasBusquedaComponent,
     LanzamientoRegistroComponent,
     PersonasRegistroComponent,
-    MensajesValidacionComponent
+    MensajesValidacionComponent,
+    PersonasListaComponent,
+    LanzamientosListaComponent
   ],
   imports: [
     BrowserModule,

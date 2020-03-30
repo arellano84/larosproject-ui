@@ -16,33 +16,7 @@
 
     <div class="ui-g">
       <div class="ui-g-12">
-          <p-table [value]="personas"  [paginator]="true" [rows]="4" [responsive]="true">
-              <ng-template pTemplate="header">
-                  <tr>
-                      <th>Nombre</th>
-                      <th>Ciudad</th>
-                      <th>Estado</th>
-                      <th>Activo</th>
-                      <th class="col-actions-header"></th>
-                  </tr>
-              </ng-template>
-              <ng-template pTemplate="body" let-persona>
-                  <tr>
-                      <td>{{persona.nombre}}</td>
-                      <td>{{persona.ciudad}}</td>
-                      <td>{{persona.estado}}</td>
-                      <td>
-                        <a href="#" [style.color]="!persona.activo ? 'red' : 'blue'" [pTooltip]="persona.activo?'Desactivar':'Activar'" tooltipPosition="top">
-                            {{persona.activo?'Activo':'Inactivo'}}
-                        </a>
-                      </td>
-                      <td class="col-actions-content">
-                          <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top" ></a>
-                          <button pButton icon="pi pi-trash" pTooltip="Eliminar" tooltipPosition="bottom"></button>
-                      </td>
-                  </tr>
-              </ng-template>
-          </p-table>
+          <app-personas-lista [listaPersonas]="personas"></app-personas-lista>
       </div>
 
       <div class="ui-g-12">

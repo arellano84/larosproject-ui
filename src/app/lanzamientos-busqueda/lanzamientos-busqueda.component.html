@@ -24,38 +24,7 @@
 
     <div class="ui-g">
       <div class="ui-g-12">
-          <p-table [value]="lanzamientos"  [paginator]="true" [rows]="2" [responsive]="true">
-              <ng-template pTemplate="header">
-                  <tr>
-                      <th>Persona</th>
-                      <th>Tipo</th>
-                      <th>Descripción</th>
-                      <th class="col-data-header">Fecha Vencimiento</th>
-                      <th class="col-data-header">Fecha de Pago</th>
-                      <th class="col-valor-header">Valor</th>
-                      <th class="col-actions-header"></th>
-                  </tr>
-              </ng-template>
-              <ng-template pTemplate="body" let-lanz>
-                  <tr>
-                      <td>{{lanz.pessoa}}</td>
-                      <td>{{lanz.tipo}}</td>
-                      <td>{{lanz.descricao}}</td>
-                      <td class="col-data-content">{{lanz.dataVencimento | date:'dd/MMM/yy'}}</td>
-                      <td class="col-data-content">{{lanz.dataPagamento | date:'dd/MMM/yy'}}</td>
-                      <td class="col-valor-content">
-                          <!--span [ngStyle]="{color: lanz.tipo=='DESPESA' ? 'red' : 'blue'}"-->
-                          <span [style.color]="lanz.tipo=='DESPESA' ? 'red' : 'blue'">
-                              {{lanz.valor | currency:'EUR':'€' }}
-                          </span>
-                      </td>
-                      <td class="col-actions-content">
-                          <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top" ></a>
-                          <button pButton icon="pi pi-trash" pTooltip="Eliminar" tooltipPosition="bottom"></button>
-                      </td>
-                  </tr>
-              </ng-template>
-          </p-table>
+          <app-lanzamientos-lista [listaLanzamientos]="lanzamientos"></app-lanzamientos-lista>
       </div>
 
       <div class="ui-g-12">
