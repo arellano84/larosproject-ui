@@ -1,6 +1,6 @@
 <div class="container">
 
-  <form>
+  <form autocomplete="off">
 
     <div class="ui-g">
       <div class="ui-g-12">
@@ -22,12 +22,26 @@
           [inline]="false"></p-calendar>
       </div>
       <div class="ui-g-12 ui-md-9 ui-fluid">
-        <label>Descripción</label>
-        <input pInputText type="text">
+        <label>Descripción {{instDescripcion.errors | json}}</label>
+        <input pInputText type="text"
+        name="instDescripcion" ngModel #instDescripcion="ngModel" required minlength="5">
+
+        <div>
+            <p-message class="ui-message ui-corner-all ui-message-error"
+              *ngIf="instDescripcion.hasError('required') && instDescripcion.dirty">
+              Informe una Descripción</p-message>
+        </div>
+        <div>
+            <p-message class="ui-message ui-corner-all ui-message-error"
+              *ngIf="instDescripcion.hasError('minlength') && instDescripcion.dirty">
+              Mínimo de {{instDescripcion.errors.minlength.requiredLength}} caracteres. </p-message>
+        </div>
       </div>
       <div class="ui-g-12 ui-md-3 ui-fluid">
         <label>Valor</label>
-        <input pInputText currencyMask placeholder="0,00" [options]="{ prefix: ' ', thousands: '.', decimal: ',', allowNegative: true }"/>
+        <input pInputText currencyMask placeholder="0,00"
+        [options]="{ prefix: ' ', thousands: '.', decimal: ',', allowNegative: true }"
+        name="instValor" ngModel/>
       </div>
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Categoria - {{instCategoria.value}}</label>

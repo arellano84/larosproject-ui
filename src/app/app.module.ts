@@ -20,6 +20,7 @@ import { BarraNavComponent } from './barra-nav/barra-nav.component';
 import { PersonasBusquedaComponent } from './personas-busqueda/personas-busqueda.component';
 import { LanzamientoRegistroComponent } from './lanzamiento-registro/lanzamiento-registro.component';
 import { PersonasRegistroComponent } from './personas-registro/personas-registro.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { PersonasRegistroComponent } from './personas-registro/personas-registro
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
 
     NgxCurrencyModule,
 
