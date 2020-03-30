@@ -14,6 +14,10 @@ import { FormControl } from '@angular/forms';
     .ui-message-error {
       /*margin: 0;*/
       margin-top: 3px;
+      font-family: "Open Sans", "Helvetica Neue", sans-serif;
+      font-size: 12px;
+      text-decoration: none;
+      font-weight: bold;
     }
   `]
 })
