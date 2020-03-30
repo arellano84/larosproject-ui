@@ -20,7 +20,7 @@
               <td class="col-data-content">{{lanz.dataPagamento | date:'dd/MMM/yy'}}</td>
               <td class="col-valor-content">
                   <!--span [ngStyle]="{color: lanz.tipo=='DESPESA' ? 'red' : 'blue'}"-->
-                  <span [style.color]="lanz.tipo=='DESPESA' ? 'red' : 'blue'">
+                  <span [style.color]="lanz.tipo=='GASTO' ? 'red' : 'blue'">
                       {{lanz.valor | currency:'EUR':'€' }}
                   </span>
               </td>

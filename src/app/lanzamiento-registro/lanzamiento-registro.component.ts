@@ -15,8 +15,8 @@ export class LanzamientoRegistroComponent implements OnInit {
   constructor() {
     // SelectItem API with label-value pairs
     this.tiposLanzamiento = [
-      {label:'Receta', value:'0'},
-      {label:'Despesa', value:'1'}
+      {label:'Ingreso', value:'0'},
+      {label:'Gasto', value:'1'}
     ];
     this.categorias = [
       {label:'Alimentación', value: 1},

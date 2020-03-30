@@ -4,7 +4,7 @@
 
     <div class="ui-g">
       <div class="ui-g-12">
-        <h1>Nuevo Lanzamiento</h1>
+        <h1>Nuevo Movimiento</h1>
       </div>
       <div class="ui-g-12">
         <p-selectButton [options]="tiposLanzamiento"
@@ -20,7 +20,7 @@
         <app-mensajes-validacion [control]="instVencimiento" error="required" texto="Informe una Fecha."></app-mensajes-validacion>
       </div>
       <div class="ui-g-6 ui-md-3 ui-fluid">
-        <label>{{instTiposLanzamiento.value==0?'Recibimiento':'Pagamiento'}}</label>
+        <label>{{instTiposLanzamiento.value==0?'Recibido':'Pagado'}}</label>
         <p-calendar dateFormat="dd/M/yy"
         [readonlyInput]="false" showIcon="true" [inline]="false"
           name="recibimiento" ngModel #instRecibimiento="ngModel"></p-calendar>
