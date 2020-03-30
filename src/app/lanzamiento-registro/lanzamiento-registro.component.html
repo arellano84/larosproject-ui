@@ -26,7 +26,11 @@
         <input pInputText type="text"
         name="instDescripcion" ngModel #instDescripcion="ngModel" required minlength="5">
 
-        <div>
+        <app-mensajes-validacion [control]="instDescripcion" error="required" texto="Informe una Descripción."></app-mensajes-validacion>
+        <app-mensajes-validacion [control]="instDescripcion" error="minlength" texto="Mínimo de {{instDescripcion.errors?.minlength?.requiredLength}} caracteres."></app-mensajes-validacion>
+
+        <!--Se convierte en componentente app-mensajes-validacion
+          div>
             <p-message class="ui-message ui-corner-all ui-message-error"
               *ngIf="instDescripcion.hasError('required') && instDescripcion.dirty">
               Informe una Descripción</p-message>
@@ -35,7 +39,7 @@
             <p-message class="ui-message ui-corner-all ui-message-error"
               *ngIf="instDescripcion.hasError('minlength') && instDescripcion.dirty">
               Mínimo de {{instDescripcion.errors.minlength.requiredLength}} caracteres. </p-message>
-        </div>
+        </div-->
       </div>
       <div class="ui-g-12 ui-md-3 ui-fluid">
         <label>Valor</label>

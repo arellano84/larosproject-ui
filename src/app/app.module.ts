@@ -21,6 +21,7 @@ import { PersonasBusquedaComponent } from './personas-busqueda/personas-busqueda
 import { LanzamientoRegistroComponent } from './lanzamiento-registro/lanzamiento-registro.component';
 import { PersonasRegistroComponent } from './personas-registro/personas-registro.component';
 import { FormsModule } from '@angular/forms';
+import { MensajesValidacionComponent } from './mensajes-validacion/mensajes-validacion.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { FormsModule } from '@angular/forms';
     BarraNavComponent,
     PersonasBusquedaComponent,
     LanzamientoRegistroComponent,
-    PersonasRegistroComponent
+    PersonasRegistroComponent,
+    MensajesValidacionComponent
   ],
   imports: [
     BrowserModule,
