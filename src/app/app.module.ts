@@ -6,7 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { BarraNavComponent } from './barra-nav/barra-nav.component';
-import { MensajesValidacionComponent } from './mensajes-validacion/mensajes-validacion.component';
 
 import { MovimientosModule } from './movimientos/movimientos.module';
 import { PersonasModule } from './personas/personas.module';
@@ -14,8 +13,8 @@ import { PersonasModule } from './personas/personas.module';
 @NgModule({
   declarations: [
     AppComponent,
-    BarraNavComponent,
-    MensajesValidacionComponent
+    BarraNavComponent
+    // MensajesValidacionComponent
   ],
   imports: [
     BrowserModule,

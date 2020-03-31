@@ -17,7 +17,7 @@
           [inline]="false"
           name="vencimiento" ngModel #instVencimiento="ngModel" required>
         </p-calendar>
-        <!--app-mensajes-validacion [control]="instVencimiento" error="required" texto="Informe una Fecha."></app-mensajes-validacion-->
+        <app-mensajes-validacion [control]="instVencimiento" error="required" texto="Informe una Fecha."></app-mensajes-validacion>
       </div>
       <div class="ui-g-6 ui-md-3 ui-fluid">
         <label>{{instTiposLanzamiento.value==0?'Recibido':'Pagado'}}</label>
@@ -30,8 +30,8 @@
         <input pInputText type="text"
         name="descipcion" ngModel #instDescripcion="ngModel" required minlength="5">
 
-        <!--app-mensajes-validacion [control]="instDescripcion" error="required" texto="Informe una Descripción."></app-mensajes-validacion-->
-        <!--app-mensajes-validacion [control]="instDescripcion" error="minlength" texto="Mínimo de {{instDescripcion.errors?.minlength?.requiredLength}} caracteres."></app-mensajes-validacion-->
+        <app-mensajes-validacion [control]="instDescripcion" error="required" texto="Informe una Descripción."></app-mensajes-validacion>
+        <app-mensajes-validacion [control]="instDescripcion" error="minlength" texto="Mínimo de {{instDescripcion.errors?.minlength?.requiredLength}} caracteres."></app-mensajes-validacion>
 
         <!--Se convierte en componentente app-mensajes-validacion
           div>
@@ -50,7 +50,7 @@
         <input pInputText currencyMask placeholder="0,00"
         [options]="{ prefix: ' ', thousands: '.', decimal: ',', allowNegative: true }"
         name="valor" ngModel #instValor="ngModel" required/>
-        <!--app-mensajes-validacion [control]="instValor" error="required" texto="Informe Valor."></app-mensajes-validacion-->
+        <app-mensajes-validacion [control]="instValor" error="required" texto="Informe Valor."></app-mensajes-validacion>
       </div>
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Categoria - {{instCategoria.value}}</label>

@@ -14,6 +14,8 @@ import { InputTextModule } from 'primeng/inputtext';
 
 import { NgxCurrencyModule } from 'ngx-currency';
 
+import { CompartidoModule } from './../compartido/compartido.module';
+
 import { LanzamientosListaComponent } from './lanzamientos-lista/lanzamientos-lista.component';
 import { LanzamientoRegistroComponent } from './lanzamiento-registro/lanzamiento-registro.component';
 import { LanzamientosBusquedaComponent } from './lanzamientos-busqueda/lanzamientos-busqueda.component';
@@ -35,7 +37,9 @@ import { LanzamientosBusquedaComponent } from './lanzamientos-busqueda/lanzamien
     SelectButtonModule,
     DropdownModule,
 
-    NgxCurrencyModule
+    NgxCurrencyModule,
+
+    CompartidoModule
   ],
   exports: [
     LanzamientosBusquedaComponent,
