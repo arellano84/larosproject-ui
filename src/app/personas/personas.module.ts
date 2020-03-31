@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -11,16 +11,17 @@ import { TooltipModule } from 'primeng/tooltip';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
+import { InputMaskModule } from 'primeng/inputmask';
 
 import { NgxCurrencyModule } from 'ngx-currency';
 
-import { LanzamientosListaComponent } from './lanzamientos-lista/lanzamientos-lista.component';
-import { LanzamientoRegistroComponent } from './lanzamiento-registro/lanzamiento-registro.component';
-import { LanzamientosBusquedaComponent } from './lanzamientos-busqueda/lanzamientos-busqueda.component';
+import { PersonasRegistroComponent } from './personas-registro/personas-registro.component';
+import { PersonasListaComponent } from './personas-lista/personas-lista.component';
+import { PersonasBusquedaComponent } from './personas-busqueda/personas-busqueda.component';
 
 
 @NgModule({
-  declarations: [LanzamientosBusquedaComponent,LanzamientoRegistroComponent,LanzamientosListaComponent],
+  declarations: [PersonasBusquedaComponent, PersonasRegistroComponent, PersonasListaComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -30,17 +31,11 @@ import { LanzamientosBusquedaComponent } from './lanzamientos-busqueda/lanzamien
     ButtonModule,
     TableModule,
     TooltipModule,
-    InputTextareaModule,
-    CalendarModule,
-    SelectButtonModule,
-    DropdownModule,
-
-    NgxCurrencyModule
+    InputMaskModule
   ],
   exports: [
-    LanzamientosBusquedaComponent,
-    LanzamientoRegistroComponent
-    // LanzamientosListaComponent
+    PersonasBusquedaComponent,
+    PersonasRegistroComponent
   ]
 })
-export class MovimientosModule { }
+export class PersonasModule { }
