@@ -15,27 +15,26 @@ import { NgxCurrencyModule } from "ngx-currency";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LanzamientosBusquedaComponent } from './lanzamientos-busqueda/lanzamientos-busqueda.component';
 import { BarraNavComponent } from './barra-nav/barra-nav.component';
 import { PersonasBusquedaComponent } from './personas-busqueda/personas-busqueda.component';
-import { LanzamientoRegistroComponent } from './lanzamiento-registro/lanzamiento-registro.component';
 import { PersonasRegistroComponent } from './personas-registro/personas-registro.component';
 import { FormsModule } from '@angular/forms';
 import { MensajesValidacionComponent } from './mensajes-validacion/mensajes-validacion.component';
 import { PersonasListaComponent } from './personas-lista/personas-lista.component';
-import { LanzamientosListaComponent } from './lanzamientos-lista/lanzamientos-lista.component';
+
+import { MovimientosModule } from './movimientos/movimientos.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LanzamientosBusquedaComponent,
+    //LanzamientosBusquedaComponent, --> Se importa ahora MovimientosModule
     BarraNavComponent,
     PersonasBusquedaComponent,
-    LanzamientoRegistroComponent,
+    //LanzamientoRegistroComponent, --> Se importa ahora MovimientosModule
     PersonasRegistroComponent,
     MensajesValidacionComponent,
-    PersonasListaComponent,
-    LanzamientosListaComponent
+    PersonasListaComponent
+    //LanzamientosListaComponent --> Se importa ahora MovimientosModule
   ],
   imports: [
     BrowserModule,
@@ -53,7 +52,12 @@ import { LanzamientosListaComponent } from './lanzamientos-lista/lanzamientos-li
     CalendarModule,
     SelectButtonModule,
     DropdownModule,
-    InputMaskModule
+    InputMaskModule,
+
+    MovimientosModule
+  ],
+  exports: [
+
   ],
   providers: [],
   bootstrap: [AppComponent]
