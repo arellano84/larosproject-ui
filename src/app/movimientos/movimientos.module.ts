@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 import { DropdownModule } from 'primeng/dropdown';
 import { SelectButtonModule } from 'primeng/selectbutton';
@@ -20,6 +21,8 @@ import { LanzamientosListaComponent } from './lanzamientos-lista/lanzamientos-li
 import { LanzamientoRegistroComponent } from './lanzamiento-registro/lanzamiento-registro.component';
 import { LanzamientosBusquedaComponent } from './lanzamientos-busqueda/lanzamientos-busqueda.component';
 
+import { MovimientoService } from './movimiento.service';
+
 
 @NgModule({
   declarations: [LanzamientosBusquedaComponent,LanzamientoRegistroComponent,LanzamientosListaComponent],
@@ -27,6 +30,8 @@ import { LanzamientosBusquedaComponent } from './lanzamientos-busqueda/lanzamien
     CommonModule,
     FormsModule,
     BrowserAnimationsModule,
+
+    HttpClientModule,
 
     InputTextModule,
     ButtonModule,
@@ -45,6 +50,7 @@ import { LanzamientosBusquedaComponent } from './lanzamientos-busqueda/lanzamien
     LanzamientosBusquedaComponent,
     LanzamientoRegistroComponent
     // LanzamientosListaComponent
-  ]
+  ],
+  providers: [MovimientoService]
 })
 export class MovimientosModule { }

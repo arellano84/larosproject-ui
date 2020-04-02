@@ -1,27 +1,38 @@
 import { Component, OnInit } from '@angular/core';
+import { MovimientoService } from './../movimiento.service';
 
 @Component({
   selector: 'app-lanzamientos-busqueda',
   templateUrl: './lanzamientos-busqueda.component.html',
   styleUrls: ['./lanzamientos-busqueda.component.css']
 })
-export class LanzamientosBusquedaComponent {
+export class LanzamientosBusquedaComponent implements OnInit {
 
-  lanzamientos = [
-    { tipo: 'GASTO', descricao: 'Compra de pão', dataVencimento: new Date(2020, 3, 26),
-      dataPagamento: null, valor: 4.55, pessoa: 'Padaria do José' },
-    { tipo: 'INGRESO', descricao: 'Venda de software', dataVencimento: new Date(2020, 3, 26),
-      dataPagamento: new Date(2020, 3, 31), valor: 80000, pessoa: 'Atacado Brasil' },
-    { tipo: 'GASTO', descricao: 'Impostos', dataVencimento: new Date(2020, 3, 26),
-      dataPagamento: null, valor: 14312, pessoa: 'Ministério da Fazenda' },
-    { tipo: 'GASTO', descricao: 'Mensalidade de escola', dataVencimento: new Date(2020, 3, 26),
-      dataPagamento: new Date(2020, 3, 31), valor: 800, pessoa: 'Escola Abelha Rainha' },
-    { tipo: 'INGRESO', descricao: 'Venda de carro', dataVencimento: new Date(2020, 3, 26),
-      dataPagamento: null, valor: 55000, pessoa: 'Sebastião Souza' },
-    { tipo: 'GASTO', descricao: 'Aluguel', dataVencimento: new Date(2020, 3, 26),
-      dataPagamento: new Date(2020, 3, 31), valor: 1750, pessoa: 'Casa Nova Imóveis' },
-    { tipo: 'GASTO', descricao: 'Mensalidade musculação', dataVencimento: new Date(2020, 3, 26),
-      dataPagamento: null, valor: 180, pessoa: 'Academia Top' }
-  ];
+  lanzamientos = [];
+
+  constructor(private movimientoService: MovimientoService) {}
+
+  ngOnInit() {
+    this.consultar();
+  }
+
+  private consultar() {
+    console.log('-Component- Consultado Movimientos...');
+
+    this.movimientoService.consultar()
+      .then(lanz => {
+        this.lanzamientos = lanz;
+        console.log(this.lanzamientos);
+      })
+      .catch(error => {
+        alert(error);
+        this.lanzamientos = [
+          { tipo: 'GASTO', descripcion: 'Compra de pão de queijo', fechaVencimiento: new Date(2020, 3, 26),
+            fechaPago: null, valor: 4.55, persona: 'Padaria do José' },
+          { tipo: 'INGRESO', descripcion: 'Venda de software', fechaVencimiento: new Date(2020, 3, 26),
+            fechaPago: new Date(2020, 3, 31), valor: 80000, persona: 'Atacado Brasil' }
+        ];
+      });
+  }
 
 }

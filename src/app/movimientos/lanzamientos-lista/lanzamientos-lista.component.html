@@ -1,5 +1,5 @@
 <div clas="container">
-  <p-table [value]="listaLanzamientos"  [paginator]="true" [rows]="2" [responsive]="true">
+  <p-table [value]="listaLanzamientos"  [paginator]="true" [rows]="4" [responsive]="true">
       <ng-template pTemplate="header">
           <tr>
               <th>Persona</th>
@@ -13,11 +13,11 @@
       </ng-template>
       <ng-template pTemplate="body" let-lanz>
           <tr>
-              <td>{{lanz.pessoa}}</td>
+              <td>{{lanz.persona}}</td>
               <td>{{lanz.tipo}}</td>
-              <td>{{lanz.descricao}}</td>
-              <td class="col-data-content">{{lanz.dataVencimento | date:'dd/MMM/yy'}}</td>
-              <td class="col-data-content">{{lanz.dataPagamento | date:'dd/MMM/yy'}}</td>
+              <td>{{lanz.descripcion}}</td>
+              <td class="col-data-content">{{lanz.fechaVencimiento | date:'dd/MMM/yy'}}</td>
+              <td class="col-data-content">{{lanz.fechaPago | date:'dd/MMM/yy'}}</td>
               <td class="col-valor-content">
                   <!--span [ngStyle]="{color: lanz.tipo=='DESPESA' ? 'red' : 'blue'}"-->
                   <span [style.color]="lanz.tipo=='GASTO' ? 'red' : 'blue'">
