@@ -12,12 +12,19 @@
 
         <div class="ui-g-12">
           <label style="display:block">Vencimiento</label>
-          <input type="text" pInputText style="width: 95px">
+          <p-calendar dateFormat="dd/M/yy"
+            [readonlyInput]="false" showIcon="true"
+            [inline]="false"
+            [inputStyle]="{width: '95px'}"
+            name="fechaVencimientoDe" [(ngModel)]='fechaVencimientoDe'>
+          </p-calendar>
 
           <label>Hasta</label>
-          <input type="text" pInputText style="width: 95px">
+          <p-calendar dateFormat="dd/M/yy"
+            [readonlyInput]="false" showIcon="true" [inline]="false"
+            [inputStyle]="{width: '95px'}"
+            name="fechaVencimientoHasta" [(ngModel)]='fechaVencimientoHasta'></p-calendar>
         </div>
-
         <div class="ui-g-12">
             <button pButton type="submit" label="Buscar" ></button>
         </div>
@@ -29,6 +36,9 @@
           <!--app-lanzamientos-lista [listaLanzamientos]="lanzamientos"></app-lanzamientos-lista-->
           <div clas="container">
               <p-table [value]="lanzamientos"  [paginator]="true" [rows]="4" [responsive]="true">
+                  <ng-template pTemplate="emptymessage">
+                      Ningun movimiento encontrado
+                  </ng-template>
                   <ng-template pTemplate="header">
                       <tr>
                           <th>Persona</th>

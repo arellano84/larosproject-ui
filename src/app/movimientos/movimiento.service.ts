@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import * as moment from 'moment';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,12 @@ export class MovimientoService {
     if(filtro.descripcion) {
       params = params.set('descripcion', filtro.descripcion);
     }
+    if(filtro.fechaVencimientoDe) {
+      params = params.set('fechaVencimientoDe', moment(filtro.fechaVencimientoDe).format('YYYY-MM-DD'));
+    }
+    if(filtro.fechaVencimientoHasta) {
+      params = params.set('fechaVencimientoHasta', moment(filtro.fechaVencimientoHasta).format('YYYY-MM-DD'));
+    }
 
     return this.httpClient
       .get(`${this.movimientosUrl}?resumo`, { headers, params })
@@ -42,4 +49,6 @@ Interface para definir contrato.
 */
 export interface MovimientoFiltro {
   descripcion: string;
+  fechaVencimientoDe: Date;
+  fechaVencimientoHasta: Date;
 }

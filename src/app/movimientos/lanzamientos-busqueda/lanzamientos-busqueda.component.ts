@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MovimientoService } from './../movimiento.service';
+import { MovimientoService, MovimientoFiltro } from './../movimiento.service';
 
 @Component({
   selector: 'app-lanzamientos-busqueda',
@@ -10,6 +10,8 @@ export class LanzamientosBusquedaComponent implements OnInit {
 
   lanzamientos = [];
   descripcion: string;
+  fechaVencimientoDe: Date;
+  fechaVencimientoHasta: Date;
 
   constructor(private movimientoService: MovimientoService) {}
 
@@ -20,7 +22,14 @@ export class LanzamientosBusquedaComponent implements OnInit {
   public consultar() {
     console.log('-Component- Consultado Movimientos...');
 
-    this.movimientoService.consultar({descripcion: this.descripcion})
+    const filtroMovimiento: MovimientoFiltro = {
+      descripcion: this.descripcion,
+      fechaVencimientoDe: this.fechaVencimientoDe,
+      fechaVencimientoHasta: this.fechaVencimientoHasta
+    };
+
+    // this.movimientoService.consultar({descripcion: this.descripcion})
+    this.movimientoService.consultar(filtroMovimiento)
       .then(lanz => {
         this.lanzamientos = lanz;
         console.log(this.lanzamientos);
