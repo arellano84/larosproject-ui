@@ -15,6 +15,7 @@ import { PersonasRegistroComponent } from './personas-registro/personas-registro
 import { PersonasListaComponent } from './personas-lista/personas-lista.component';
 import { PersonasBusquedaComponent } from './personas-busqueda/personas-busqueda.component';
 
+import { PersonaService } from './persona.service';
 
 @NgModule({
   declarations: [PersonasBusquedaComponent, PersonasRegistroComponent, PersonasListaComponent],
@@ -34,6 +35,9 @@ import { PersonasBusquedaComponent } from './personas-busqueda/personas-busqueda
   exports: [
     PersonasBusquedaComponent,
     PersonasRegistroComponent
+  ],
+  providers: [
+    PersonaService
   ]
 })
 export class PersonasModule { }

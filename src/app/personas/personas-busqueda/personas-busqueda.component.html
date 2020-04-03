@@ -1,22 +1,62 @@
 <div class="container">
     <div class="ui-g">
-      <div class="ui-g-12">
-        <h1>Persona</h1>
-      </div>
+      <form autocomplete="off" (ngSubmit)="consultar()">
+        <div class="ui-g-12">
+          <h1>Persona</h1>
+        </div>
 
-      <div class="ui-g-12 ui-fluid">
-        <label>Nombre</label>
-        <input type="text" pInputText>
-      </div>
+        <div class="ui-g-12 ui-fluid">
+          <label>Nombre</label>
+          <input type="text" name='nombre' pInputText [(ngModel)]='filtroPer.nombre'>
+        </div>
 
-      <div class="ui-g-12">
-          <button pButton type="submit" label="Buscar" ></button>
-      </div>
+        <div class="ui-g-12">
+            <button pButton type="submit" label="Buscar" ></button>
+        </div>
+      </form>
     </div>
 
     <div class="ui-g">
       <div class="ui-g-12">
-          <app-personas-lista [listaPersonas]="personas"></app-personas-lista>
+          <!--app-personas-lista [listaPersonas]="personas"></app-personas-lista-->
+          <div class="container">
+              <p-table [value]="personas"
+                [responsive]="true"
+                [paginator]="true"
+                [rows]="filtroPer.registrosPorPagina"
+                [lazy]="true"
+                [totalRecords]="totalRegistros"
+                (onLazyLoad)="alCambiarPagina($event)">
+                <ng-template pTemplate="emptymessage">
+                    Ninguna persona encontrado
+                </ng-template>
+                  <ng-template pTemplate="header">
+                      <tr>
+                          <th>Documento</th>
+                          <th>Nombre</th>
+                          <th>Apellidos</th>
+                          <th>Activo</th>
+                          <th class="col-actions-header"></th>
+                      </tr>
+                  </ng-template>
+                  <ng-template pTemplate="body" let-persona>
+                      <tr>
+                          <td>{{persona.documento}}</td>
+                          <td>{{persona.nombre}}</td>
+                          <td>{{persona.apellido1}} {{persona.apellido2}}</td>
+                          <td>
+                            <a href="#" [style.color]="!persona.activo ? 'red' : 'blue'" [pTooltip]="persona.activo?'Desactivar':'Activar'" tooltipPosition="top">
+                                {{persona.activo?'Activo':'Inactivo'}}
+                            </a>
+                          </td>
+                          <td class="col-actions-content">
+                              <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top" ></a>
+                              <button pButton icon="pi pi-trash" pTooltip="Eliminar" tooltipPosition="bottom"></button>
+                          </td>
+                      </tr>
+                  </ng-template>
+              </p-table>
+            </div>
       </div>
 
       <div class="ui-g-12">
