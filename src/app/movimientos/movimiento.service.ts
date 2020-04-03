@@ -21,11 +21,11 @@ export class MovimientoService {
 
     // const params = new URLSearchParams();
     let params = new HttpParams();
-    //17.3. Adicionando filtro por descrição na pesquisa de lançamentos
+    // 17.3. Adicionando filtro por descrição na pesquisa de lançamentos
     if(filtro.descripcion) {
       params = params.set('descripcion', filtro.descripcion);
     }
-    //17.4. Adicionando filtro por datas na pesquisa de lançamentos
+    // 17.4. Adicionando filtro por datas na pesquisa de lançamentos
     if(filtro.fechaVencimientoDe) {
       params = params.set('fechaVencimientoDe', moment(filtro.fechaVencimientoDe).format('YYYY-MM-DD'));
     }
