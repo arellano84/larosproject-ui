@@ -33,10 +33,22 @@ export class MovimientoService {
       params = params.set('fechaVencimientoHasta', moment(filtro.fechaVencimientoHasta).format('YYYY-MM-DD'));
     }
 
+    // 17.5. Implementando a paginação no serviço de lançamentos
+    params = params.set('page', filtro.pagina.toString());
+    params = params.set('size', filtro.registrosPorPagina.toString());
+
     return this.httpClient
       .get(`${this.movimientosUrl}?resumo`, { headers, params })
       .toPromise()
-      .then(response => response['content'])
+      .then(response => {
+          // response['content']
+          const movimientos = response['content']
+          const resultado = {
+            movimientos,
+            total: response['totalElements']
+          };
+          return resultado;
+        })
       .catch(error => {
         console.log('-MovimientoService.consultar - error...' + error);
         return Promise.reject(`Error al Consultar Movimientos!`);
@@ -49,8 +61,10 @@ export class MovimientoService {
 /*
 Interface para definir contrato.
 */
-export interface MovimientoFiltro {
+export class MovimientoFiltro {
   descripcion: string;
   fechaVencimientoDe: Date;
   fechaVencimientoHasta: Date;
+  pagina = 0;
+  registrosPorPagina = 5;
 }

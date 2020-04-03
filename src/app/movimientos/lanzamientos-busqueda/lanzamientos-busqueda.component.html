@@ -7,7 +7,7 @@
 
         <div class="ui-g-12 ui-fluid">
           <label>Descripción</label>
-          <input type="text" name='descripcion' pInputText [(ngModel)]='descripcion'>
+          <input type="text" name='descripcion' pInputText [(ngModel)]='filtroMov.descripcion'>
         </div>
 
         <div class="ui-g-12">
@@ -16,14 +16,14 @@
             [readonlyInput]="false" showIcon="true"
             [inline]="false"
             [inputStyle]="{width: '95px'}"
-            name="fechaVencimientoDe" [(ngModel)]='fechaVencimientoDe'>
+            name="fechaVencimientoDe" [(ngModel)]='filtroMov.fechaVencimientoDe'>
           </p-calendar>
 
           <label>Hasta</label>
           <p-calendar dateFormat="dd/M/yy"
             [readonlyInput]="false" showIcon="true" [inline]="false"
             [inputStyle]="{width: '95px'}"
-            name="fechaVencimientoHasta" [(ngModel)]='fechaVencimientoHasta'></p-calendar>
+            name="fechaVencimientoHasta" [(ngModel)]='filtroMov.fechaVencimientoHasta'></p-calendar>
         </div>
         <div class="ui-g-12">
             <button pButton type="submit" label="Buscar" ></button>

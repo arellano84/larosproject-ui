@@ -9,9 +9,10 @@ import { MovimientoService, MovimientoFiltro } from './../movimiento.service';
 export class LanzamientosBusquedaComponent implements OnInit {
 
   lanzamientos = [];
-  descripcion: string;
+  /*descripcion: string;
   fechaVencimientoDe: Date;
-  fechaVencimientoHasta: Date;
+  fechaVencimientoHasta: Date;*/
+  filtroMov = new MovimientoFiltro();
 
   constructor(private movimientoService: MovimientoService) {}
 
@@ -22,16 +23,17 @@ export class LanzamientosBusquedaComponent implements OnInit {
   public consultar() {
     console.log('-Component- Consultado Movimientos...');
 
-    const filtroMovimiento: MovimientoFiltro = {
+    /*const filtroMov: MovimientoFiltro = {
       descripcion: this.descripcion,
       fechaVencimientoDe: this.fechaVencimientoDe,
       fechaVencimientoHasta: this.fechaVencimientoHasta
-    };
+    };*/
 
     // this.movimientoService.consultar({descripcion: this.descripcion})
-    this.movimientoService.consultar(filtroMovimiento)
+    this.movimientoService.consultar(this.filtroMov)
       .then(lanz => {
-        this.lanzamientos = lanz;
+        // this.lanzamientos = lanz;
+        this.lanzamientos = lanz.movimientos;
         console.log(this.lanzamientos);
       })
       .catch(error => {
