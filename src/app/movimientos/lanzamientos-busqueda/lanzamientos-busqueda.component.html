@@ -1,30 +1,66 @@
 <div class="container">
     <div class="ui-g">
-      <div class="ui-g-12">
-        <h1>Movimiento</h1>
-      </div>
+        <form autocomplete="off" (ngSubmit)="consultar()">
+        <div class="ui-g-12">
+          <h1>Movimiento</h1>
+        </div>
 
-      <div class="ui-g-12 ui-fluid">
-        <label>Descripción</label>
-        <input type="text" pInputText>
-      </div>
+        <div class="ui-g-12 ui-fluid">
+          <label>Descripción</label>
+          <input type="text" name='descripcion' pInputText [(ngModel)]='descripcion'>
+        </div>
 
-      <div class="ui-g-12">
-        <label style="display:block">Vencimiento</label>
-        <input type="text" pInputText style="width: 95px">
+        <div class="ui-g-12">
+          <label style="display:block">Vencimiento</label>
+          <input type="text" pInputText style="width: 95px">
 
-        <label>Hasta</label>
-        <input type="text" pInputText style="width: 95px">
-      </div>
+          <label>Hasta</label>
+          <input type="text" pInputText style="width: 95px">
+        </div>
 
-      <div class="ui-g-12">
-          <button pButton type="submit" label="Buscar" ></button>
-      </div>
+        <div class="ui-g-12">
+            <button pButton type="submit" label="Buscar" ></button>
+        </div>
+      </form>
     </div>
 
     <div class="ui-g">
       <div class="ui-g-12">
-          <app-lanzamientos-lista [listaLanzamientos]="lanzamientos"></app-lanzamientos-lista>
+          <!--app-lanzamientos-lista [listaLanzamientos]="lanzamientos"></app-lanzamientos-lista-->
+          <div clas="container">
+              <p-table [value]="lanzamientos"  [paginator]="true" [rows]="4" [responsive]="true">
+                  <ng-template pTemplate="header">
+                      <tr>
+                          <th>Persona</th>
+                          <th>Tipo</th>
+                          <th>Descripción</th>
+                          <th class="col-data-header">Fecha Vencimiento</th>
+                          <th class="col-data-header">Fecha de Pago</th>
+                          <th class="col-valor-header">Valor</th>
+                          <th class="col-actions-header"></th>
+                      </tr>
+                  </ng-template>
+                  <ng-template pTemplate="body" let-lanz>
+                      <tr>
+                          <td>{{lanz.persona}}</td>
+                          <td>{{lanz.tipo}}</td>
+                          <td>{{lanz.descripcion}}</td>
+                          <td class="col-data-content">{{lanz.fechaVencimiento | date:'dd/MMM/yy'}}</td>
+                          <td class="col-data-content">{{lanz.fechaPago | date:'dd/MMM/yy'}}</td>
+                          <td class="col-valor-content">
+                              <!--span [ngStyle]="{color: lanz.tipo=='DESPESA' ? 'red' : 'blue'}"-->
+                              <span [style.color]="lanz.tipo=='GASTO' ? 'red' : 'blue'">
+                                  {{lanz.valor | currency:'EUR':'€' }}
+                              </span>
+                          </td>
+                          <td class="col-actions-content">
+                              <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top" ></a>
+                              <button pButton icon="pi pi-trash" pTooltip="Eliminar" tooltipPosition="bottom"></button>
+                          </td>
+                      </tr>
+                  </ng-template>
+              </p-table>
+            </div>
       </div>
 
       <div class="ui-g-12">

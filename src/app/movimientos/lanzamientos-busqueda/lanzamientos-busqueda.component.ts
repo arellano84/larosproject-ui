@@ -9,6 +9,7 @@ import { MovimientoService } from './../movimiento.service';
 export class LanzamientosBusquedaComponent implements OnInit {
 
   lanzamientos = [];
+  descripcion: string;
 
   constructor(private movimientoService: MovimientoService) {}
 
@@ -16,10 +17,10 @@ export class LanzamientosBusquedaComponent implements OnInit {
     this.consultar();
   }
 
-  private consultar() {
+  public consultar() {
     console.log('-Component- Consultado Movimientos...');
 
-    this.movimientoService.consultar()
+    this.movimientoService.consultar({descripcion: this.descripcion})
       .then(lanz => {
         this.lanzamientos = lanz;
         console.log(this.lanzamientos);
