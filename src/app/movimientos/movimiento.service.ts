@@ -66,5 +66,5 @@ export class MovimientoFiltro {
   fechaVencimientoDe: Date;
   fechaVencimientoHasta: Date;
   pagina = 0;
-  registrosPorPagina = 5;
+  registrosPorPagina = 3;
 }

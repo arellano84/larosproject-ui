@@ -35,7 +35,13 @@
       <div class="ui-g-12">
           <!--app-lanzamientos-lista [listaLanzamientos]="lanzamientos"></app-lanzamientos-lista-->
           <div clas="container">
-              <p-table [value]="lanzamientos"  [paginator]="true" [rows]="4" [responsive]="true">
+              <p-table [value]="lanzamientos"
+                [responsive]="true"
+                [paginator]="true"
+                [rows]="filtroMov.registrosPorPagina"
+                [lazy]="true"
+                [totalRecords]="totalRegistros"
+                (onLazyLoad)="alCambiarPagina($event)">
                   <ng-template pTemplate="emptymessage">
                       Ningun movimiento encontrado
                   </ng-template>

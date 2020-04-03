@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MovimientoService, MovimientoFiltro } from './../movimiento.service';
+import { LazyLoadEvent } from 'primeng/api/public_api';
 
 @Component({
   selector: 'app-lanzamientos-busqueda',
@@ -9,6 +10,7 @@ import { MovimientoService, MovimientoFiltro } from './../movimiento.service';
 export class LanzamientosBusquedaComponent implements OnInit {
 
   lanzamientos = [];
+  totalRegistros: number;
   /*descripcion: string;
   fechaVencimientoDe: Date;
   fechaVencimientoHasta: Date;*/
@@ -17,10 +19,10 @@ export class LanzamientosBusquedaComponent implements OnInit {
   constructor(private movimientoService: MovimientoService) {}
 
   ngOnInit() {
-    this.consultar();
+    // this.consultar(); //Se comenta porque se habilita LazyLoadEvent
   }
 
-  public consultar() {
+  public consultar(pagina = 0) {
     console.log('-Component- Consultado Movimientos...');
 
     /*const filtroMov: MovimientoFiltro = {
@@ -29,11 +31,15 @@ export class LanzamientosBusquedaComponent implements OnInit {
       fechaVencimientoHasta: this.fechaVencimientoHasta
     };*/
 
+    // 17.6. Configurando a paginação lazy do PrimeNG
+    this.filtroMov.pagina = pagina;
+
     // this.movimientoService.consultar({descripcion: this.descripcion})
     this.movimientoService.consultar(this.filtroMov)
       .then(lanz => {
         // this.lanzamientos = lanz;
         this.lanzamientos = lanz.movimientos;
+        this.totalRegistros = lanz.total;
         console.log(this.lanzamientos);
       })
       .catch(error => {
@@ -45,6 +51,15 @@ export class LanzamientosBusquedaComponent implements OnInit {
             fechaPago: new Date(2020, 3, 31), valor: 80000, persona: 'Atacado Brasil' }
         ];
       });
+  }
+
+  /*
+  17.6. Configurando a paginação lazy do PrimeNG
+  */
+  alCambiarPagina(evento: LazyLoadEvent) {
+    console.log(evento);
+    const pagina = evento.first / evento.rows;
+    this.consultar(pagina);
   }
 
 }
