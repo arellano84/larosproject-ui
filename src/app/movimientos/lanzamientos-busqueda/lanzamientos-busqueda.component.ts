@@ -1,3 +1,4 @@
+import { ErrorHandlerService } from './../../core/error-handler.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MovimientoService, MovimientoFiltro } from './../movimiento.service';
 import { LazyLoadEvent } from 'primeng/api/public_api';
@@ -25,7 +26,8 @@ export class LanzamientosBusquedaComponent implements OnInit {
   constructor(
     private movimientoService: MovimientoService,
     private toasty: ToastyService,
-    private confirmationService: ConfirmationService) {}
+    private confirmationService: ConfirmationService,
+    private errorHandlerService: ErrorHandlerService) {}
 
   ngOnInit() {
     // this.consultar(); //Se comenta porque se habilita LazyLoadEvent
@@ -52,7 +54,9 @@ export class LanzamientosBusquedaComponent implements OnInit {
         console.log(this.lanzamientos);
       })
       .catch(error => {
-        alert(error);
+        // 17.12. Criando um serviço de tratamento de erros
+        this.errorHandlerService.handle(error);
+
         this.lanzamientos = [
           { tipo: 'GASTO', descripcion: 'Compra de pão de queijo', fechaVencimiento: new Date(2020, 3, 26),
             fechaPago: null, valor: 4.55, persona: 'Padaria do José' },
@@ -86,10 +90,13 @@ export class LanzamientosBusquedaComponent implements OnInit {
     console.log(`-LanzamientosBusquedaComponent.eliminar- Eliminando Movimiento ${lanz.codigo}.`);
     this.movimientoService.eliminar(lanz.codigo)
     .then(() => {
-      //this.grid.reset(); //Reseteando la tabla.
+      // this.grid.reset(); //Reseteando la tabla.
       console.log(`-LanzamientosBusquedaComponent.eliminar - Ciudad Movimiento ${lanz.codigo}.`);
       // 17.9. Adicionando mensagem de sucesso com Angular Toasty
       this.toasty.success(`Movimiento ${lanz.descripcion} Eliminado con Éxito.`);
+    }).catch(error => {
+      // 17.12. Criando um serviço de tratamento de erros
+      this.errorHandlerService.handle(error);
     });
   }
 
