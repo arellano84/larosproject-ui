@@ -3,7 +3,7 @@ import { MovimientoService, MovimientoFiltro } from './../movimiento.service';
 import { LazyLoadEvent } from 'primeng/api/public_api';
 import { ToastyService } from 'ng2-toasty';
 // import {TableModule} from 'primeng/table';
-
+import {ConfirmationService} from 'primeng/api';
 
 @Component({
   selector: 'app-lanzamientos-busqueda',
@@ -24,7 +24,8 @@ export class LanzamientosBusquedaComponent implements OnInit {
 
   constructor(
     private movimientoService: MovimientoService,
-    private toasty: ToastyService) {}
+    private toasty: ToastyService,
+    private confirmationService: ConfirmationService) {}
 
   ngOnInit() {
     // this.consultar(); //Se comenta porque se habilita LazyLoadEvent
@@ -69,7 +70,17 @@ export class LanzamientosBusquedaComponent implements OnInit {
     const pagina = evento.first / evento.rows;
     this.consultar(pagina);
   }
-
+  /*
+  17.10. Adicionando diálogo de confirmação antes da exclusão
+  */
+  confirmarEliminar(lanz: any) {
+    this.confirmationService.confirm({
+      message: '¿Esta seguro que desea eliminar?',
+      accept: () => {
+        this.eliminar(lanz);
+      }
+    });
+  }
 
   eliminar(lanz: any) {
     console.log(`-LanzamientosBusquedaComponent.eliminar- Eliminando Movimiento ${lanz.codigo}.`);
@@ -77,6 +88,7 @@ export class LanzamientosBusquedaComponent implements OnInit {
     .then(() => {
       //this.grid.reset(); //Reseteando la tabla.
       console.log(`-LanzamientosBusquedaComponent.eliminar - Ciudad Movimiento ${lanz.codigo}.`);
+      // 17.9. Adicionando mensagem de sucesso com Angular Toasty
       this.toasty.success(`Movimiento ${lanz.descripcion} Eliminado con Éxito.`);
     });
   }
