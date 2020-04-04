@@ -41,7 +41,7 @@
                 [rows]="filtroMov.registrosPorPagina"
                 [lazy]="true"
                 [totalRecords]="totalRegistros"
-                (onLazyLoad)="alCambiarPagina($event)">
+                (onLazyLoad)="alCambiarPagina($event)" #tablaMov>
                   <ng-template pTemplate="emptymessage">
                       Ningun movimiento encontrado
                   </ng-template>
@@ -71,7 +71,11 @@
                           </td>
                           <td class="col-actions-content">
                               <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top" ></a>
-                              <button pButton icon="pi pi-trash" pTooltip="Eliminar" tooltipPosition="bottom"></button>
+
+                              <button pButton icon="pi pi-trash"
+                              pTooltip="Eliminar"
+                              tooltipPosition="bottom"
+                              (click)="eliminar(lanz)"></button>
                           </td>
                       </tr>
                   </ng-template>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MovimientoService, MovimientoFiltro } from './../movimiento.service';
 import { LazyLoadEvent } from 'primeng/api/public_api';
 
@@ -15,6 +15,9 @@ export class LanzamientosBusquedaComponent implements OnInit {
   fechaVencimientoDe: Date;
   fechaVencimientoHasta: Date;*/
   filtroMov = new MovimientoFiltro();
+  // 17.8. Excluindo lançamentos e o decorador @ViewChild
+  @ViewChild('tablaMov', {static: true}) grid: Table;
+
 
   constructor(private movimientoService: MovimientoService) {}
 
@@ -61,5 +64,45 @@ export class LanzamientosBusquedaComponent implements OnInit {
     const pagina = evento.first / evento.rows;
     this.consultar(pagina);
   }
+
+
+  eliminar(lanz: any) {
+    console.log(`-LanzamientosBusquedaComponent.eliminar- Eliminando Ciudad ${lanz.codigo}.`);
+    this.movimientoService.eliminar(lanz.codigo)
+    .then(() => {
+      this.grid.reset(); //Reseteando la tabla.
+      alert(`-LanzamientosBusquedaComponent.eliminar - Ciudad Eliminada ${lanz.codigo}.`);
+    });
+  }
+
+
+
+
+
+      /*
+  agregrar(nombre: string) {
+    console.log('-Component- Agregando Ciudad...');
+    this.ciudadService.agregrar({nombre})
+    .then(ciudad => {
+      this.consultar();
+      alert(`Ciudad Agregada ${ciudad.nombre} con código ${ciudad.id}.`);
+    });
+  }
+  atualizar(ciudad: any) {
+    alert(JSON.stringify(ciudad));
+
+    console.log('-Component- Actualizando Ciudad...');
+    this.ciudadService.actualizar(ciudad)
+    .then(() => {
+      this.consultar();
+      alert(`Ciudad Actualizada ${ciudad.nombre}.`);
+    })
+    .catch(error => {
+      alert(error);
+    });
+
+  }
+
+      */
 
 }

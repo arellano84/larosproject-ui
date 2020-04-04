@@ -54,6 +54,37 @@ export class MovimientoService {
         return Promise.reject(`Error al Consultar Movimientos!`);
     });
 
+
+
+  /*
+  agregrar(ciudad: any): Promise<any> {
+    return this.httpClient
+      .post('http://localhost:3000/ciudades', ciudad)
+      .toPromise();
+  }
+
+  actualizar(ciudad: any): Promise<any> {
+    return this.httpClient.put(`http://localhost:3000/ciudades/${ciudad.id}`, ciudad)
+    .toPromise()
+    .catch(error => {
+        console.log('-Servicio- actualizar error...' + error);
+        return Promise.reject(`Error al actualizar la ciudad ${ciudad.id}`);
+    });
+    // .then(response => response.json());
+  }
+  */
+
+  }
+
+  eliminar(codigo: number): Promise<any> {
+
+    console.log(`-MovimientoService.eliminar - Eliminando Movimientos ${codigo}`);
+
+    const headers = new HttpHeaders().append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+
+    return this.httpClient.delete(`${this.movimientosUrl}${codigo}`, { headers })
+    .toPromise()
+    .then(() => null);
   }
 
 }
