@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MovimientoService, MovimientoFiltro } from './../movimiento.service';
 import { LazyLoadEvent } from 'primeng/api/public_api';
+import { ToastyService } from 'ng2-toasty';
+// import {TableModule} from 'primeng/table';
+
 
 @Component({
   selector: 'app-lanzamientos-busqueda',
@@ -16,10 +19,12 @@ export class LanzamientosBusquedaComponent implements OnInit {
   fechaVencimientoHasta: Date;*/
   filtroMov = new MovimientoFiltro();
   // 17.8. Excluindo lançamentos e o decorador @ViewChild
-  @ViewChild('tablaMov', {static: true}) grid: Table;
+  // @ViewChild('tablaMov', {static: true}) grid: Table; //TODO: Pendiente de arreglar.
 
 
-  constructor(private movimientoService: MovimientoService) {}
+  constructor(
+    private movimientoService: MovimientoService,
+    private toasty: ToastyService) {}
 
   ngOnInit() {
     // this.consultar(); //Se comenta porque se habilita LazyLoadEvent
@@ -67,11 +72,12 @@ export class LanzamientosBusquedaComponent implements OnInit {
 
 
   eliminar(lanz: any) {
-    console.log(`-LanzamientosBusquedaComponent.eliminar- Eliminando Ciudad ${lanz.codigo}.`);
+    console.log(`-LanzamientosBusquedaComponent.eliminar- Eliminando Movimiento ${lanz.codigo}.`);
     this.movimientoService.eliminar(lanz.codigo)
     .then(() => {
-      this.grid.reset(); //Reseteando la tabla.
-      alert(`-LanzamientosBusquedaComponent.eliminar - Ciudad Eliminada ${lanz.codigo}.`);
+      //this.grid.reset(); //Reseteando la tabla.
+      console.log(`-LanzamientosBusquedaComponent.eliminar - Ciudad Movimiento ${lanz.codigo}.`);
+      this.toasty.success(`Movimiento ${lanz.descripcion} Eliminado con Éxito.`);
     });
   }
 
