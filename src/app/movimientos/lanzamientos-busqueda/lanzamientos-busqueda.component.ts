@@ -6,6 +6,7 @@ import {ConfirmationService} from 'primeng/api';
 
 import { ErrorHandlerService } from './../../core/error-handler.service';
 import { MovimientoService, MovimientoFiltro } from './../movimiento.service';
+import { CategoriaService } from './../../categorias/categoria.service';
 
 @Component({
   selector: 'app-lanzamientos-busqueda',
@@ -28,10 +29,23 @@ export class LanzamientosBusquedaComponent implements OnInit {
     private movimientoService: MovimientoService,
     private toasty: ToastyService,
     private confirmationService: ConfirmationService,
-    private errorHandlerService: ErrorHandlerService) {}
+    private errorHandlerService: ErrorHandlerService,
+    private categoriaService: CategoriaService
+    ) {}
 
   ngOnInit() {
     // this.consultar(); //Se comenta porque se habilita LazyLoadEvent
+
+    //TODO: TEM
+    this.categoriaService.consultarTodos()
+      .then(cat => {
+        console.log('*****************************');
+        console.log(JSON.stringify(cat));//
+        console.log('*****************************');
+      })
+      .catch(error => {
+      });
+
   }
 
   public consultar(pagina = 0) {
