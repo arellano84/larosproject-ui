@@ -23,7 +23,7 @@ import { LanzamientosBusquedaComponent } from './lanzamientos-busqueda/lanzamien
 
 import { MovimientoService } from './movimiento.service';
 import { CategoriaService } from './../categorias/categoria.service';
-
+import { PersonaService } from './../personas/persona.service';
 
 @NgModule({
   declarations: [LanzamientosBusquedaComponent,LanzamientoRegistroComponent,LanzamientosListaComponent],
@@ -52,6 +52,6 @@ import { CategoriaService } from './../categorias/categoria.service';
     LanzamientoRegistroComponent
     // LanzamientosListaComponent
   ],
-  providers: [MovimientoService, CategoriaService]
+  providers: [MovimientoService, CategoriaService, PersonaService]
 })
 export class MovimientosModule { }
