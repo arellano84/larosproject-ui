@@ -28,11 +28,11 @@ export class LanzamientoRegistroComponent implements OnInit {
       {label:'Alimentación', value: 1},
       {label:'Transporte', value: 2}
     ];*/
-    this.personas = [
+    /*this.personas = [
       {label:'Luis', value: 1},
       {label:'Rayssa', value: 2},
       {label:'David', value: 3}
-    ];
+    ];*/
   }
 
   ngOnInit(): void {
