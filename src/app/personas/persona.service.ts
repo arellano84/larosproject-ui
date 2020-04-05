@@ -74,18 +74,16 @@ export class PersonaService {
     .then(() => null);
   }
 
-  actualizarEstado(persona: any): Promise<any> {
-    console.log(`-PersonaService.atualizarEstado()- Actualizando estado Personas ${persona.codigo}`);
+  actualizarEstado(codigo: number, activo: boolean): Promise<any> {
+    console.log(`-PersonaService.atualizarEstado()- Actualizando estado Personas Codigo:${codigo}, Activo:${activo}`);
 
     const headers = new HttpHeaders()
-      .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
-      .append('Content-Type', 'application/json');
+    .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
+    .append('Content-Type', 'application/json');
 
-    return this.httpClient.put(`${this.personasUrl}${persona.codigo}/activo`,
-                              persona.activo?false:true,
-                              { headers })
-    .toPromise()
-    .then(() => null);
+    return this.httpClient.put(`${this.personasUrl}${codigo}/activo`, activo, { headers })
+                          .toPromise()
+                          .then(() => null);
   }
 
 }

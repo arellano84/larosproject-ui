@@ -16,12 +16,8 @@ export class CategoriaService {
 
     const headers = new HttpHeaders().append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
     return this.httpClient
-      .get(`${this.categoriasUrl}?resumo`, { headers })
+      .get(`${this.categoriasUrl}`, { headers })
       .toPromise()
-      .then(response => response)//['content']
-      .catch(error => {
-        console.log('-CategoriaService.consultar - error:' + error);
-        return Promise.reject(`Error al Consultar Categorias!`);
-    });
+      .then(response => response);//['content']
   }
 }
