@@ -50,7 +50,7 @@ export class PersonaService {
   }
 
   consultarTodos(): Promise< any > {
-    console.log('-PersonaService.consultarTodos - Consultado Todas Personas...');
+    console.log('-PersonaService.consultarTodos- Consultado Todas Personas...');
 
     const headers = new HttpHeaders().append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
     return this.httpClient
@@ -58,18 +58,32 @@ export class PersonaService {
       .toPromise()
       .then(response => response['content'])
       .catch(error => {
-        console.log('-PersonaService.consultar - error...' + error);
+        console.log('-PersonaService.consultar - error:' + error);
         return Promise.reject(`Error al Consultar Personas!`);
     });
   }
 
   eliminar(codigo: number): Promise<any> {
 
-    console.log(`-PersonaService.eliminar - Eliminando Personas ${codigo}`);
+    console.log(`-PersonaService.consultarTodos- Eliminando Personas ${codigo}`);
 
     const headers = new HttpHeaders().append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
 
     return this.httpClient.delete(`${this.personasUrl}${codigo}`, { headers })
+    .toPromise()
+    .then(() => null);
+  }
+
+  actualizarEstado(persona: any): Promise<any> {
+    console.log(`-PersonaService.atualizarEstado()- Actualizando estado Personas ${persona.codigo}`);
+
+    const headers = new HttpHeaders()
+      .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
+      .append('Content-Type', 'application/json');
+
+    return this.httpClient.put(`${this.personasUrl}${persona.codigo}/activo`,
+                              persona.activo?false:true,
+                              { headers })
     .toPromise()
     .then(() => null);
   }

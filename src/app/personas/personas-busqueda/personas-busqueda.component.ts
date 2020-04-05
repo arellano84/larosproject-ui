@@ -88,4 +88,21 @@ export class PersonasBusquedaComponent implements OnInit {
     this.consultar(pagina);
   }
 
+  /*
+    Cambia el estado de la persona.
+  */
+ actualizarEstado(per: any) {
+    console.log(`-PersonasBusquedaComponent.atualizarEstado- Actulizando estado Persona ${per.codigo}.`);
+    this.personaService.actualizarEstado(per)
+    .then(() => {
+      console.log(`-PersonasBusquedaComponent.atualizarEstado - Persona ${per.codigo}.`);
+       this.consultar(); // TODO: Corregir actualización de tabla.
+      // this.grid.reset(); //Reseteando la tabla.
+      this.toasty.success(`${per.nombre} Ha sido eliminado con éxito.`);
+    }).catch(error => {
+      this.errorHandlerService.handle(error);
+    });
+
+  }
+
 }
