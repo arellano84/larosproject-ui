@@ -51,7 +51,10 @@
                           </td>
                           <td class="col-actions-content">
                               <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top" ></a>
-                              <button pButton icon="pi pi-trash" pTooltip="Eliminar" tooltipPosition="bottom"></button>
+                              <button pButton icon="pi pi-trash" pTooltip="Eliminar"
+                              tooltipPosition="bottom"
+                              (click)="confirmarEliminar(persona)"
+                              ></button>
                           </td>
                       </tr>
                   </ng-template>

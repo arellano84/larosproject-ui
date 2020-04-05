@@ -54,6 +54,21 @@ export class MovimientoService {
         return Promise.reject(`Error al Consultar Movimientos!`);
     });
 
+  }
+
+  eliminar(codigo: number): Promise<any> {
+
+    console.log(`-MovimientoService.eliminar - Eliminando Movimientos ${codigo}`);
+
+    const headers = new HttpHeaders().append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+
+    return this.httpClient.delete(`${this.movimientosUrl}${codigo}`, { headers })
+    .toPromise()
+    .then(() => null);
+  }
+
+
+
 
 
   /*
@@ -74,18 +89,6 @@ export class MovimientoService {
   }
   */
 
-  }
-
-  eliminar(codigo: number): Promise<any> {
-
-    console.log(`-MovimientoService.eliminar - Eliminando Movimientos ${codigo}`);
-
-    const headers = new HttpHeaders().append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
-
-    return this.httpClient.delete(`${this.movimientosUrl}${codigo}`, { headers })
-    .toPromise()
-    .then(() => null);
-  }
 
 }
 

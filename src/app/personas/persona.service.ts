@@ -58,9 +58,20 @@ export class PersonaService {
       .toPromise()
       .then(response => response['content'])
       .catch(error => {
-        console.log('-PersonaService.consultarTodos - error:' + error);
-        return Promise.reject(`Error al Consultar Todas Personas!`);
+        console.log('-PersonaService.consultar - error...' + error);
+        return Promise.reject(`Error al Consultar Personas!`);
     });
+  }
+
+  eliminar(codigo: number): Promise<any> {
+
+    console.log(`-PersonaService.eliminar - Eliminando Personas ${codigo}`);
+
+    const headers = new HttpHeaders().append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+
+    return this.httpClient.delete(`${this.personasUrl}${codigo}`, { headers })
+    .toPromise()
+    .then(() => null);
   }
 
 }
