@@ -41,3 +41,7 @@
 .barranav-menuitem a:hover {
   color: #fff;
 }
+
+.barranav-menuitem.activo {
+  background-color: #494541;
+}
