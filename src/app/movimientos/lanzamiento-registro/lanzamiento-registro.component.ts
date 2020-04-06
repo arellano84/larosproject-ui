@@ -47,8 +47,11 @@ export class LanzamientoRegistroComponent implements OnInit {
   ngOnInit(): void {
     console.log("LanzamientoRegistroComponent.ngOnInit()...");
 
-    console.log(this.route.snapshot.params['codigo']);
-    this.consultarPorCodigo(this.route.snapshot.params['codigo']);
+    // 18.7. Preenchendo os campos na edição de lançamentos
+    const codigoMovimiento = this.route.snapshot.params['codigo'];
+    if(codigoMovimiento) {
+      this.consultarPorCodigo(codigoMovimiento);
+    }
 
     this.cargarCategorias();
     this.cargarPersonas();
@@ -121,7 +124,7 @@ export class LanzamientoRegistroComponent implements OnInit {
   }
 
   consultarPorCodigo(codigo: number) {
-    console.log('-LanzamientoRegistroComponent.consultarPorCodigo()- Consultado Movimiento...');
+    console.log('-LanzamientoRegistroComponent.consultarPorCodigo()- Consultado Movimiento...', codigo);
 
     this.movimientoService.consultarPorCodigo(codigo)
       .then(mov => {
@@ -131,6 +134,13 @@ export class LanzamientoRegistroComponent implements OnInit {
       .catch(error => {
         this.errorHandlerService.handle(error);
       });
+  }
+
+  /*
+    18.7. Preenchendo os campos na edição de lançamentos
+  */
+  get esModificacion() {
+    return Boolean(this.movimiento.codigo);
   }
 
 }
