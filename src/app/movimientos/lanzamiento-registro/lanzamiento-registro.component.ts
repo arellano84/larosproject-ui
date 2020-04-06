@@ -45,9 +45,10 @@ export class LanzamientoRegistroComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("+++++++++++++++++++++++++++++");
+    console.log("LanzamientoRegistroComponent.ngOnInit()...");
+
     console.log(this.route.snapshot.params['codigo']);
-    console.log("+++++++++++++++++++++++++++++");
+    this.consultarPorCodigo(this.route.snapshot.params['codigo']);
 
     this.cargarCategorias();
     this.cargarPersonas();
@@ -102,16 +103,34 @@ export class LanzamientoRegistroComponent implements OnInit {
     });
   }
 
-  /*atualizar(movimiento: any) {
+  /*
+    18.6. Desafio: implementando os serviços de atualização e busca por código
+  */
+  atualizar(formMov: FormControl) {
+    // movimiento.codigo==null?agregrar(instFormLanzamiento):actualizar(instFormLanzamiento)
+
     console.log('-LanzamientoRegistroComponent.atualizar().- Actualizando Movimiento...');
-    this.movimientoService.actualizar(movimiento)
+    this.movimientoService.actualizar(this.movimiento)
     .then(() => {
       // this.grid.reset(); //Reseteando la tabla.
-      console.log(`-LanzamientosBusquedaComponent.atualizar - Movimiento ${movimiento.descripcion}.`);
-      this.toasty.success(`Movimiento ${movimiento.descripcion} Actualizado con Éxito.`);
+      console.log(`-LanzamientosBusquedaComponent.atualizar() - Movimiento ${this.movimiento.descripcion}.`);
+      this.toasty.success(`Movimiento ${this.movimiento.descripcion} Actualizado con Éxito.`);
     }).catch(error => {
       this.errorHandlerService.handle(error);
     });
-  }*/
+  }
+
+  consultarPorCodigo(codigo: number) {
+    console.log('-LanzamientoRegistroComponent.consultarPorCodigo()- Consultado Movimiento...');
+
+    this.movimientoService.consultarPorCodigo(codigo)
+      .then(mov => {
+        this.movimiento = mov;
+        console.log('-LanzamientoRegistroComponent.consultarPorCodigo()- Consultado Movimiento:', JSON.stringify(this.movimiento));
+      })
+      .catch(error => {
+        this.errorHandlerService.handle(error);
+      });
+  }
 
 }

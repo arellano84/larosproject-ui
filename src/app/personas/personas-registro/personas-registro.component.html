@@ -37,7 +37,13 @@
 
         <app-mensajes-validacion [control]="instApellido2" error="minlength" texto="Mínimo de {{instApellido2.errors?.minlength?.requiredLength}} caracteres."></app-mensajes-validacion>
       </div>
-      <div class="ui-g-12 ui-md-9 ui-fluid">
+      <div class="ui-g-12 ui-md-2 ui-fluid">
+        <label>Tipo</label>
+        <input pInputText type="text" name="tipo"
+          [(ngModel)]="persona.direccion.tipo" #instTipo="ngModel" required>
+        <app-mensajes-validacion [control]="instTipo" error="required" texto="Informe un Tipo."></app-mensajes-validacion>
+      </div>
+      <div class="ui-g-12 ui-md-7 ui-fluid">
         <label>Calle</label>
         <input pInputText type="text" name="calle"
           [(ngModel)]="persona.direccion.calle" #instCalle="ngModel" required>

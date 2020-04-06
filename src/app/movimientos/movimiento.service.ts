@@ -83,16 +83,50 @@ export class MovimientoService {
       .then(() => null);
   }
 
-  /*actualizar(movimiento: Movimiento): Promise<Movimiento> {
-    console.log(`-MovimientoService.agregrar() - actualizar Movimientos`);
+  /*
+    18.6. Desafio: implementando os serviços de atualização e busca por código
+  */
+  actualizar(movimiento: Movimiento): Promise<Movimiento> {
+    console.log(`-MovimientoService.actualizar()- Actualizar Movimiento..`);
 
     const headers = new HttpHeaders()
                   .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
                   .append('Content-Type', 'application/json');
     return this.httpClient.put(`${this.movimientosUrl}${movimiento.codigo}`, JSON.stringify(movimiento), { headers })
     .toPromise()
-    .then(() => null);
-  }*/
+    .then(response => {
+      const movimiento = response as Movimiento;
+      this.convetirStringAData([movimiento]);
+      console.log('-MovimientoService.actualizar()- Actualizar Movimiento:', movimiento);
+      return movimiento;
+    });
+  }
+
+  consultarPorCodigo(codigo: number): Promise< Movimiento > {
+
+    console.log('-MovimientoService.consultarPorCodigo()- Consultado Movimiento...');
+
+    const headers = new HttpHeaders().append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+    return this.httpClient
+      .get(`${this.movimientosUrl}${codigo}`, { headers })
+      .toPromise()
+      .then(response => {
+        const movimiento = response as Movimiento;
+        this.convetirStringAData([movimiento]);
+        console.log('-MovimientoService.consultarPorCodigo()- Consultado Movimiento:', movimiento);
+        return movimiento;
+      });
+  }
+
+  private convetirStringAData(movimientos: Movimiento[]) {
+
+    for (const movimiento of movimientos) {
+      movimiento.fechaVencimiento = moment(movimiento.fechaVencimiento,'YYYY-MM-DD').toDate();
+      if (movimiento.fechaPago) {
+        movimiento.fechaPago = moment(movimiento.fechaPago,'YYYY-MM-DD').toDate();
+      }
+    }
+  }
 
 }
 
