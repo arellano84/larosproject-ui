@@ -21,6 +21,7 @@ import { LanzamientosBusquedaComponent } from './movimientos/lanzamientos-busque
 import { PersonasRegistroComponent } from './personas/personas-registro/personas-registro.component';
 import { PersonasBusquedaComponent } from './personas/personas-busqueda/personas-busqueda.component';
 import { LanzamientoRegistroComponent } from './movimientos/lanzamiento-registro/lanzamiento-registro.component';
+import { PaginaNoEncotradaComponent } from './core/pagina-no-encotrada.component';
 
 // 17.11. Alterando o locale da aplicação para pt-BR
 registerLocaleData(localeEs);
@@ -33,7 +34,9 @@ const routes: Routes = [
   {path: 'movimientos/:codigo', component: LanzamientoRegistroComponent},
   {path: 'personas', component: PersonasBusquedaComponent},
   {path: 'personas/nuevo', component: PersonasRegistroComponent},
-  {path: 'personas/:codigo', component: PersonasRegistroComponent}
+  {path: 'personas/:codigo', component: PersonasRegistroComponent},
+  {path: 'pagina-no-encontrada', component: PaginaNoEncotradaComponent},
+  {path: '**', redirectTo: 'pagina-no-encontrada'}
 ];
 
 @NgModule({

@@ -5,9 +5,10 @@ import { RouterModule } from '@angular/router';
 import { ErrorHandlerService } from './error-handler.service';
 
 import { BarraNavComponent } from './barra-nav/barra-nav.component';
+import { PaginaNoEncotradaComponent } from './pagina-no-encotrada.component';
 
 @NgModule({
-  declarations: [BarraNavComponent],
+  declarations: [BarraNavComponent, PaginaNoEncotradaComponent],
   imports: [
     CommonModule,
     RouterModule

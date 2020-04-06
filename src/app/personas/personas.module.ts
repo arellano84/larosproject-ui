@@ -36,8 +36,11 @@ import { PersonaService } from './persona.service';
     CompartidoModule
   ],
   exports: [
+    /*
+    18.11. Tratando rota não encontrada
+    Como se utiliza el ruteador ya no es necesario agregar.
     PersonasBusquedaComponent,
-    PersonasRegistroComponent
+    PersonasRegistroComponent*/
   ],
   providers: [
     PersonaService
