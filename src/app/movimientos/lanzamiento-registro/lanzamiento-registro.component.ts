@@ -30,8 +30,8 @@ export class LanzamientoRegistroComponent implements OnInit {
     private toasty: ToastyService) {
     // SelectItem API with label-value pairs
     this.tiposLanzamiento = [
-      {label:'Ingreso', value:'0'},
-      {label:'Gasto', value:'1'}
+      {label:'INGRESO', value:'RECETA'},// TODO: cambiar en el back el tipo
+      {label:'GASTO', value:'GASTO'}
     ];
     /*this.categorias = [
       {label:'Alimentación', value: 1},
@@ -80,19 +80,25 @@ export class LanzamientoRegistroComponent implements OnInit {
     .catch(error =>  this.errorHandlerService.handle(error));
   }
 
+  /*
+    17.20. Implementando o serviço de cadastro de lançamentos
+  */
   agregrar(formMov: FormControl) {
     console.log('-LanzamientoRegistroComponent.agregrar()- Agregando Movimiento...', this.movimiento);
-    /*this.movimientoService.agregrar({movimiento})
+    this.movimientoService.agregrar(this.movimiento)
     .then(() => {
       // this.grid.reset(); //Reseteando la tabla.
-      console.log(`-LanzamientosBusquedaComponent.agregrar - Movimiento ${formMov.codigo}.`);
-      this.toasty.success(`Movimiento ${formMov.descripcion} Guardado con Éxito.`);
+      console.log(`-LanzamientosBusquedaComponent.agregrar - Movimiento.`);
+      this.toasty.success(`Movimiento Guardado con Éxito.`);
+
+      formMov.reset();
+      this.movimiento = new Movimiento();
     }).catch(error => {
       this.errorHandlerService.handle(error);
-    });*/
+    });
   }
 
-  atualizar(movimiento: any) {
+  /*atualizar(movimiento: any) {
     console.log('-LanzamientoRegistroComponent.atualizar().- Actualizando Movimiento...');
     this.movimientoService.actualizar(movimiento)
     .then(() => {
@@ -102,7 +108,6 @@ export class LanzamientoRegistroComponent implements OnInit {
     }).catch(error => {
       this.errorHandlerService.handle(error);
     });
-
-  }
+  }*/
 
 }

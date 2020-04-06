@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Persona } from './../core/model';
 
 @Injectable({
   providedIn: 'root'
@@ -84,6 +85,21 @@ export class PersonaService {
     return this.httpClient.put(`${this.personasUrl}${codigo}/activo`, activo, { headers })
                           .toPromise()
                           .then(() => null);
+  }
+
+  /*
+  17.21. Desafio: implementando o cadastro de pessoas
+  */
+  agregrar(persona: Persona): Promise<Persona> {
+    console.log(`-MovimientoService.agregrar() - Agregando Personas`);
+
+    const headers = new HttpHeaders()
+                  .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
+                  .append('Content-Type', 'application/json');
+    return this.httpClient
+      .post(`${this.personasUrl}`, JSON.stringify(persona), { headers })
+      .toPromise()
+      .then(() => null);
   }
 
 }

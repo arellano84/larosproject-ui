@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import * as moment from 'moment';
+import { Movimiento } from './../core/model';
 
 @Injectable({
   providedIn: 'root'
@@ -67,21 +68,31 @@ export class MovimientoService {
     .then(() => null);
   }
 
-  agregrar(movimiento: any): Promise<any> {
-    console.log(`-MovimientoService.agregrar() - Eliminando Movimientos ${movimiento.descripcion}`);
-    const headers = new HttpHeaders().append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+  /*
+    17.20. Implementando o serviço de cadastro de lançamentos
+  */
+  agregrar(movimiento: Movimiento): Promise<Movimiento> {
+    console.log(`-MovimientoService.agregrar() - Agregando Movimientos`);
+
+    const headers = new HttpHeaders()
+                  .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
+                  .append('Content-Type', 'application/json');
     return this.httpClient
-      .post(`${this.movimientosUrl}`, movimiento)
+      .post(`${this.movimientosUrl}`, JSON.stringify(movimiento), { headers })
       .toPromise()
       .then(() => null);
   }
 
-  actualizar(movimiento: any): Promise<any> {
-    const headers = new HttpHeaders().append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
-    return this.httpClient.put(`${this.movimientosUrl}${movimiento.codigo}`, movimiento, { headers })
+  /*actualizar(movimiento: Movimiento): Promise<Movimiento> {
+    console.log(`-MovimientoService.agregrar() - actualizar Movimientos`);
+
+    const headers = new HttpHeaders()
+                  .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
+                  .append('Content-Type', 'application/json');
+    return this.httpClient.put(`${this.movimientosUrl}${movimiento.codigo}`, JSON.stringify(movimiento), { headers })
     .toPromise()
     .then(() => null);
-  }
+  }*/
 
 }
 

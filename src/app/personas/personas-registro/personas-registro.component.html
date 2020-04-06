@@ -1,61 +1,84 @@
 <div class="container">
 
-    <form autocomplete="off" #instFormPersona="ngForm">
+    <form autocomplete="off" #instFormPersona="ngForm" (ngSubmit)="agregrar(instFormPersona)">
 
     <div class="ui-g">
       <div class="ui-g-12">
         <h1>Nueva Persona</h1>
       </div>
-      <div class="ui-g-12 ui-md-12 ui-fluid">
+      <div class="ui-g-12 ui-md-3 ui-fluid">
+        <label>Documento</label>
+        <input pInputText type="text" name="documento"
+          [(ngModel)]="persona.documento" #instDocumento="ngModel" required minlength="5">
+
+        <app-mensajes-validacion [control]="instDocumento" error="required" texto="Informe un Documento."></app-mensajes-validacion>
+        <app-mensajes-validacion [control]="instDocumento" error="minlength" texto="Mínimo de {{instDocumento.errors?.minlength?.requiredLength}} caracteres."></app-mensajes-validacion>
+      </div>
+      <div class="ui-g-12 ui-md-9 ui-fluid">
         <label>Nombre</label>
         <input pInputText type="text" name="nombre"
-          ngModel #instNombre="ngModel" required minlength="5">
+          [(ngModel)]="persona.nombre" #instNombre="ngModel" required minlength="5">
 
         <app-mensajes-validacion [control]="instNombre" error="required" texto="Informe un Nombre."></app-mensajes-validacion>
         <app-mensajes-validacion [control]="instNombre" error="minlength" texto="Mínimo de {{instNombre.errors?.minlength?.requiredLength}} caracteres."></app-mensajes-validacion>
       </div>
+      <div class="ui-g-12 ui-md-6 ui-fluid">
+        <label>Apellido 1</label>
+        <input pInputText type="text" name="apellido1"
+          [(ngModel)]="persona.apellido1" #instApellido1="ngModel" required minlength="5">
+
+        <app-mensajes-validacion [control]="instApellido1" error="required" texto="Informe un Apellido."></app-mensajes-validacion>
+        <app-mensajes-validacion [control]="instApellido1" error="minlength" texto="Mínimo de {{instApellido1.errors?.minlength?.requiredLength}} caracteres."></app-mensajes-validacion>
+      </div>
+      <div class="ui-g-12 ui-md-6 ui-fluid">
+        <label>Apellido 2</label>
+        <input pInputText type="text" name="apellido2"
+          [(ngModel)]="persona.apellido2" #instApellido2="ngModel" minlength="5">
+
+        <app-mensajes-validacion [control]="instApellido2" error="minlength" texto="Mínimo de {{instApellido2.errors?.minlength?.requiredLength}} caracteres."></app-mensajes-validacion>
+      </div>
       <div class="ui-g-12 ui-md-9 ui-fluid">
         <label>Calle</label>
         <input pInputText type="text" name="calle"
-          ngModel #instCalle="ngModel" required>
+          [(ngModel)]="persona.direccion.calle" #instCalle="ngModel" required>
         <app-mensajes-validacion [control]="instCalle" error="required" texto="Informe un Nombre."></app-mensajes-validacion>
       </div>
       <div class="ui-g-12 ui-md-3 ui-fluid">
         <label>Número</label>
         <input pInputText type="text" name="numero"
-          ngModel #instNumero="ngModel" required>
+          [(ngModel)]="persona.direccion.numero" #instNumero="ngModel" required>
         <app-mensajes-validacion [control]="instNumero" error="required" texto="Informe  Número."></app-mensajes-validacion>
       </div>
 
       <div class="ui-g-12 ui-md-4 ui-fluid">
         <label>Complemento</label>
         <input pInputText type="text" name="complemento"
-          ngModel #instComplemento="ngModel">
+          [(ngModel)]="persona.direccion.complemento" #instComplemento="ngModel">
       </div>
       <div class="ui-g-12 ui-md-4 ui-fluid">
-        <label>Barrio</label>
-        <input pInputText type="text" name="barrio"
-          ngModel #instBarrio="ngModel" required>
-        <app-mensajes-validacion [control]="instBarrio" error="required" texto="Informe Barrio."></app-mensajes-validacion>
+        <label>Municipio</label>
+        <input pInputText type="text" name="municipio"
+          [(ngModel)]="persona.direccion.municipio" #instMunicipio="ngModel" required>
+        <app-mensajes-validacion [control]="instMunicipio" error="required" texto="Informe Municipio."></app-mensajes-validacion>
       </div>
       <div class="ui-g-12 ui-md-4 ui-fluid">
         <label>CP</label>
-        <p-inputMask mask="99.999-999" name="cp"
-          ngModel #instCp="ngModel" required></p-inputMask>
+        <p-inputMask mask="99999" name="cp"
+          [(ngModel)]="persona.direccion.cp" #instCp="ngModel" required></p-inputMask><!--99.999-999-->
         <app-mensajes-validacion [control]="instCp" error="required" texto="Informe Código Postal."></app-mensajes-validacion>
       </div>
 
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Ciudad</label>
         <input pInputText type="text" name="ciudad"
-          ngModel #instCiudad="ngModel" required>
+          [(ngModel)]="persona.direccion.ciudad" #instCiudad="ngModel" required>
         <app-mensajes-validacion [control]="instCiudad" error="required" texto="Informe Ciudad."></app-mensajes-validacion>
       </div>
       <div class="ui-g-12 ui-md-6 ui-fluid">
-        <label>Estado</label>
-        <input pInputText type="text" name="estado"
-          ngModel #instEstado="ngModel" required>
-        <app-mensajes-validacion [control]="instEstado" error="required" texto="Informe Estado."></app-mensajes-validacion>
+        <label>País</label>
+        <input pInputText type="text" name="pais"
+          [(ngModel)]="persona.direccion.pais" #instPais="ngModel" required>
+        <app-mensajes-validacion [control]="instPais" error="required" texto="Informe País."></app-mensajes-validacion>
       </div>
 
       <div class="ui-g-12">
