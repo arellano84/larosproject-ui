@@ -1,6 +1,6 @@
 <div class="container">
 
-    <form autocomplete="off" #instFormLanzamiento="ngForm">
+    <form autocomplete="off" #instFormLanzamiento="ngForm" (ngSubmit)="agregrar(instFormLanzamiento)">
 
     <div class="ui-g">
       <div class="ui-g-12">
@@ -8,14 +8,14 @@
       </div>
       <div class="ui-g-12">
         <p-selectButton [options]="tiposLanzamiento"
-        name="lanzamiento" ngModel #instTiposLanzamiento="ngModel"></p-selectButton>
+        name="lanzamiento" [(ngModel)]="movimiento.tipo" #instTiposLanzamiento="ngModel"></p-selectButton>
       </div>
       <div class="ui-g-6 ui-md-3 ui-fluid">
         <label>Vencimiento</label>
         <p-calendar dateFormat="dd/M/yy"
         [readonlyInput]="false" showIcon="true"
           [inline]="false"
-          name="vencimiento" ngModel #instVencimiento="ngModel" required>
+          name="vencimiento" [(ngModel)]="movimiento.fechaVencimiento" #instVencimiento="ngModel" required>
         </p-calendar>
         <app-mensajes-validacion [control]="instVencimiento" error="required" texto="Informe una Fecha."></app-mensajes-validacion>
       </div>
@@ -23,12 +23,12 @@
         <label>{{instTiposLanzamiento.value==0?'Recibido':'Pagado'}}</label>
         <p-calendar dateFormat="dd/M/yy"
         [readonlyInput]="false" showIcon="true" [inline]="false"
-          name="recibimiento" ngModel #instRecibimiento="ngModel"></p-calendar>
+          name="recibimiento" [(ngModel)]="movimiento.fechaPago" #instRecibimiento="ngModel"></p-calendar>
       </div>
       <div class="ui-g-12 ui-md-9 ui-fluid">
         <label>Descripción {{instDescripcion.errors | json}}</label>
         <input pInputText type="text"
-        name="descipcion" ngModel #instDescripcion="ngModel" required minlength="5">
+        name="descipcion" [(ngModel)]="movimiento.descripcion" #instDescripcion="ngModel" required minlength="5">
 
         <app-mensajes-validacion [control]="instDescripcion" error="required" texto="Informe una Descripción."></app-mensajes-validacion>
         <app-mensajes-validacion [control]="instDescripcion" error="minlength" texto="Mínimo de {{instDescripcion.errors?.minlength?.requiredLength}} caracteres."></app-mensajes-validacion>
@@ -49,26 +49,28 @@
         <label>Valor</label>
         <input pInputText currencyMask placeholder="0,00"
         [options]="{ prefix: ' ', thousands: '.', decimal: ',', allowNegative: true }"
-        name="valor" ngModel #instValor="ngModel" required/>
+        name="valor" [(ngModel)]="movimiento.valor" #instValor="ngModel" required/>
         <app-mensajes-validacion [control]="instValor" error="required" texto="Informe Valor."></app-mensajes-validacion>
       </div>
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Categoria - {{instCategoria.value}}</label>
         <p-dropdown [options]="categorias" [filter]="false" placeholder="Seleccione"
-        name="categoria" ngModel #instCategoria="ngModel" required></p-dropdown>
+        name="categoria" [(ngModel)]="movimiento.categoria.codigo" #instCategoria="ngModel" required></p-dropdown>
       </div>
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Persona - {{instPersona.value }}</label>
         <p-dropdown [options]="personas" [filter]="true" placeholder="Seleccione"
-        name="persona" ngModel #instPersona="ngModel" required></p-dropdown>
+        name="persona" [(ngModel)]="movimiento.persona.codigo" #instPersona="ngModel" required></p-dropdown>
       </div>
       <div class="ui-g-12 ui-fluid">
         <label>Observación</label>
         <textarea pInputTextarea [rows]="5" [cols]="30" autoResize="autoResize"
-        name="observacion" ngModel></textarea>
+        name="observacion" [(ngModel)]="movimiento.observacion"></textarea>
       </div>
       <div class="ui-g-12">
-        <button pButton type="submit" label="Guardar" [disabled]="!instFormLanzamiento.valid"></button>
+        <button pButton type="submit"
+              label="Guardar"
+              [disabled]="!instFormLanzamiento.valid"></button>
         <button pButton type="button" class="ui-button-info" label="Nuevo"></button>
         <a href="javascript:;">Volver a Busqueda</a>
       </div>

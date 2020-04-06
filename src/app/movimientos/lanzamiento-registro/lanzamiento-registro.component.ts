@@ -1,8 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import {SelectItem} from 'primeng/api';
+import { ToastyService } from 'ng2-toasty';
 import { ErrorHandlerService } from './../../core/error-handler.service';
 import { CategoriaService } from './../../categorias/categoria.service';
 import { PersonaService } from './../../personas/persona.service';
+import { MovimientoService } from './../../movimientos/movimiento.service';
+
+import { Movimiento } from './../../core/model';
+
 
 @Component({
   selector: 'app-lanzamiento-registro',
@@ -14,11 +20,14 @@ export class LanzamientoRegistroComponent implements OnInit {
   tiposLanzamiento;
   categorias;
   personas;
+  movimiento = new Movimiento();
 
   constructor(
     private categoriaService: CategoriaService,
     private personaService: PersonaService,
-    private errorHandlerService: ErrorHandlerService) {
+    private movimientoService: MovimientoService,
+    private errorHandlerService: ErrorHandlerService,
+    private toasty: ToastyService) {
     // SelectItem API with label-value pairs
     this.tiposLanzamiento = [
       {label:'Ingreso', value:'0'},
@@ -52,7 +61,7 @@ export class LanzamientoRegistroComponent implements OnInit {
       this.categorias = categorias.map(cat => {
         return {label:cat.nombre, value: cat.codigo};
       });
-      //this.categorias = categorias.map(cat => ({label:cat.nombre, value: cat.codigo}));
+      // this.categorias = categorias.map(cat => ({label:cat.nombre, value: cat.codigo}));
     })
     .catch(error =>  this.errorHandlerService.handle(error));
   }
@@ -61,14 +70,39 @@ export class LanzamientoRegistroComponent implements OnInit {
   17.18. Desafio: listando as pessoas cadastradas no dropdown
   */
  cargarPersonas() {
-  console.log('-LanzamientoRegistroComponent.cargarPersonas()- Cargando Personas...');
+    console.log('-LanzamientoRegistroComponent.cargarPersonas()- Cargando Personas...');
 
-  this.personaService.consultarTodos()
-  .then(personas => {
-    console.log(JSON.stringify(personas));
-    this.personas = personas.map(per => ({label:per.nombre, value: per.codigo}));
-  })
-  .catch(error =>  this.errorHandlerService.handle(error));
-}
+    this.personaService.consultarTodos()
+    .then(personas => {
+      console.log(JSON.stringify(personas));
+      this.personas = personas.map(per => ({label:per.nombre, value: per.codigo}));
+    })
+    .catch(error =>  this.errorHandlerService.handle(error));
+  }
+
+  agregrar(formMov: FormControl) {
+    console.log('-LanzamientoRegistroComponent.agregrar()- Agregando Movimiento...', this.movimiento);
+    /*this.movimientoService.agregrar({movimiento})
+    .then(() => {
+      // this.grid.reset(); //Reseteando la tabla.
+      console.log(`-LanzamientosBusquedaComponent.agregrar - Movimiento ${formMov.codigo}.`);
+      this.toasty.success(`Movimiento ${formMov.descripcion} Guardado con Éxito.`);
+    }).catch(error => {
+      this.errorHandlerService.handle(error);
+    });*/
+  }
+
+  atualizar(movimiento: any) {
+    console.log('-LanzamientoRegistroComponent.atualizar().- Actualizando Movimiento...');
+    this.movimientoService.actualizar(movimiento)
+    .then(() => {
+      // this.grid.reset(); //Reseteando la tabla.
+      console.log(`-LanzamientosBusquedaComponent.atualizar - Movimiento ${movimiento.descripcion}.`);
+      this.toasty.success(`Movimiento ${movimiento.descripcion} Actualizado con Éxito.`);
+    }).catch(error => {
+      this.errorHandlerService.handle(error);
+    });
+
+  }
 
 }

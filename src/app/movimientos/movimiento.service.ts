@@ -15,7 +15,7 @@ export class MovimientoService {
 
   consultar(filtro: MovimientoFiltro): Promise< any > {
 
-    console.log('-MovimientoService.consultar - Consultado Movimientos...');
+    console.log('-MovimientoService.consultar()- Consultado Movimientos...');
 
     const headers = new HttpHeaders().append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
 
@@ -58,7 +58,7 @@ export class MovimientoService {
 
   eliminar(codigo: number): Promise<any> {
 
-    console.log(`-MovimientoService.eliminar - Eliminando Movimientos ${codigo}`);
+    console.log(`-MovimientoService.eliminar()- Eliminando Movimientos ${codigo}`);
 
     const headers = new HttpHeaders().append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
 
@@ -67,28 +67,21 @@ export class MovimientoService {
     .then(() => null);
   }
 
-
-
-
-
-  /*
-  agregrar(ciudad: any): Promise<any> {
+  agregrar(movimiento: any): Promise<any> {
+    console.log(`-MovimientoService.agregrar() - Eliminando Movimientos ${movimiento.descripcion}`);
+    const headers = new HttpHeaders().append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
     return this.httpClient
-      .post('http://localhost:3000/ciudades', ciudad)
-      .toPromise();
+      .post(`${this.movimientosUrl}`, movimiento)
+      .toPromise()
+      .then(() => null);
   }
 
-  actualizar(ciudad: any): Promise<any> {
-    return this.httpClient.put(`http://localhost:3000/ciudades/${ciudad.id}`, ciudad)
+  actualizar(movimiento: any): Promise<any> {
+    const headers = new HttpHeaders().append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+    return this.httpClient.put(`${this.movimientosUrl}${movimiento.codigo}`, movimiento, { headers })
     .toPromise()
-    .catch(error => {
-        console.log('-Servicio- actualizar error...' + error);
-        return Promise.reject(`Error al actualizar la ciudad ${ciudad.id}`);
-    });
-    // .then(response => response.json());
+    .then(() => null);
   }
-  */
-
 
 }
 

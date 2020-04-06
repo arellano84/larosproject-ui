@@ -101,34 +101,4 @@ export class LanzamientosBusquedaComponent implements OnInit {
     });
   }
 
-
-
-
-
-      /*
-  agregrar(nombre: string) {
-    console.log('-Component- Agregando Ciudad...');
-    this.ciudadService.agregrar({nombre})
-    .then(ciudad => {
-      this.consultar();
-      alert(`Ciudad Agregada ${ciudad.nombre} con código ${ciudad.id}.`);
-    });
-  }
-  atualizar(ciudad: any) {
-    alert(JSON.stringify(ciudad));
-
-    console.log('-Component- Actualizando Ciudad...');
-    this.ciudadService.actualizar(ciudad)
-    .then(() => {
-      this.consultar();
-      alert(`Ciudad Actualizada ${ciudad.nombre}.`);
-    })
-    .catch(error => {
-      alert(error);
-    });
-
-  }
-
-      */
-
 }
