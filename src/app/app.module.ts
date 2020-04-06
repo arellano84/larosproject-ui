@@ -27,6 +27,7 @@ registerLocaleData(localeEs);
 
 // 18.2. Configurando rotas na aplicação
 const routes: Routes = [
+  {path: '', redirectTo: 'movimientos', pathMatch: 'full'}, // prefix
   {path: 'movimientos', component: LanzamientosBusquedaComponent},
   {path: 'movimientos/nuevo', component: LanzamientoRegistroComponent},
   {path: 'movimientos/:codigo', component: LanzamientoRegistroComponent},
