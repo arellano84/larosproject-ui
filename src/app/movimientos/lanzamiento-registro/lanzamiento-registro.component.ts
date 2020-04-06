@@ -1,15 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import {SelectItem} from 'primeng/api';
 import { ToastyService } from 'ng2-toasty';
 import { ErrorHandlerService } from './../../core/error-handler.service';
 import { CategoriaService } from './../../categorias/categoria.service';
 import { PersonaService } from './../../personas/persona.service';
 import { MovimientoService } from './../../movimientos/movimiento.service';
-
 import { Movimiento } from './../../core/model';
-import { ActivatedRoute } from '@angular/router';
-
 
 @Component({
   selector: 'app-lanzamiento-registro',

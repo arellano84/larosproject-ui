@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { ToastyService } from 'ng2-toasty';
 import { ErrorHandlerService } from './../../core/error-handler.service';
 import { PersonaService } from './../../personas/persona.service';
@@ -17,9 +18,13 @@ export class PersonasRegistroComponent implements OnInit {
   constructor(
     private personaService: PersonaService,
     private errorHandlerService: ErrorHandlerService,
-    private toasty: ToastyService) { }
+    private toasty: ToastyService,
+    private route:ActivatedRoute) { }
 
   ngOnInit(): void {
+    console.log("+++++++++++++++++++++++++++++");
+    console.log(this.route.snapshot.params['codigo']);
+    console.log("+++++++++++++++++++++++++++++");
   }
 
   /*

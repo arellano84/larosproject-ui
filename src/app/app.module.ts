@@ -31,7 +31,8 @@ const routes: Routes = [
   {path: 'movimientos/nuevo', component: LanzamientoRegistroComponent},
   {path: 'movimientos/:codigo', component: LanzamientoRegistroComponent},
   {path: 'personas', component: PersonasBusquedaComponent},
-  {path: 'personas/nuevo', component: PersonasRegistroComponent}
+  {path: 'personas/nuevo', component: PersonasRegistroComponent},
+  {path: 'personas/:codigo', component: PersonasRegistroComponent}
 ];
 
 @NgModule({
