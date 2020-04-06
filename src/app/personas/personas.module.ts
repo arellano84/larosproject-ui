@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
 
 import { TooltipModule } from 'primeng/tooltip';
 import { TableModule } from 'primeng/table';
@@ -17,12 +18,14 @@ import { PersonasBusquedaComponent } from './personas-busqueda/personas-busqueda
 
 import { PersonaService } from './persona.service';
 
+
 @NgModule({
   declarations: [PersonasBusquedaComponent, PersonasRegistroComponent, PersonasListaComponent],
   imports: [
     CommonModule,
     FormsModule,
     BrowserAnimationsModule,
+    RouterModule,
 
     InputTextModule,
     ButtonModule,

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 import { DropdownModule } from 'primeng/dropdown';
 import { SelectButtonModule } from 'primeng/selectbutton';
@@ -31,8 +32,8 @@ import { PersonaService } from './../personas/persona.service';
     CommonModule,
     FormsModule,
     BrowserAnimationsModule,
-
     HttpClientModule,
+    RouterModule,
 
     InputTextModule,
     ButtonModule,

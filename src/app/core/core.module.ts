@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 import { ErrorHandlerService } from './error-handler.service';
 
@@ -8,8 +9,8 @@ import { BarraNavComponent } from './barra-nav/barra-nav.component';
 @NgModule({
   declarations: [BarraNavComponent],
   imports: [
-    CommonModule
-
+    CommonModule,
+    RouterModule
     // ToastyModule.forRoot(),
     // ConfirmDialogModule,
   ],

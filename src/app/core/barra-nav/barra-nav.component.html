@@ -8,10 +8,10 @@
   </div>
 
   <ul class="barranav-menu" [hidden]="!mostrandoMenu">
-    <li class="barranav-usuario">Luis</li>
-    <li class="barranav-menuitem"><a href="#">Lanzamientos</a></li>
-    <li class="barranav-menuitem"><a href="#">Personas</a></li>
-    <li class="barranav-menuitem"><a href="#">Logout</a></li>
+    <li class="barranav-usuario">LarosProject</li>
+    <li class="barranav-menuitem"><a [routerLink]="['/movimientos']">Movimientos</a></li>
+    <li class="barranav-menuitem"><a [routerLink]="['/personas']">Personas</a></li>
+    <li class="barranav-menuitem"><a [routerLink]="['/']">Logout</a></li>
   </ul>
 
 </nav>
