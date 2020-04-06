@@ -29,6 +29,7 @@ registerLocaleData(localeEs);
 const routes: Routes = [
   {path: 'movimientos', component: LanzamientosBusquedaComponent},
   {path: 'movimientos/nuevo', component: LanzamientoRegistroComponent},
+  {path: 'movimientos/:codigo', component: LanzamientoRegistroComponent},
   {path: 'personas', component: PersonasBusquedaComponent},
   {path: 'personas/nuevo', component: PersonasRegistroComponent}
 ];

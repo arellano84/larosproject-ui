@@ -8,6 +8,7 @@ import { PersonaService } from './../../personas/persona.service';
 import { MovimientoService } from './../../movimientos/movimiento.service';
 
 import { Movimiento } from './../../core/model';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -27,7 +28,8 @@ export class LanzamientoRegistroComponent implements OnInit {
     private personaService: PersonaService,
     private movimientoService: MovimientoService,
     private errorHandlerService: ErrorHandlerService,
-    private toasty: ToastyService) {
+    private toasty: ToastyService,
+    private route:ActivatedRoute) {
     // SelectItem API with label-value pairs
     this.tiposLanzamiento = [
       {label:'INGRESO', value:'RECETA'},// TODO: cambiar en el back el tipo
@@ -45,6 +47,10 @@ export class LanzamientoRegistroComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log("+++++++++++++++++++++++++++++");
+    console.log(this.route.snapshot.params['codigo']);
+    console.log("+++++++++++++++++++++++++++++");
+
     this.cargarCategorias();
     this.cargarPersonas();
   }
