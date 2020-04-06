@@ -71,7 +71,12 @@
         <button pButton type="submit"
               label="Guardar"
               [disabled]="!instFormLanzamiento.valid"></button>
-        <button pButton type="button" class="ui-button-info" label="Nuevo"></button>
+
+        <button pButton type="button"
+        class="ui-button-info"
+        label="Nuevo"
+        (click)="nuevoMovimiento(instFormLanzamiento)"></button>
+
         <a [routerLink]="['/movimientos']">Volver a Busqueda</a>
       </div>
 

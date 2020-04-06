@@ -80,7 +80,12 @@ export class MovimientoService {
     return this.httpClient
       .post(`${this.movimientosUrl}`, JSON.stringify(movimiento), { headers })
       .toPromise()
-      .then(() => null);
+      .then(response => {
+        const movimiento = response as Movimiento;
+        this.convetirStringAData([movimiento]);
+        console.log('-MovimientoService.agregrar()- Agregar Movimiento:', movimiento);
+        return movimiento;
+      });
   }
 
   /*

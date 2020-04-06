@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {SelectItem} from 'primeng/api';
 import { ToastyService } from 'ng2-toasty';
 import { ErrorHandlerService } from './../../core/error-handler.service';
@@ -27,7 +27,8 @@ export class LanzamientoRegistroComponent implements OnInit {
     private movimientoService: MovimientoService,
     private errorHandlerService: ErrorHandlerService,
     private toasty: ToastyService,
-    private route:ActivatedRoute) {
+    private route:ActivatedRoute,
+    private router:Router) {
     // SelectItem API with label-value pairs
     this.tiposLanzamiento = [
       {label:'INGRESO', value:'RECETA'},// TODO: cambiar en el back el tipo
@@ -102,13 +103,15 @@ export class LanzamientoRegistroComponent implements OnInit {
   agregrar(formMov: FormControl) {
     console.log('-LanzamientoRegistroComponent.agregrar()- Agregando Movimiento...', this.movimiento);
     this.movimientoService.agregrar(this.movimiento)
-    .then(() => {
+    .then(movAgregado => {
       // this.grid.reset(); //Reseteando la tabla.
       console.log(`-LanzamientosBusquedaComponent.agregrar - Movimiento.`);
       this.toasty.success(`Movimiento Guardado con Éxito.`);
 
-      formMov.reset();
-      this.movimiento = new Movimiento();
+      // formMov.reset();
+      // this.movimiento = new Movimiento();
+      //18.9. Implementando navegação imperativa
+      this.router.navigate(['/movimientos', movAgregado.codigo]);
     }).catch(error => {
       this.errorHandlerService.handle(error);
     });
@@ -148,6 +151,19 @@ export class LanzamientoRegistroComponent implements OnInit {
   */
   get esModificacion() {
     return Boolean(this.movimiento.codigo);
+  }
+
+  /*
+    18.9. Implementando navegação imperativa
+  */
+  nuevoMovimiento(formMov: FormControl) {
+    formMov.reset();
+    // Se agrega por un bug para limpiar el nuevo movimiento.
+    setTimeout(function() {
+        this.movimiento = new Movimiento();
+    }.bind(this), 1);
+
+    this.router.navigate(['/movimientos/nuevo']);
   }
 
 }
