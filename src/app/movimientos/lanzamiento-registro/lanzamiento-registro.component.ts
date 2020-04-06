@@ -88,6 +88,14 @@ export class LanzamientoRegistroComponent implements OnInit {
     .catch(error =>  this.errorHandlerService.handle(error));
   }
 
+  guardar(formMov: FormControl) {
+    if(!this.esModificacion) {
+      this.agregrar(formMov);
+    } else {
+      this.actualizar(formMov);
+    }
+  }
+
   /*
     17.20. Implementando o serviço de cadastro de lançamentos
   */
@@ -109,14 +117,13 @@ export class LanzamientoRegistroComponent implements OnInit {
   /*
     18.6. Desafio: implementando os serviços de atualização e busca por código
   */
-  atualizar(formMov: FormControl) {
-    // movimiento.codigo==null?agregrar(instFormLanzamiento):actualizar(instFormLanzamiento)
-
-    console.log('-LanzamientoRegistroComponent.atualizar().- Actualizando Movimiento...');
+  actualizar(formMov: FormControl) {
+    console.log('-LanzamientoRegistroComponent.actualizar().- Actualizando Movimiento...');
     this.movimientoService.actualizar(this.movimiento)
-    .then(() => {
+    .then(mov => {
       // this.grid.reset(); //Reseteando la tabla.
-      console.log(`-LanzamientosBusquedaComponent.atualizar() - Movimiento ${this.movimiento.descripcion}.`);
+      this.movimiento = mov;
+      console.log(`-LanzamientosBusquedaComponent.actualizar() - Movimiento ${this.movimiento.descripcion}.`);
       this.toasty.success(`Movimiento ${this.movimiento.descripcion} Actualizado con Éxito.`);
     }).catch(error => {
       this.errorHandlerService.handle(error);
