@@ -22,8 +22,7 @@ export class LanzamientosBusquedaComponent implements OnInit {
   fechaVencimientoHasta: Date;*/
   filtroMov = new MovimientoFiltro();
   // 17.8. Excluindo lançamentos e o decorador @ViewChild
-  // @ViewChild('tablaMov', {static: true}) grid: Table; //TODO: Pendiente de arreglar.
-
+  @ViewChild('tablaMov', {static: true}) gridMov;//: Table;
 
   constructor(
     private movimientoService: MovimientoService,
@@ -96,7 +95,7 @@ export class LanzamientosBusquedaComponent implements OnInit {
     console.log(`-LanzamientosBusquedaComponent.eliminar- Eliminando Movimiento ${lanz.codigo}.`);
     this.movimientoService.eliminar(lanz.codigo)
     .then(() => {
-      // this.grid.reset(); //Reseteando la tabla.
+      this.gridMov.reset(); //Reseteando la tabla.
       console.log(`-LanzamientosBusquedaComponent.eliminar - Ciudad Movimiento ${lanz.codigo}.`);
       // 17.9. Adicionando mensagem de sucesso com Angular Toasty
       this.toasty.success(`Movimiento ${lanz.descripcion} Eliminado con Éxito.`);

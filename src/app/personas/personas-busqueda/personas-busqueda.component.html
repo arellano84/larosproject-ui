@@ -26,7 +26,7 @@
                 [rows]="filtroPer.registrosPorPagina"
                 [lazy]="true"
                 [totalRecords]="totalRegistros"
-                (onLazyLoad)="alCambiarPagina($event)">
+                (onLazyLoad)="alCambiarPagina($event)" #tablaPer>
                 <ng-template pTemplate="emptymessage">
                     Ninguna persona encontrado
                 </ng-template>
@@ -45,7 +45,8 @@
                           <td>{{persona.nombre}}</td>
                           <td>{{persona.apellido1}} {{persona.apellido2}}</td>
                           <td>
-                            <a href="#" [style.color]="!persona.activo ? 'red' : 'blue'"
+                            <a href="javascript:;"
+                              [style.color]="!persona.activo ? 'red' : 'blue'"
                               [pTooltip]="persona.activo?'Desactivar':'Activar'"
                               tooltipPosition="top"
                               (click)="actualizarEstado(persona);">

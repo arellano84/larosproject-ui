@@ -33,7 +33,7 @@ export class LanzamientoRegistroComponent implements OnInit {
     private title:Title) {
     // SelectItem API with label-value pairs
     this.tiposLanzamiento = [
-      {label:'INGRESO', value:'RECETA'},// TODO: cambiar en el back el tipo
+      {label:'INGRESO', value:'INGRESO'},
       {label:'GASTO', value:'GASTO'}
     ];
     /*this.categorias = [

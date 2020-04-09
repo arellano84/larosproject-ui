@@ -64,7 +64,6 @@
                           <td class="col-data-content">{{lanz.fechaVencimiento | date:'dd/MMM/yy'}}</td>
                           <td class="col-data-content">{{lanz.fechaPago | date:'dd/MMM/yy'}}</td>
                           <td class="col-valor-content">
-                              <!--span [ngStyle]="{color: lanz.tipo=='DESPESA' ? 'red' : 'blue'}"-->
                               <span [style.color]="lanz.tipo=='GASTO' ? 'red' : 'blue'">
                                   {{lanz.valor | currency:'EUR':'€' }}
                               </span>

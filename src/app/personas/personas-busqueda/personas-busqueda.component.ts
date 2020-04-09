@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild  } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { LazyLoadEvent } from 'primeng/api/public_api';
 import { ToastyService } from 'ng2-toasty';
-// import {TableModule} from 'primeng/table';
 import {ConfirmationService} from 'primeng/api';
 
 import { ErrorHandlerService } from './../../core/error-handler.service';
@@ -18,7 +17,7 @@ export class PersonasBusquedaComponent implements OnInit {
   personas = [];
   totalRegistros: number;
   filtroPer = new PersonaFiltro();
-  // @ViewChild('tablaPer', {static: true}) grid: Table; //TODO: Pendiente de arreglar.
+  @ViewChild('tablaPer', {static: true}) gridPer;//: Table;
 
   constructor(
     private personaService: PersonaService,
@@ -75,7 +74,7 @@ export class PersonasBusquedaComponent implements OnInit {
     this.personaService.eliminar(per.codigo)
     .then(() => {
       console.log(`-PersonasBusquedaComponent.eliminar - Persona ${per.codigo}.`);
-      // this.grid.reset(); //Reseteando la tabla.
+      this.gridPer.reset(); // Reseteando la tabla.
       this.toasty.success(`${per.nombre} Ha sido eliminado con éxito.`);
     }).catch(error => {
       this.errorHandlerService.handle(error);
@@ -96,17 +95,14 @@ export class PersonasBusquedaComponent implements OnInit {
   */
  actualizarEstado(per: any) {
     console.log(`-PersonasBusquedaComponent.atualizarEstado- Actulizando estado Persona ${per.codigo}.`);
-    //this.personaService.actualizarEstado(per)
 
     const nuevoEstado = !per.activo;
     this.personaService.actualizarEstado(per.codigo, nuevoEstado)
     .then(() => {
       console.log(`-PersonasBusquedaComponent.atualizarEstado - Persona ${per.codigo}.`);
-       this.consultar(); // TODO: Corregir actualización de tabla.
-      // this.grid.reset(); //Reseteando la tabla.
-
+       this.gridPer.reset(); // Reseteando la tabla.
         const accion = nuevoEstado ? 'ativada' : 'desativada';
-        //per.ativo = nuevoEstado;
+        // per.ativo = nuevoEstado;
         this.toasty.success(`Persona ${per.nombre} ${accion} con éxito!`);
     }).catch(error => {
       this.errorHandlerService.handle(error);
