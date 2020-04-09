@@ -16,6 +16,7 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { MovimientosModule } from './movimientos/movimientos.module';
 import { PersonasModule } from './personas/personas.module';
+import { SeguridadModule } from './seguridad/seguridad.module';
 
 // 17.11. Alterando o locale da aplicação para pt-BR
 registerLocaleData(localeEs);
@@ -50,6 +51,7 @@ const routes: Routes = [
     CoreModule,
     MovimientosModule,
     PersonasModule,
+    SeguridadModule,
 
     /*Está escrito no manual do Angular que os módulos que importam rotas child (LancamentosModule)
     devem estar (no Array de imports de app.module.ts) antes da importação de AppRoutingModule,

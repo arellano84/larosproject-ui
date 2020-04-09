@@ -9,7 +9,7 @@ import { PersonasBusquedaComponent } from './personas/personas-busqueda/personas
 */
 // const routes: Routes = [];
 const routes: Routes = [
-  {path: '', redirectTo: 'movimientos', pathMatch: 'full'}, // prefix
+  {path: '', redirectTo: 'login', pathMatch: 'full'}, // prefix
   /*
   18.14. Criando um Routing Module para o módulo de funcionalidade
   {path: 'movimientos', component: MovimientosBusquedaComponent},

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-barra-nav',
@@ -8,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class BarraNavComponent implements OnInit {
 
   mostrandoMenu = false;
+  // 19.3. Desafio: módulo de segurança e protótipo da tela de login
+  @Input() muestraBarraNavegacion: boolean;
 
   constructor() { }
 
