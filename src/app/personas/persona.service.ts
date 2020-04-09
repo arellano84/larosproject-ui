@@ -91,7 +91,7 @@ export class PersonaService {
   17.21. Desafio: implementando o cadastro de pessoas
   */
   agregrar(persona: Persona): Promise<Persona> {
-    console.log(`-MovimientoService.agregrar() - Agregando Personas`);
+    console.log(`-PersonaService.agregrar() - Agregando Personas`);
 
     const headers = new HttpHeaders()
                   .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
@@ -99,7 +99,43 @@ export class PersonaService {
     return this.httpClient
       .post(`${this.personasUrl}`, JSON.stringify(persona), { headers })
       .toPromise()
-      .then(() => null);
+      .then(response => {
+        const perAgregada = response as Persona;
+        console.log('-PersonaService.agregrar()- Agregar Persona:', perAgregada);
+        return perAgregada;
+      });
+  }
+
+  /*
+    18.15. Desafio: roteamento e edição de pessoas
+  */
+  actualizar(persona: Persona): Promise<Persona> {
+    console.log(`-PersonaService.actualizar()- Actualizar Persona..`);
+
+    const headers = new HttpHeaders()
+                  .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
+                  .append('Content-Type', 'application/json');
+    return this.httpClient.put(`${this.personasUrl}${persona.codigo}`, JSON.stringify(persona), { headers })
+    .toPromise()
+    .then(response => {
+      const perModificada = response as Persona;
+      console.log('-PersonaService.actualizar()- Actualizar Persona:', perModificada);
+      return perModificada;
+    });
+  }
+
+  consultarPorCodigo(codigo: number): Promise< Persona > {
+    console.log('-PersonaService.consultarPorCodigo()- Consultado Persona...');
+
+    const headers = new HttpHeaders().append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+    return this.httpClient
+      .get(`${this.personasUrl}${codigo}`, { headers })
+      .toPromise()
+      .then(response => {
+        const persona = response as Persona;
+        console.log('-PersonaService.consultarPorCodigo()- Consultado Persona:', persona);
+        return persona;
+      });
   }
 
 }

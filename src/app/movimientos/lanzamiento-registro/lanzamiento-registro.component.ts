@@ -117,7 +117,7 @@ export class LanzamientoRegistroComponent implements OnInit {
 
       // formMov.reset();
       // this.movimiento = new Movimiento();
-      //18.9. Implementando navegação imperativa
+      // 18.9. Implementando navegação imperativa
       this.router.navigate(['/movimientos', movAgregado.codigo]);
     }).catch(error => {
       this.errorHandlerService.handle(error);

@@ -1,6 +1,6 @@
 <div class="container">
 
-    <form autocomplete="off" #instFormPersona="ngForm" (ngSubmit)="agregrar(instFormPersona)">
+    <form autocomplete="off" #instFormPersona="ngForm" (ngSubmit)="guardar(instFormPersona)">
 
     <div class="ui-g">
       <div class="ui-g-12">
@@ -88,8 +88,15 @@
       </div>
 
       <div class="ui-g-12">
-        <button pButton type="submit" label="Guardar" [disabled]="!instFormPersona.valid"></button>
-        <button pButton type="button" class="ui-button-info" label="Nuevo"></button>
+        <button pButton type="submit"
+              label="Guardar"
+              [disabled]="!instFormPersona.valid"></button>
+
+        <button pButton type="button"
+        class="ui-button-info"
+        label="Nuevo"
+        (click)="nuevoPersona(instFormPersona)"></button>
+
         <a [routerLink]="['/personas']">Volver a Busqueda</a>
       </div>
 
