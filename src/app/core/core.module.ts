@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 import { ErrorHandlerService } from './error-handler.service';
 
@@ -19,7 +20,8 @@ import { PaginaNoEncotradaComponent } from './pagina-no-encotrada.component';
     BarraNavComponent
   ],
   providers: [
-    ErrorHandlerService
+    ErrorHandlerService,
+    Title
   ]
 })
 export class CoreModule { }

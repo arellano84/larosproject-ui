@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 import {SelectItem} from 'primeng/api';
 import { ToastyService } from 'ng2-toasty';
 import { ErrorHandlerService } from './../../core/error-handler.service';
@@ -28,7 +29,8 @@ export class LanzamientoRegistroComponent implements OnInit {
     private errorHandlerService: ErrorHandlerService,
     private toasty: ToastyService,
     private route:ActivatedRoute,
-    private router:Router) {
+    private router:Router,
+    private title:Title) {
     // SelectItem API with label-value pairs
     this.tiposLanzamiento = [
       {label:'INGRESO', value:'RECETA'},// TODO: cambiar en el back el tipo
@@ -48,9 +50,14 @@ export class LanzamientoRegistroComponent implements OnInit {
   ngOnInit(): void {
     console.log("LanzamientoRegistroComponent.ngOnInit()...");
 
+    // 18.12. Definindo o título da página dinamicamente
+    this.title.setTitle('Nuevo Movimiento');
+
     // 18.7. Preenchendo os campos na edição de lançamentos
     const codigoMovimiento = this.route.snapshot.params['codigo'];
     if(codigoMovimiento) {
+      this.title.setTitle(`Modificar Movimiento [${codigoMovimiento}]`);
+
       this.consultarPorCodigo(codigoMovimiento);
     }
 

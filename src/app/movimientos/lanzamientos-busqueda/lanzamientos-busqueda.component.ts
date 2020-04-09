@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { LazyLoadEvent } from 'primeng/api/public_api';
 import { ToastyService } from 'ng2-toasty';
 // import {TableModule} from 'primeng/table';
@@ -28,9 +29,13 @@ export class LanzamientosBusquedaComponent implements OnInit {
     private movimientoService: MovimientoService,
     private toasty: ToastyService,
     private confirmationService: ConfirmationService,
-    private errorHandlerService: ErrorHandlerService) {}
+    private errorHandlerService: ErrorHandlerService,
+    private title: Title) {}
 
   ngOnInit() {
+    // 18.12. Definindo o título da página dinamicamente
+    this.title.setTitle('Busqueda de Movimientos');
+
     // this.consultar(); //Se comenta porque se habilita LazyLoadEvent
   }
 
