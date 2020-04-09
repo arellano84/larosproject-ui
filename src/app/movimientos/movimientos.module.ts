@@ -17,6 +17,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { NgxCurrencyModule } from 'ngx-currency';
 
 import { CompartidoModule } from './../compartido/compartido.module';
+import { MovimientosRoutingModule } from './movimientos-routing.module';
 
 import { LanzamientosListaComponent } from './lanzamientos-lista/lanzamientos-lista.component';
 import { LanzamientoRegistroComponent } from './lanzamiento-registro/lanzamiento-registro.component';
@@ -26,6 +27,7 @@ import { MovimientoService } from './movimiento.service';
 import { CategoriaService } from './../categorias/categoria.service';
 import { PersonaService } from './../personas/persona.service';
 
+
 @NgModule({
   declarations: [LanzamientosBusquedaComponent,LanzamientoRegistroComponent,LanzamientosListaComponent],
   imports: [
@@ -33,7 +35,7 @@ import { PersonaService } from './../personas/persona.service';
     FormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    RouterModule,
+    // RouterModule,
 
     InputTextModule,
     ButtonModule,
@@ -46,7 +48,8 @@ import { PersonaService } from './../personas/persona.service';
 
     NgxCurrencyModule,
 
-    CompartidoModule
+    CompartidoModule,
+    MovimientosRoutingModule
   ],
   exports: [
     /*

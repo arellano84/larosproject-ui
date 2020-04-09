@@ -43,13 +43,19 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+
     // RouterModule.forRoot(routes),
     ToastyModule.forRoot(),
     ConfirmDialogModule,
     CoreModule,
     MovimientosModule,
-    PersonasModule
+    PersonasModule,
+
+    /*Está escrito no manual do Angular que os módulos que importam rotas child (LancamentosModule)
+    devem estar (no Array de imports de app.module.ts) antes da importação de AppRoutingModule,
+    então não é que tenha que ser o último, mas de acordo com esta aula,
+     bastaria colocar AppRoutingModule depois de LancamentosModule.*/
+    AppRoutingModule // Debe estar siempre al final
   ],
   exports: [
 

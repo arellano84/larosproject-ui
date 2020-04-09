@@ -11,6 +11,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputMaskModule } from 'primeng/inputmask';
 
 import { CompartidoModule } from './../compartido/compartido.module';
+import { MovimientosRoutingModule } from './personas-routing.module';
 
 import { PersonasRegistroComponent } from './personas-registro/personas-registro.component';
 import { PersonasListaComponent } from './personas-lista/personas-lista.component';
@@ -25,7 +26,7 @@ import { PersonaService } from './persona.service';
     CommonModule,
     FormsModule,
     BrowserAnimationsModule,
-    RouterModule,
+    //RouterModule,
 
     InputTextModule,
     ButtonModule,
@@ -33,7 +34,8 @@ import { PersonaService } from './persona.service';
     TooltipModule,
     InputMaskModule,
 
-    CompartidoModule
+    CompartidoModule,
+    MovimientosRoutingModule
   ],
   exports: [
     /*
