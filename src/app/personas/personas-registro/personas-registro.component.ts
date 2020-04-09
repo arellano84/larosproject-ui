@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 import { ToastyService } from 'ng2-toasty';
 import { ErrorHandlerService } from './../../core/error-handler.service';
 import { PersonaService } from './../../personas/persona.service';
@@ -19,12 +20,18 @@ export class PersonasRegistroComponent implements OnInit {
     private personaService: PersonaService,
     private errorHandlerService: ErrorHandlerService,
     private toasty: ToastyService,
-    private route:ActivatedRoute) { }
+    private route:ActivatedRoute,
+    private title:Title) { }
 
   ngOnInit(): void {
-    console.log("+++++++++++++++++++++++++++++");
-    console.log(this.route.snapshot.params['codigo']);
-    console.log("+++++++++++++++++++++++++++++");
+    console.log("PersonasRegistroComponent.ngOnInit()...");
+
+    this.title.setTitle('Nueva Persona');
+    const codigoPersona = this.route.snapshot.params['codigo'];
+    if(codigoPersona) {
+      this.title.setTitle(`Modificar Persona [${codigoPersona}]`);
+      //this.consultarPorCodigo(codigoPersona);
+    }
   }
 
   /*

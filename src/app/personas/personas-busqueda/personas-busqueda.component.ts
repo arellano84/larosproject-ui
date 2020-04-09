@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { LazyLoadEvent } from 'primeng/api/public_api';
 import { ToastyService } from 'ng2-toasty';
 // import {TableModule} from 'primeng/table';
@@ -23,10 +24,12 @@ export class PersonasBusquedaComponent implements OnInit {
     private personaService: PersonaService,
     private toasty: ToastyService,
     private confirmationService: ConfirmationService,
-    private errorHandlerService: ErrorHandlerService
-    ) {}
+    private errorHandlerService: ErrorHandlerService,
+    private title:Title) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.title.setTitle('Busqueda de Personas');
+  }
 
   public consultar(pagina = 0) {
     console.log('-PersonasBusquedaComponent- Consultado Personas...');
