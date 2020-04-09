@@ -17,16 +17,12 @@ import { CoreModule } from './core/core.module';
 import { MovimientosModule } from './movimientos/movimientos.module';
 import { PersonasModule } from './personas/personas.module';
 
-import { LanzamientosBusquedaComponent } from './movimientos/lanzamientos-busqueda/lanzamientos-busqueda.component';
-import { PersonasRegistroComponent } from './personas/personas-registro/personas-registro.component';
-import { PersonasBusquedaComponent } from './personas/personas-busqueda/personas-busqueda.component';
-import { LanzamientoRegistroComponent } from './movimientos/lanzamiento-registro/lanzamiento-registro.component';
-import { PaginaNoEncotradaComponent } from './core/pagina-no-encotrada.component';
-
 // 17.11. Alterando o locale da aplicação para pt-BR
 registerLocaleData(localeEs);
 
 // 18.2. Configurando rotas na aplicação
+/*
+18.13. Refatorando as rotas para usar Routing Module
 const routes: Routes = [
   {path: '', redirectTo: 'movimientos', pathMatch: 'full'}, // prefix
   {path: 'movimientos', component: LanzamientosBusquedaComponent},
@@ -37,7 +33,7 @@ const routes: Routes = [
   {path: 'personas/:codigo', component: PersonasRegistroComponent},
   {path: 'pagina-no-encontrada', component: PaginaNoEncotradaComponent},
   {path: '**', redirectTo: 'pagina-no-encontrada'}
-];
+];*/
 
 @NgModule({
   declarations: [
@@ -48,12 +44,9 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     AppRoutingModule,
-
-    RouterModule.forRoot(routes),
-
+    // RouterModule.forRoot(routes),
     ToastyModule.forRoot(),
     ConfirmDialogModule,
-
     CoreModule,
     MovimientosModule,
     PersonasModule
