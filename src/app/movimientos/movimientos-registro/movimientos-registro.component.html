@@ -1,14 +1,14 @@
 <div class="container">
 
-    <form autocomplete="off" #instFormLanzamiento="ngForm" (ngSubmit)="guardar(instFormLanzamiento)">
+    <form autocomplete="off" #instFormMovimiento="ngForm" (ngSubmit)="guardar(instFormMovimiento)">
 
     <div class="ui-g">
       <div class="ui-g-12">
         <h1>{{esModificacion?'Modificar':'Nuevo'}} Movimiento</h1>
       </div>
       <div class="ui-g-12">
-        <p-selectButton [options]="tiposLanzamiento"
-        name="lanzamiento" [(ngModel)]="movimiento.tipo" #instTiposLanzamiento="ngModel"></p-selectButton>
+        <p-selectButton [options]="tiposMovimiento"
+        name="movimiento" [(ngModel)]="movimiento.tipo" #instTiposMovimiento="ngModel"></p-selectButton>
       </div>
       <div class="ui-g-6 ui-md-3 ui-fluid">
         <label>Vencimiento</label>
@@ -20,7 +20,7 @@
         <app-mensajes-validacion [control]="instVencimiento" error="required" texto="Informe una Fecha."></app-mensajes-validacion>
       </div>
       <div class="ui-g-6 ui-md-3 ui-fluid">
-        <label>{{instTiposLanzamiento.value==0?'Recibido':'Pagado'}}</label>
+        <label>{{instTiposMovimiento.value==0?'Recibido':'Pagado'}}</label>
         <p-calendar dateFormat="dd/M/yy"
         [readonlyInput]="false" showIcon="true" [inline]="false"
           name="recibimiento" [(ngModel)]="movimiento.fechaPago" #instRecibimiento="ngModel"></p-calendar>
@@ -70,12 +70,12 @@
       <div class="ui-g-12">
         <button pButton type="submit"
               label="Guardar"
-              [disabled]="!instFormLanzamiento.valid"></button>
+              [disabled]="!instFormMovimiento.valid"></button>
 
         <button pButton type="button"
         class="ui-button-info"
         label="Nuevo"
-        (click)="nuevoMovimiento(instFormLanzamiento)"></button>
+        (click)="nuevoMovimiento(instFormMovimiento)"></button>
 
         <a [routerLink]="['/movimientos']">Volver a Busqueda</a>
       </div>

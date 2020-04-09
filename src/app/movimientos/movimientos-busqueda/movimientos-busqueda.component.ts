@@ -9,13 +9,13 @@ import { ErrorHandlerService } from './../../core/error-handler.service';
 import { MovimientoService, MovimientoFiltro } from './../movimiento.service';
 
 @Component({
-  selector: 'app-lanzamientos-busqueda',
-  templateUrl: './lanzamientos-busqueda.component.html',
-  styleUrls: ['./lanzamientos-busqueda.component.css']
+  selector: 'app-movimientos-busqueda',
+  templateUrl: './movimientos-busqueda.component.html',
+  styleUrls: ['./movimientos-busqueda.component.css']
 })
-export class LanzamientosBusquedaComponent implements OnInit {
+export class MovimientosBusquedaComponent implements OnInit {
 
-  lanzamientos = [];
+  movimientos = [];
   totalRegistros: number;
   /*descripcion: string;
   fechaVencimientoDe: Date;
@@ -52,17 +52,17 @@ export class LanzamientosBusquedaComponent implements OnInit {
 
     // this.movimientoService.consultar({descripcion: this.descripcion})
     this.movimientoService.consultar(this.filtroMov)
-      .then(lanz => {
-        // this.lanzamientos = lanz;
-        this.lanzamientos = lanz.movimientos;
-        this.totalRegistros = lanz.total;
-        console.log(this.lanzamientos);
+      .then(mov => {
+        // this.movimientos = mov;
+        this.movimientos = mov.movimientos;
+        this.totalRegistros = mov.total;
+        console.log(this.movimientos);
       })
       .catch(error => {
         // 17.12. Criando um serviço de tratamento de erros
         this.errorHandlerService.handle(error);
 
-        this.lanzamientos = [
+        this.movimientos = [
           { tipo: 'GASTO', descripcion: 'Compra de pão de queijo', fechaVencimiento: new Date(2020, 3, 26),
             fechaPago: null, valor: 4.55, persona: 'Padaria do José' },
           { tipo: 'INGRESO', descripcion: 'Venda de software', fechaVencimiento: new Date(2020, 3, 26),
@@ -82,23 +82,23 @@ export class LanzamientosBusquedaComponent implements OnInit {
   /*
   17.10. Adicionando diálogo de confirmação antes da exclusão
   */
-  confirmarEliminar(lanz: any) {
+  confirmarEliminar(mov: any) {
     this.confirmationService.confirm({
       message: '¿Esta seguro que desea eliminar?',
       accept: () => {
-        this.eliminar(lanz);
+        this.eliminar(mov);
       }
     });
   }
 
-  eliminar(lanz: any) {
-    console.log(`-LanzamientosBusquedaComponent.eliminar- Eliminando Movimiento ${lanz.codigo}.`);
-    this.movimientoService.eliminar(lanz.codigo)
+  eliminar(mov: any) {
+    console.log(`-MovimientosBusquedaComponent.eliminar- Eliminando Movimiento ${mov.codigo}.`);
+    this.movimientoService.eliminar(mov.codigo)
     .then(() => {
       this.gridMov.reset(); //Reseteando la tabla.
-      console.log(`-LanzamientosBusquedaComponent.eliminar - Ciudad Movimiento ${lanz.codigo}.`);
+      console.log(`-MovimientosBusquedaComponent.eliminar - Ciudad Movimiento ${mov.codigo}.`);
       // 17.9. Adicionando mensagem de sucesso com Angular Toasty
-      this.toasty.success(`Movimiento ${lanz.descripcion} Eliminado con Éxito.`);
+      this.toasty.success(`Movimiento ${mov.descripcion} Eliminado con Éxito.`);
     }).catch(error => {
       // 17.12. Criando um serviço de tratamento de erros
       this.errorHandlerService.handle(error);

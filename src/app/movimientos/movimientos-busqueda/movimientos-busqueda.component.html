@@ -33,9 +33,9 @@
 
     <div class="ui-g">
       <div class="ui-g-12">
-          <!--app-lanzamientos-lista [listaLanzamientos]="lanzamientos"></app-lanzamientos-lista-->
+          <!--app-movimientos-lista [listaMovimientos]="movimientos"></app-movimientos-lista-->
           <div clas="container">
-              <p-table [value]="lanzamientos"
+              <p-table [value]="movimientos"
                 [responsive]="true"
                 [paginator]="true"
                 [rows]="filtroMov.registrosPorPagina"
@@ -56,28 +56,28 @@
                           <th class="col-actions-header"></th>
                       </tr>
                   </ng-template>
-                  <ng-template pTemplate="body" let-lanz>
+                  <ng-template pTemplate="body" let-mov>
                       <tr>
-                          <td>{{lanz.persona}}</td>
-                          <td>{{lanz.tipo}}</td>
-                          <td>{{lanz.descripcion}}</td>
-                          <td class="col-data-content">{{lanz.fechaVencimiento | date:'dd/MMM/yy'}}</td>
-                          <td class="col-data-content">{{lanz.fechaPago | date:'dd/MMM/yy'}}</td>
+                          <td>{{mov.persona}}</td>
+                          <td>{{mov.tipo}}</td>
+                          <td>{{mov.descripcion}}</td>
+                          <td class="col-data-content">{{mov.fechaVencimiento | date:'dd/MMM/yy'}}</td>
+                          <td class="col-data-content">{{mov.fechaPago | date:'dd/MMM/yy'}}</td>
                           <td class="col-valor-content">
-                              <span [style.color]="lanz.tipo=='GASTO' ? 'red' : 'blue'">
-                                  {{lanz.valor | currency:'EUR':'€' }}
+                              <span [style.color]="mov.tipo=='GASTO' ? 'red' : 'blue'">
+                                  {{mov.valor | currency:'EUR':'€' }}
                               </span>
                           </td>
                           <td class="col-actions-content">
                               <a pButton icon="pi pi-pencil"
                                 pTooltip="Editar"
                                 tooltipPosition="top"
-                                [routerLink]="['/movimientos', lanz.codigo]"></a>
+                                [routerLink]="['/movimientos', mov.codigo]"></a>
 
                               <button pButton icon="pi pi-trash"
                               pTooltip="Eliminar"
                               tooltipPosition="bottom"
-                              (click)="confirmarEliminar(lanz)"></button>
+                              (click)="confirmarEliminar(mov)"></button>
                           </td>
                       </tr>
                   </ng-template>

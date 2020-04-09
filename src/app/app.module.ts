@@ -25,9 +25,9 @@ registerLocaleData(localeEs);
 18.13. Refatorando as rotas para usar Routing Module
 const routes: Routes = [
   {path: '', redirectTo: 'movimientos', pathMatch: 'full'}, // prefix
-  {path: 'movimientos', component: LanzamientosBusquedaComponent},
-  {path: 'movimientos/nuevo', component: LanzamientoRegistroComponent},
-  {path: 'movimientos/:codigo', component: LanzamientoRegistroComponent},
+  {path: 'movimientos', component: MovimientosBusquedaComponent},
+  {path: 'movimientos/nuevo', component: MovimientoRegistroComponent},
+  {path: 'movimientos/:codigo', component: MovimientoRegistroComponent},
   {path: 'personas', component: PersonasBusquedaComponent},
   {path: 'personas/nuevo', component: PersonasRegistroComponent},
   {path: 'personas/:codigo', component: PersonasRegistroComponent},

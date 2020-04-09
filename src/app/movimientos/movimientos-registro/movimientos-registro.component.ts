@@ -11,13 +11,13 @@ import { MovimientoService } from './../../movimientos/movimiento.service';
 import { Movimiento } from './../../core/model';
 
 @Component({
-  selector: 'app-lanzamiento-registro',
-  templateUrl: './lanzamiento-registro.component.html',
-  styleUrls: ['./lanzamiento-registro.component.css']
+  selector: 'app-movimientos-registro',
+  templateUrl: './movimientos-registro.component.html',
+  styleUrls: ['./movimientos-registro.component.css']
 })
-export class LanzamientoRegistroComponent implements OnInit {
+export class MovimientoRegistroComponent implements OnInit {
 
-  tiposLanzamiento;
+  tiposMovimiento;
   categorias;
   personas;
   movimiento = new Movimiento();
@@ -32,7 +32,7 @@ export class LanzamientoRegistroComponent implements OnInit {
     private router:Router,
     private title:Title) {
     // SelectItem API with label-value pairs
-    this.tiposLanzamiento = [
+    this.tiposMovimiento = [
       {label:'INGRESO', value:'INGRESO'},
       {label:'GASTO', value:'GASTO'}
     ];
@@ -48,7 +48,7 @@ export class LanzamientoRegistroComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("LanzamientoRegistroComponent.ngOnInit()...");
+    console.log("MovimientoRegistroComponent.ngOnInit()...");
 
     // 18.12. Definindo o título da página dinamicamente
     this.title.setTitle('Nuevo Movimiento');
@@ -69,7 +69,7 @@ export class LanzamientoRegistroComponent implements OnInit {
   17.17. Listando as categorias cadastradas no dropdown
   */
   cargarCategorias() {
-    console.log('-LanzamientoRegistroComponent.cargarCategorias()- Cargando Categorias...');
+    console.log('-MovimientoRegistroComponent.cargarCategorias()- Cargando Categorias...');
 
     this.categoriaService.consultarTodos()
     .then(categorias => {
@@ -86,7 +86,7 @@ export class LanzamientoRegistroComponent implements OnInit {
   17.18. Desafio: listando as pessoas cadastradas no dropdown
   */
  cargarPersonas() {
-    console.log('-LanzamientoRegistroComponent.cargarPersonas()- Cargando Personas...');
+    console.log('-MovimientoRegistroComponent.cargarPersonas()- Cargando Personas...');
 
     this.personaService.consultarTodos()
     .then(personas => {
@@ -108,11 +108,11 @@ export class LanzamientoRegistroComponent implements OnInit {
     17.20. Implementando o serviço de cadastro de lançamentos
   */
   agregrar(formMov: FormControl) {
-    console.log('-LanzamientoRegistroComponent.agregrar()- Agregando Movimiento...', this.movimiento);
+    console.log('-MovimientoRegistroComponent.agregrar()- Agregando Movimiento...', this.movimiento);
     this.movimientoService.agregrar(this.movimiento)
     .then(movAgregado => {
       // this.grid.reset(); //Reseteando la tabla.
-      console.log(`-LanzamientosBusquedaComponent.agregrar - Movimiento.`);
+      console.log(`-MovimientosBusquedaComponent.agregrar - Movimiento.`);
       this.toasty.success(`Movimiento Guardado con Éxito.`);
 
       // formMov.reset();
@@ -128,12 +128,12 @@ export class LanzamientoRegistroComponent implements OnInit {
     18.6. Desafio: implementando os serviços de atualização e busca por código
   */
   actualizar(formMov: FormControl) {
-    console.log('-LanzamientoRegistroComponent.actualizar().- Actualizando Movimiento...');
+    console.log('-MovimientoRegistroComponent.actualizar().- Actualizando Movimiento...');
     this.movimientoService.actualizar(this.movimiento)
     .then(mov => {
       // this.grid.reset(); //Reseteando la tabla.
       this.movimiento = mov;
-      console.log(`-LanzamientosBusquedaComponent.actualizar() - Movimiento ${this.movimiento.descripcion}.`);
+      console.log(`-MovimientosBusquedaComponent.actualizar() - Movimiento ${this.movimiento.descripcion}.`);
       this.toasty.success(`Movimiento ${this.movimiento.descripcion} Actualizado con Éxito.`);
     }).catch(error => {
       this.errorHandlerService.handle(error);
@@ -141,12 +141,12 @@ export class LanzamientoRegistroComponent implements OnInit {
   }
 
   consultarPorCodigo(codigo: number) {
-    console.log('-LanzamientoRegistroComponent.consultarPorCodigo()- Consultado Movimiento...', codigo);
+    console.log('-MovimientoRegistroComponent.consultarPorCodigo()- Consultado Movimiento...', codigo);
 
     this.movimientoService.consultarPorCodigo(codigo)
       .then(mov => {
         this.movimiento = mov;
-        console.log('-LanzamientoRegistroComponent.consultarPorCodigo()- Consultado Movimiento:', JSON.stringify(this.movimiento));
+        console.log('-MovimientoRegistroComponent.consultarPorCodigo()- Consultado Movimiento:', JSON.stringify(this.movimiento));
       })
       .catch(error => {
         this.errorHandlerService.handle(error);

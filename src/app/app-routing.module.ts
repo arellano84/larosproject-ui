@@ -12,9 +12,9 @@ const routes: Routes = [
   {path: '', redirectTo: 'movimientos', pathMatch: 'full'}, // prefix
   /*
   18.14. Criando um Routing Module para o módulo de funcionalidade
-  {path: 'movimientos', component: LanzamientosBusquedaComponent},
-  {path: 'movimientos/nuevo', component: LanzamientoRegistroComponent},
-  {path: 'movimientos/:codigo', component: LanzamientoRegistroComponent},*/
+  {path: 'movimientos', component: MovimientosBusquedaComponent},
+  {path: 'movimientos/nuevo', component: MovimientoRegistroComponent},
+  {path: 'movimientos/:codigo', component: MovimientoRegistroComponent},*/
   /* {path: 'personas', component: PersonasBusquedaComponent},
   {path: 'personas/nuevo', component: PersonasRegistroComponent},
   {path: 'personas/:codigo', component: PersonasRegistroComponent},*/

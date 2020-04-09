@@ -19,9 +19,9 @@ import { NgxCurrencyModule } from 'ngx-currency';
 import { CompartidoModule } from './../compartido/compartido.module';
 import { MovimientosRoutingModule } from './movimientos-routing.module';
 
-import { LanzamientosListaComponent } from './lanzamientos-lista/lanzamientos-lista.component';
-import { LanzamientoRegistroComponent } from './lanzamiento-registro/lanzamiento-registro.component';
-import { LanzamientosBusquedaComponent } from './lanzamientos-busqueda/lanzamientos-busqueda.component';
+import { MovimientosListaComponent } from './movimientos-lista/movimientos-lista.component';
+import { MovimientoRegistroComponent } from './movimientos-registro/movimientos-registro.component';
+import { MovimientosBusquedaComponent } from './movimientos-busqueda/movimientos-busqueda.component';
 
 import { MovimientoService } from './movimiento.service';
 import { CategoriaService } from './../categorias/categoria.service';
@@ -29,7 +29,7 @@ import { PersonaService } from './../personas/persona.service';
 
 
 @NgModule({
-  declarations: [LanzamientosBusquedaComponent,LanzamientoRegistroComponent,LanzamientosListaComponent],
+  declarations: [MovimientosBusquedaComponent,MovimientoRegistroComponent,MovimientosListaComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -55,9 +55,9 @@ import { PersonaService } from './../personas/persona.service';
     /*
     18.11. Tratando rota não encontrada
     Como se utiliza el ruteador ya no es necesario agregar.
-    LanzamientosBusquedaComponent,
-    LanzamientoRegistroComponent*/
-    // LanzamientosListaComponent
+    MovimientosBusquedaComponent,
+    MovimientoRegistroComponent*/
+    // MovimientosListaComponent
   ],
   providers: [MovimientoService, CategoriaService, PersonaService]
 })

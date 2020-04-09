@@ -8,7 +8,7 @@ import { Movimiento } from './../core/model';
 })
 export class MovimientoService {
 
-  movimientosUrl = 'http://localhost:8080/lanzamientos/';
+  movimientosUrl = 'http://localhost:8080/movimientos/';
 
 
   constructor(private httpClient: HttpClient) { }
