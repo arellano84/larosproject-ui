@@ -58,7 +58,7 @@ export class AuthService {
   private almacenarToken(token: string) {
     console.log('-AuthService.almacenarToken()- Inicio ');
     this.jwtPayload = this.jwtHelperService.decodeToken(token);
-    //almacena los datos del token en el navegador.
+    // almacena los datos del token en el navegador.
     localStorage.setItem('token', token);
   }
 
@@ -71,6 +71,14 @@ export class AuthService {
     if(token) {
       this.almacenarToken(token);
     }
+  }
+
+
+  /*
+    19.9. Exibindo o menu do sistema conforme permissões do usuário
+  */
+  tienePermiso(permiso: string) {
+      return this.jwtPayload && this.jwtPayload.authorities.includes(permiso);
   }
 
 }
