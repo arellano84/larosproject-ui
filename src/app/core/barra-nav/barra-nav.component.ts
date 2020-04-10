@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { AuthService } from './../../seguridad/auth.service';
 
 @Component({
   selector: 'app-barra-nav',
@@ -11,7 +12,7 @@ export class BarraNavComponent implements OnInit {
   // 19.3. Desafio: módulo de segurança e protótipo da tela de login
   @Input() muestraBarraNavegacion: boolean;
 
-  constructor() { }
+  constructor(public authService: AuthService) { }
 
   ngOnInit(): void {
   }
