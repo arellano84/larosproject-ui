@@ -13,7 +13,7 @@ export class ErrorHandlerService {
     console.log(`ErrorHandlerService.handle()...`);
 
     let msg: string;
-    if(typeof errorResponse == 'string') {
+    if (typeof errorResponse === 'string') {
       msg = errorResponse;
 
     } else if(//errorResponse instanceof Response && //TODO: No funciona esto...

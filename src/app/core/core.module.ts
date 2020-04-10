@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 import { AuthService } from './../seguridad/auth.service';
 import { ErrorHandlerService } from './error-handler.service';
@@ -21,6 +22,7 @@ import { PaginaNoEncotradaComponent } from './pagina-no-encotrada.component';
   ],
   providers: [
     AuthService,
+    JwtHelperService,
     ErrorHandlerService,
     Title
   ]

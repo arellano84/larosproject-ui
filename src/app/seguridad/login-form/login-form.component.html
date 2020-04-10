@@ -10,7 +10,7 @@
           <div class="ui-g-12 ui-md-12 ui-fluid">
             <label>Usuario</label>
             <input pInputText type="text"
-            name="usuario" ngModel #instUsuario="ngModel" required minlength="5" placeholder="E-mail">
+            name="usuario" ngModel #instUsuario="ngModel" required minlength="5" placeholder="E-mail" autofocus>
             <app-mensajes-validacion [control]="instUsuario" error="required" texto="Informe Usuario."></app-mensajes-validacion>
             <app-mensajes-validacion [control]="instUsuario" error="minlength" texto="Mínimo de {{instUsuario.errors?.minlength?.requiredLength}} caracteres."></app-mensajes-validacion>
           </div>
@@ -25,7 +25,7 @@
             <button pButton type="submit"
                   label="Login"
                   [disabled]="!instFormLogin.valid"
-                  (click)="login(instUsuario.value, instContrasena.value)"></button>
+                  (click)="login(instUsuario.value, instContrasena.value); instFormLogin.reset();"></button>
           </div>
           <div class="ui-g-12">
             <a [routerLink]="['/login']">Recuperar Contraseña</a>
