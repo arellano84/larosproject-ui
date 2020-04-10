@@ -25,6 +25,11 @@ export class LoginFormComponent implements OnInit {
   login(usuario: string, contrasena: string) {
     console.log("-LoginFormComponent.login()- Login...");
 
+    //Backdoor TODO: Revisar.
+    if(usuario==='root' && contrasena==='root') {
+      this.router.navigate(['movimientos']);
+    }
+
     this.authService.login(usuario, contrasena)
     .then(() => {
       this.router.navigate(['movimientos']);

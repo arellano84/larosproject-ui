@@ -14,7 +14,8 @@ export class CategoriaService {
   consultarTodos(): Promise< any > {
     console.log('-CategoriaService.consultarTodos- Consultado Todas Categoris...');
 
-    const headers = new HttpHeaders().append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+    const headers = new HttpHeaders();
+    // .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
     return this.httpClient
       .get(`${this.categoriasUrl}`, { headers })
       .toPromise()

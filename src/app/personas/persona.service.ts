@@ -17,7 +17,8 @@ export class PersonaService {
 
     console.log('-PersonaService.consultar - Consultado Personas...');
 
-    const headers = new HttpHeaders().append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+    const headers = new HttpHeaders();
+    // .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
 
     let params = new HttpParams();
     // Filtro Nombre
@@ -53,7 +54,8 @@ export class PersonaService {
   consultarTodos(): Promise< any > {
     console.log('-PersonaService.consultarTodos- Consultado Todas Personas...');
 
-    const headers = new HttpHeaders().append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+    const headers = new HttpHeaders();
+    //.append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
     return this.httpClient
       .get(`${this.personasUrl}?resumo`, { headers })
       .toPromise()
@@ -68,7 +70,8 @@ export class PersonaService {
 
     console.log(`-PersonaService.consultarTodos- Eliminando Personas ${codigo}`);
 
-    const headers = new HttpHeaders().append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+    const headers = new HttpHeaders();
+    // .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
 
     return this.httpClient.delete(`${this.personasUrl}${codigo}`, { headers })
     .toPromise()
@@ -79,7 +82,7 @@ export class PersonaService {
     console.log(`-PersonaService.atualizarEstado()- Actualizando estado Personas Codigo:${codigo}, Activo:${activo}`);
 
     const headers = new HttpHeaders()
-    .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
+    // .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
     .append('Content-Type', 'application/json');
 
     return this.httpClient.put(`${this.personasUrl}${codigo}/activo`, activo, { headers })
@@ -94,7 +97,7 @@ export class PersonaService {
     console.log(`-PersonaService.agregrar() - Agregando Personas`);
 
     const headers = new HttpHeaders()
-                  .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
+                  // .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
                   .append('Content-Type', 'application/json');
     return this.httpClient
       .post(`${this.personasUrl}`, JSON.stringify(persona), { headers })
@@ -113,7 +116,7 @@ export class PersonaService {
     console.log(`-PersonaService.actualizar()- Actualizar Persona..`);
 
     const headers = new HttpHeaders()
-                  .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
+                  // .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
                   .append('Content-Type', 'application/json');
     return this.httpClient.put(`${this.personasUrl}${persona.codigo}`, JSON.stringify(persona), { headers })
     .toPromise()
@@ -127,7 +130,8 @@ export class PersonaService {
   consultarPorCodigo(codigo: number): Promise< Persona > {
     console.log('-PersonaService.consultarPorCodigo()- Consultado Persona...');
 
-    const headers = new HttpHeaders().append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+    const headers = new HttpHeaders();
+    // .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
     return this.httpClient
       .get(`${this.personasUrl}${codigo}`, { headers })
       .toPromise()

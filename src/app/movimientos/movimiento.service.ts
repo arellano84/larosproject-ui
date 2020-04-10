@@ -18,7 +18,8 @@ export class MovimientoService {
 
     console.log('-MovimientoService.consultar()- Consultado Movimientos...');
 
-    const headers = new HttpHeaders().append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+    const headers = new HttpHeaders();
+    // .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
 
     // const params = new URLSearchParams();
     let params = new HttpParams();
@@ -61,7 +62,8 @@ export class MovimientoService {
 
     console.log(`-MovimientoService.eliminar()- Eliminando Movimientos ${codigo}`);
 
-    const headers = new HttpHeaders().append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+    const headers = new HttpHeaders();
+    // .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
 
     return this.httpClient.delete(`${this.movimientosUrl}${codigo}`, { headers })
     .toPromise()
@@ -75,7 +77,7 @@ export class MovimientoService {
     console.log(`-MovimientoService.agregrar() - Agregando Movimientos`);
 
     const headers = new HttpHeaders()
-                  .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
+                  // .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
                   .append('Content-Type', 'application/json');
     return this.httpClient
       .post(`${this.movimientosUrl}`, JSON.stringify(movimiento), { headers })
@@ -95,7 +97,7 @@ export class MovimientoService {
     console.log(`-MovimientoService.actualizar()- Actualizar Movimiento..`);
 
     const headers = new HttpHeaders()
-                  .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
+                  // .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
                   .append('Content-Type', 'application/json');
     return this.httpClient.put(`${this.movimientosUrl}${movimiento.codigo}`, JSON.stringify(movimiento), { headers })
     .toPromise()
@@ -111,7 +113,8 @@ export class MovimientoService {
 
     console.log('-MovimientoService.consultarPorCodigo()- Consultado Movimiento...');
 
-    const headers = new HttpHeaders().append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+    const headers = new HttpHeaders();
+    // .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
     return this.httpClient
       .get(`${this.movimientosUrl}${codigo}`, { headers })
       .toPromise()

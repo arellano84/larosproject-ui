@@ -7,7 +7,7 @@
     </div>
   </div>
 
-  <ul class="barranav-menu" [hidden]="!mostrandoMenu">
+  <ul class="barranav-menu" [hidden]="!mostrandoMenu || !muestraBarraNavegacion">
     <li class="barranav-usuario">LarosProject</li>
     <li class="barranav-menuitem" [routerLinkActive]="['activo']"><a [routerLink]="['/movimientos']">Movimientos</a></li>
     <li class="barranav-menuitem" routerLinkActive="activo"><a routerLink="/personas">Personas</a></li>
