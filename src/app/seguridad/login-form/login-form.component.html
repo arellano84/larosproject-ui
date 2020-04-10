@@ -1,6 +1,6 @@
 <div class="container">
 
-  <form autocomplete="off" #instFormLogin="ngForm" (ngSubmit)="login()">
+  <form autocomplete="off" #instFormLogin="ngForm" ><!--(ngSubmit)="login()"-->
 
     <div class="ui-g">
       <div class="ui-g">
@@ -10,21 +10,22 @@
           <div class="ui-g-12 ui-md-12 ui-fluid">
             <label>Usuario</label>
             <input pInputText type="text"
-            name="usuario" ngModel #instUsuario="ngModel" required minlength="5">
+            name="usuario" ngModel #instUsuario="ngModel" required minlength="5" placeholder="E-mail">
             <app-mensajes-validacion [control]="instUsuario" error="required" texto="Informe Usuario."></app-mensajes-validacion>
             <app-mensajes-validacion [control]="instUsuario" error="minlength" texto="Mínimo de {{instUsuario.errors?.minlength?.requiredLength}} caracteres."></app-mensajes-validacion>
           </div>
           <div class="ui-g-12 ui-md-12 ui-fluid">
             <label>Contraseña</label>
             <input pInputText type="password"
-            name="contrasena" ngModel #instContrasena="ngModel" required minlength="5">
+            name="contrasena" ngModel #instContrasena="ngModel" required minlength="5" placeholder="Constraseña">
             <app-mensajes-validacion [control]="instContrasena" error="required" texto="Informe Contraseña."></app-mensajes-validacion>
             <app-mensajes-validacion [control]="instContrasena" error="minlength" texto="Mínimo de {{instContrasena.errors?.minlength?.requiredLength}} caracteres."></app-mensajes-validacion>
           </div>
           <div class="ui-g-12">
             <button pButton type="submit"
                   label="Login"
-                  [disabled]="!instFormLogin.valid"></button>
+                  [disabled]="!instFormLogin.valid"
+                  (click)="login(instUsuario.value, instContrasena.value)"></button>
           </div>
           <div class="ui-g-12">
             <a [routerLink]="['/login']">Recuperar Contraseña</a>

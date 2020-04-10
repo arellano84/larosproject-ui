@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
+import { AuthService } from './../seguridad/auth.service';
 import { ErrorHandlerService } from './error-handler.service';
-
 import { BarraNavComponent } from './barra-nav/barra-nav.component';
 import { PaginaNoEncotradaComponent } from './pagina-no-encotrada.component';
 
@@ -20,6 +20,7 @@ import { PaginaNoEncotradaComponent } from './pagina-no-encotrada.component';
     BarraNavComponent
   ],
   providers: [
+    AuthService,
     ErrorHandlerService,
     Title
   ]
