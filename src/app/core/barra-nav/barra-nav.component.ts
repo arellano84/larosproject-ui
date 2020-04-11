@@ -1,5 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from './../../seguridad/auth.service';
+import { LogoutService } from './../../seguridad/logout.service';
+import { ErrorHandlerService } from './../error-handler.service';
 
 @Component({
   selector: 'app-barra-nav',
@@ -12,7 +15,11 @@ export class BarraNavComponent implements OnInit {
   // 19.3. Desafio: módulo de segurança e protótipo da tela de login
   @Input() muestraBarraNavegacion: boolean;
 
-  constructor(public authService: AuthService) { }
+  constructor(
+    public authService: AuthService,
+    public logoutService: LogoutService,
+    private errorHandlerService: ErrorHandlerService,
+    private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -25,5 +32,17 @@ export class BarraNavComponent implements OnInit {
     this.authService.obtenerNuevoAccessToken();
   }
   */
+
+  /*
+    19.16. Implementando o logout
+  */
+  logout() {
+    console.log(`-BarraNavComponent.logout()- Logout...`);
+    this.logoutService.logout()
+    .then(() => {
+      this.router.navigate(['/login']);
+    })
+    .catch(error =>  this.errorHandlerService.handle(error));
+  }
 
 }

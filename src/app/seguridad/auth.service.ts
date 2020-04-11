@@ -127,4 +127,14 @@ export class AuthService {
       }
     }
   }
+
+  /*
+    19.16. Implementando o logout
+  */
+  limpiarAccessToken() {
+    console.log('-AuthService.limpiarAccessToken()- Inicio ');
+    localStorage.removeItem('token');
+    this.jwtPayload = null;
+  }
+
 }

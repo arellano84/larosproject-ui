@@ -13,7 +13,7 @@
     <li class="barranav-usuario">{{ authService.jwtPayload?.usuario_nombre }}</li>
     <li class="barranav-menuitem" [routerLinkActive]="['activo']" *ngIf="authService.tienePermiso('ROLE_PESQUISAR_LANCAMENTO')"><a [routerLink]="['/movimientos']">Movimientos</a></li>
     <li class="barranav-menuitem" routerLinkActive="activo" *ngIf="authService.tienePermiso('ROLE_PESQUISAR_PESSOA')"><a routerLink="/personas">Personas</a></li>
-    <li class="barranav-menuitem" routerLinkActive="activo"><a routerLink="/login">Logout</a></li>
+    <li class="barranav-menuitem" routerLinkActive="activo"><a href="javascript:;" (click)="logout()">Logout</a></li>
   </ul>
 
 </nav>

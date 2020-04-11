@@ -7,6 +7,7 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { AuthGuard } from './../seguridad/auth.guard';
+import { LogoutService } from './../seguridad/logout.service';
 import { CompartidoModule } from './../compartido/compartido.module';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { SeguridadRoutingModule } from './seguridad-routing.module';
@@ -56,7 +57,8 @@ export function obtenerToken(): string {
       multi: true
     },
     // 19.13. Protegendo rotas com guarda de rotas (CanActivate)
-    AuthGuard
+    AuthGuard,
+    LogoutService
   ]
 })
 
