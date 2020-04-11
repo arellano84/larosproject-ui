@@ -5,6 +5,12 @@ import { AuthService } from './auth.service';
 import { Injectable } from '@angular/core';
 
 /*
+  19.14. E se o Refresh Token expirar?
+*/
+export class NotAuthenticatedError {}
+
+
+/*
   19.11. Interceptando chamadas HTTP para tratar a expiração do access token
 */
 @Injectable()
@@ -19,6 +25,10 @@ export class SeguridadHttpInterceptor implements HttpInterceptor {
         return from(this.authService.obtenerNuevoAccessToken())
             .pipe(
                 mergeMap(() => {
+                    if (this.authService.isAccessTokenInvalido()) {
+                      // 19.14. E se o Refresh Token expirar?
+                      throw new NotAuthenticatedError();
+                    }
                     req = req.clone({
                         setHeaders: {
                             Authorization: `Bearer ${localStorage.getItem('token')}`
