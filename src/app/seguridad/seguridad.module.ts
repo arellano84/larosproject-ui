@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
+import { AuthGuard } from './../seguridad/auth.guard';
 import { CompartidoModule } from './../compartido/compartido.module';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { SeguridadRoutingModule } from './seguridad-routing.module';
@@ -53,7 +54,9 @@ export function obtenerToken(): string {
       provide: HTTP_INTERCEPTORS,
       useClass: SeguridadHttpInterceptor,
       multi: true
-    }
+    },
+    // 19.13. Protegendo rotas com guarda de rotas (CanActivate)
+    AuthGuard
   ]
 })
 

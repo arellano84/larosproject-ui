@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PaginaNoEncotradaComponent } from './core/pagina-no-encotrada.component';
+import { NoAutorizadoComponent } from './core/no-autorizado.component';
 import { PersonasRegistroComponent } from './personas/personas-registro/personas-registro.component';
 import { PersonasBusquedaComponent } from './personas/personas-busqueda/personas-busqueda.component';
 
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path: 'personas/nuevo', component: PersonasRegistroComponent},
   {path: 'personas/:codigo', component: PersonasRegistroComponent},*/
   {path: 'pagina-no-encontrada', component: PaginaNoEncotradaComponent},
+  {path: 'no-autorizado', component: NoAutorizadoComponent},
   {path: '**', redirectTo: 'pagina-no-encontrada'}
 ];
 @NgModule({

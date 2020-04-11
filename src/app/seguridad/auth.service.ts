@@ -116,4 +116,15 @@ export class AuthService {
         return Promise.resolve(null);
       });
   }
+
+  /*
+    19.13. Protegendo rotas com guarda de rotas (CanActivate)
+  */
+  tieneCualquierPermiso(roles) {
+    for (const rol of roles) {
+      if(this.tienePermiso(rol)) {
+        return true;
+      }
+    }
+  }
 }
