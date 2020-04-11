@@ -93,7 +93,7 @@ export class AuthService {
     19.10. Obtendo um novo access token
     19.11. Interceptando chamadas HTTP para tratar a expiração do access token
   */
-  obtenerNuevoAccessToken(): Promise<void> {
+  obtenerNuevoAccessToken(): Promise < void > {
     console.log('-AuthService.obtenerNuevoAccessToken()- Inicio ');
 
     const headers = new HttpHeaders()
@@ -101,19 +101,18 @@ export class AuthService {
                     .append('Content-Type', 'application/x-www-form-urlencoded');
     const body = 'grant_type=refresh_token';
 
-    // TODO: Revisar error JSON convert.
     return this.httpClient
                   // withCredentials obligatorio para el error 401; para que cookie no sea ignorado.
                 .post(`${this.oauthTokenUrl}`, body, { headers, withCredentials: true })
                 .toPromise()
                 .then(response => {
-                    console.log('Nuevo Acceso Token Creado!');
+                    console.log('-AuthService.obtenerNuevoAccessToken()- Nuevo Acceso Token Creado!');
                     this.almacenarToken(response['access_token']);
                     console.log('-AuthService.obtenerNuevoAccessToken()- jwt ', JSON.stringify(this.jwtPayload));
                     return Promise.resolve(null);
                   })
       .catch(response => {
-        console.error('Error al renovar token.', response);
+        console.error('-AuthService.obtenerNuevoAccessToken()- Error al renovar token.', response);
         return Promise.resolve(null);
       });
   }

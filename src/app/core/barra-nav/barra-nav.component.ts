@@ -20,8 +20,10 @@ export class BarraNavComponent implements OnInit {
   /*
     19.10. Obtendo um novo access token
   */
+  /*
   renovarAccessToken() {
     this.authService.obtenerNuevoAccessToken();
   }
+  */
 
 }
