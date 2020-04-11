@@ -2,16 +2,19 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import * as moment from 'moment';
 import { Movimiento } from './../core/model';
+import { environment } from './../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MovimientoService {
 
-  movimientosUrl = 'http://localhost:8080/movimientos/';
+  movimientosUrl: string; // http://localhost:8080/movimientos/
 
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {
+    this.movimientosUrl = `${environment.apiUrl}/movimientos/`;
+  }
 
 
   consultar(filtro: MovimientoFiltro): Promise< any > {

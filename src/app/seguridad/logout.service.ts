@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { AuthService } from './../seguridad/auth.service';
+import { environment } from './../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,11 +11,13 @@ import { AuthService } from './../seguridad/auth.service';
 */
 export class LogoutService {
 
-  tokenRevokeUrl= 'http://localhost:8080/tokens/revoke';
+  tokenRevokeUrl: string; // http://localhost:8080/tokens/revoke
 
   constructor(
     public authService: AuthService,
-    private httpClient: HttpClient) { }
+    private httpClient: HttpClient) {
+      this.tokenRevokeUrl = `${environment.apiUrl}/tokens/revoke`;
+    }
 
     /*
       19.16. Implementando o logout

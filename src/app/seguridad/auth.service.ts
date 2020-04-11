@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { environment } from './../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,13 +11,15 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 */
 export class AuthService {
 
-  oauthTokenUrl = 'http://localhost:8080/oauth/token';
+  oauthTokenUrl: string; // http://localhost:8080/oauth/token
   // 19.5. Decodificando o JWT e armazenando no Local Storage
   jwtPayload: any;
 
   constructor(
     private httpClient: HttpClient,
     private jwtHelperService: JwtHelperService) {
+
+      this.oauthTokenUrl = `${environment.apiUrl}/oauth/token`;
 
       // 19.5. Decodificando o JWT e armazenando no Local Storage
       this.cargarToken();
