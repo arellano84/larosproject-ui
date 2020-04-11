@@ -32,7 +32,7 @@ export class AuthService {
     const body = `username=${usuario}&password=${contrasena}&grant_type=password`; // &client=angular
 
     return this.httpClient
-    .post(`${this.oauthTokenUrl}`, body, { headers })
+    .post(`${this.oauthTokenUrl}`, body, { headers, withCredentials: true })
     .toPromise()
     .then(response => {
       this.almacenarToken(response['access_token']);
@@ -81,4 +81,40 @@ export class AuthService {
       return this.jwtPayload && this.jwtPayload.authorities.includes(permiso);
   }
 
+  /*
+    19.11. Interceptando chamadas HTTP para tratar a expiração do access token
+  */
+  isAccessTokenInvalido() {
+    const token = localStorage.getItem('token');
+    return !token || this.jwtHelperService.isTokenExpired(token);
+  }
+
+  /*
+    19.10. Obtendo um novo access token
+    19.11. Interceptando chamadas HTTP para tratar a expiração do access token
+  */
+  obtenerNuevoAccessToken(): Promise<void> {
+    console.log('-AuthService.obtenerNuevoAccessToken()- Inicio ');
+
+    const headers = new HttpHeaders()
+                    .append('Authorization', 'Basic YW5ndWxhcjpAbmd1bEByMA==')
+                    .append('Content-Type', 'application/x-www-form-urlencoded');
+    const body = 'grant_type=refresh_token';
+
+    // TODO: Revisar error JSON convert.
+    return this.httpClient
+                  // withCredentials obligatorio para el error 401; para que cookie no sea ignorado.
+                .post(`${this.oauthTokenUrl}`, body, { headers, withCredentials: true })
+                .toPromise()
+                .then(response => {
+                    console.log('Nuevo Acceso Token Creado!');
+                    this.almacenarToken(response['access_token']);
+                    console.log('-AuthService.obtenerNuevoAccessToken()- jwt ', JSON.stringify(this.jwtPayload));
+                    return Promise.resolve(null);
+                  })
+      .catch(response => {
+        console.error('Error al renovar token.', response);
+        return Promise.resolve(null);
+      });
+  }
 }

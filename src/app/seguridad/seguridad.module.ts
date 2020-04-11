@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
@@ -9,6 +9,7 @@ import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { CompartidoModule } from './../compartido/compartido.module';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { SeguridadRoutingModule } from './seguridad-routing.module';
+import { SeguridadHttpInterceptor } from './seguridad-http-interceptor';
 
 /*
   19.7. Adicionando o Access Token nas chamadas HTTP
@@ -46,7 +47,13 @@ export function obtenerToken(): string {
     })
   ],
   providers: [
-    JwtHelperService
+    JwtHelperService,
+    // 19.11. Interceptando chamadas HTTP para tratar a expiração do access token
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: SeguridadHttpInterceptor,
+      multi: true
+    }
   ]
 })
 
