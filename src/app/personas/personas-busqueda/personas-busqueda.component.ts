@@ -4,6 +4,7 @@ import { LazyLoadEvent } from 'primeng/api/public_api';
 import { ToastyService } from 'ng2-toasty';
 import {ConfirmationService} from 'primeng/api';
 
+import { AuthService } from './../../seguridad/auth.service';
 import { ErrorHandlerService } from './../../core/error-handler.service';
 import { PersonaFiltro, PersonaService } from './../persona.service';
 
@@ -24,7 +25,8 @@ export class PersonasBusquedaComponent implements OnInit {
     private toasty: ToastyService,
     private confirmationService: ConfirmationService,
     private errorHandlerService: ErrorHandlerService,
-    private title:Title) {}
+    private title:Title,
+    private authService:AuthService) {}
 
   ngOnInit() {
     this.title.setTitle('Busqueda de Personas');

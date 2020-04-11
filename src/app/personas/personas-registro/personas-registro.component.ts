@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { ToastyService } from 'ng2-toasty';
+import { AuthService } from './../../seguridad/auth.service';
 import { ErrorHandlerService } from './../../core/error-handler.service';
 import { PersonaService } from './../../personas/persona.service';
 import { Persona } from './../../core/model';
@@ -22,7 +23,8 @@ export class PersonasRegistroComponent implements OnInit {
     private toasty: ToastyService,
     private route:ActivatedRoute,
     private router:Router,
-    private title:Title) { }
+    private title:Title,
+    public authService:AuthService) { }
 
   ngOnInit(): void {
     console.log("PersonasRegistroComponent.ngOnInit()...");

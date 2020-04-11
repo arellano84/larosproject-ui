@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import {SelectItem} from 'primeng/api';
 import { ToastyService } from 'ng2-toasty';
+import { AuthService } from './../../seguridad/auth.service';
 import { ErrorHandlerService } from './../../core/error-handler.service';
 import { CategoriaService } from './../../categorias/categoria.service';
 import { PersonaService } from './../../personas/persona.service';
@@ -30,7 +31,8 @@ export class MovimientoRegistroComponent implements OnInit {
     private toasty: ToastyService,
     private route:ActivatedRoute,
     private router:Router,
-    private title:Title) {
+    private title:Title,
+    public authService:AuthService) {
     // SelectItem API with label-value pairs
     this.tiposMovimiento = [
       {label:'INGRESO', value:'INGRESO'},

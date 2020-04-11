@@ -5,6 +5,7 @@ import { ToastyService } from 'ng2-toasty';
 // import {TableModule} from 'primeng/table';
 import {ConfirmationService} from 'primeng/api';
 
+import { AuthService } from './../../seguridad/auth.service';
 import { ErrorHandlerService } from './../../core/error-handler.service';
 import { MovimientoService, MovimientoFiltro } from './../movimiento.service';
 
@@ -29,7 +30,8 @@ export class MovimientosBusquedaComponent implements OnInit {
     private toasty: ToastyService,
     private confirmationService: ConfirmationService,
     private errorHandlerService: ErrorHandlerService,
-    private title: Title) {}
+    private title: Title,
+    private authService: AuthService) {}
 
   ngOnInit() {
     // 18.12. Definindo o título da página dinamicamente

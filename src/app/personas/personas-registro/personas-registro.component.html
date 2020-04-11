@@ -90,7 +90,7 @@
       <div class="ui-g-12">
         <button pButton type="submit"
               label="Guardar"
-              [disabled]="!instFormPersona.valid"></button>
+              [disabled]="!instFormPersona.valid || !authService.tienePermiso('ROLE_CADASTRAR_PESSOA')"></button>
 
         <button pButton type="button"
         class="ui-button-info"

@@ -70,7 +70,7 @@
       <div class="ui-g-12">
         <button pButton type="submit"
               label="Guardar"
-              [disabled]="!instFormMovimiento.valid"></button>
+              [disabled]="!instFormMovimiento.valid || !authService.tienePermiso('ROLE_CADASTRAR_LANCAMENTO')"></button>
 
         <button pButton type="button"
         class="ui-button-info"

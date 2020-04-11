@@ -61,7 +61,8 @@
 
                               <button pButton icon="pi pi-trash" pTooltip="Eliminar"
                               tooltipPosition="bottom"
-                              (click)="confirmarEliminar(persona)"></button>
+                              (click)="confirmarEliminar(persona)"
+                              [disabled]="!authService.tienePermiso('ROLE_REMOVER_PESSOA')"></button>
                           </td>
                       </tr>
                   </ng-template>
