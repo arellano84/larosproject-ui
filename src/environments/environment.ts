@@ -5,7 +5,8 @@
 // 20.1. Configurando a aplicação com environment do Angular CLI
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:8080'
+  apiUrl: 'http://localhost:8080',
+  whiteblacklisted: 'localhost:8080'
 };
 
 /*

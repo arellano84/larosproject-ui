@@ -12,6 +12,7 @@ import { CompartidoModule } from './../compartido/compartido.module';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { SeguridadRoutingModule } from './seguridad-routing.module';
 import { SeguridadHttpInterceptor } from './seguridad-http-interceptor';
+import { environment } from './../../environments/environment';
 
 /*
   19.7. Adicionando o Access Token nas chamadas HTTP
@@ -42,8 +43,8 @@ export function obtenerToken(): string {
     JwtModule.forRoot({
       config: {
         tokenGetter: obtenerToken,
-        whitelistedDomains: ['localhost:8080'], // larosproject-api.herokuapp.com
-        blacklistedRoutes: ['http://localhost:8080/oauth/token'] // https://larosproject-api.herokuapp.com/oauth/token
+        whitelistedDomains: [`${environment.whiteblacklisted}`], // localhost:8080 larosproject-api.herokuapp.com
+        blacklistedRoutes: [`http://${environment.whiteblacklisted}/oauth/token`] // https://larosproject-api.herokuapp.com/oauth/token
       }
       // TODO: ¿como configurar cabecera json automáticamente?
     })
