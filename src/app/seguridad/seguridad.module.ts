@@ -43,8 +43,8 @@ export function obtenerToken(): string {
     JwtModule.forRoot({
       config: {
         tokenGetter: obtenerToken,
-        whitelistedDomains: [`${environment.whiteblacklisted}`], // localhost:8080 larosproject-api.herokuapp.com
-        blacklistedRoutes: [`http://${environment.whiteblacklisted}/oauth/token`] // https://larosproject-api.herokuapp.com/oauth/token
+        whitelistedDomains: [`${environment.whitelisteddomains}`], // localhost:8080 larosproject-api.herokuapp.com
+        blacklistedRoutes: [`${environment.blacklistedroutes}`] // https://larosproject-api.herokuapp.com/oauth/token
       }
       // TODO: ¿como configurar cabecera json automáticamente?
     })
