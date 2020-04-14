@@ -4,6 +4,7 @@ import { NgModule, LOCALE_ID  } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 import localeEs from '@angular/common/locales/es';
+import localeEsMX from '@angular/common/locales/es-MX';
 import { Routes, RouterModule } from '@angular/router';
 
 import {ToastyModule} from 'ng2-toasty';
@@ -19,6 +20,7 @@ import { PersonasModule } from './personas/personas.module';
 import { SeguridadModule } from './seguridad/seguridad.module';
 
 // 17.11. Alterando o locale da aplicação para pt-BR
+// 21.2. Corrigindo problemas com Locale
 registerLocaleData(localeEs);
 
 // 18.2. Configurando rotas na aplicação
@@ -65,7 +67,7 @@ const routes: Routes = [
   providers: [
     ConfirmationService,
     //{ provide: LOCALE_ID, useValue: 'pt-BR' }
-    { provide: LOCALE_ID, useValue: 'es-ES' }
+    { provide: LOCALE_ID, useValue: 'es' } //es-ES
   ],
   bootstrap: [AppComponent]
 })
