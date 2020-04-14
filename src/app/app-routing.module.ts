@@ -10,6 +10,12 @@ import { PersonasBusquedaComponent } from './personas/personas-busqueda/personas
 */
 // const routes: Routes = [];
 const routes: Routes = [
+  /* TODO: Revisar...
+  // 21.6. Carregamento tardio de módulos (Lazy loading)
+  {path: 'movimientos', loadChildren: 'app/movimientos/movimientos.module#MovimientosModule'},
+  {path: 'personas', loadChildren: 'app/personas/personas.module#PersonasModule'},
+  */
+
   {path: '', redirectTo: 'login', pathMatch: 'full'}, // prefix
   /*
   18.14. Criando um Routing Module para o módulo de funcionalidade
