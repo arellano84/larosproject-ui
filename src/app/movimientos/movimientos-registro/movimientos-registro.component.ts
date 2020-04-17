@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import {SelectItem} from 'primeng/api';
@@ -22,6 +22,8 @@ export class MovimientoRegistroComponent implements OnInit {
   categorias;
   personas;
   movimiento = new Movimiento();
+  // 21.8. Criando um formulário reativo
+  formulario: FormGroup;
 
   constructor(
     private categoriaService: CategoriaService,
@@ -32,7 +34,8 @@ export class MovimientoRegistroComponent implements OnInit {
     private route:ActivatedRoute,
     private router:Router,
     private title:Title,
-    public authService:AuthService) {
+    public authService:AuthService,
+    private formBuilder: FormBuilder) {
     // SelectItem API with label-value pairs
     this.tiposMovimiento = [
       {label:'INGRESO', value:'INGRESO'},
@@ -52,6 +55,9 @@ export class MovimientoRegistroComponent implements OnInit {
   ngOnInit(): void {
     console.log("MovimientoRegistroComponent.ngOnInit()...");
 
+    // 21.8. Criando um formulário reativo
+    this.configurarFormulario();
+
     // 18.12. Definindo o título da página dinamicamente
     this.title.setTitle('Nuevo Movimiento');
 
@@ -65,6 +71,29 @@ export class MovimientoRegistroComponent implements OnInit {
 
     this.cargarCategorias();
     this.cargarPersonas();
+  }
+
+  /*
+    21.8. Criando um formulário reativo
+  */
+  configurarFormulario() {
+    this.formulario = this.formBuilder.group({
+      codigo: [],
+      tipo: [ 'INGRESO', Validators.required ],
+      fechaVencimiento: [ null, Validators.required ],
+      fechaPago: [],
+      descripcion: [null, [ Validators.required, Validators.minLength(5) ]],
+      valor: [ null, Validators.required ],
+      persona: this.formBuilder.group({
+        codigo: [ null, Validators.required ],
+        nombre: []
+      }),
+      categoria: this.formBuilder.group({
+        codigo: [ null, Validators.required ],
+        nombre: []
+      }),
+      observacion: []
+    });
   }
 
   /*

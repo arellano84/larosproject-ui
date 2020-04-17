@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
@@ -36,6 +36,7 @@ import { PersonaService } from './../personas/persona.service';
     BrowserAnimationsModule,
     HttpClientModule,
     // RouterModule,
+    ReactiveFormsModule, // 21.8. Criando um formulário reativo
 
     InputTextModule,
     ButtonModule,
