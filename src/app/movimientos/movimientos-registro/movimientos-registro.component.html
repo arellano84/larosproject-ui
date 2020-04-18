@@ -31,9 +31,11 @@
         <label>Descripción {{formulario.get('descripcion').errors | json}}</label>
         <input pInputText type="text"
         name="descipcion" formControlName="descripcion">
-
-        <app-mensajes-validacion [control]="formulario.get('descripcion')" error="required" texto="Informe una Descripción."></app-mensajes-validacion>
-        <app-mensajes-validacion [control]="formulario.get('descripcion')" error="minlength" texto="Mínimo de {{formulario.get('descripcion').errors?.minlength?.requiredLength}} caracteres."></app-mensajes-validacion>
+        <!--21.11. Criando validações customizadas-->
+        <!--app-mensajes-validacion [control]="formulario.get('descripcion')" error="required" texto="Informe una Descripción."></app-mensajes-validacion-->
+        <app-mensajes-validacion [control]="formulario.get('descripcion')" error="obligatoriedad" texto="Informe una Descripción."></app-mensajes-validacion>
+        <!--app-mensajes-validacion [control]="formulario.get('descripcion')" error="minlength" texto="Mínimo de {{formulario.get('descripcion').errors?.minlength?.requiredLength}} caracteres."></app-mensajes-validacion-->
+        <app-mensajes-validacion [control]="formulario.get('descripcion')" error="tamanoMinimo" texto="Mínimo de {{formulario.get('descripcion').errors?.tamanoMinimo?.tamano}} caracteres."></app-mensajes-validacion>
 
         <!--Se convierte en componentente app-mensajes-validacion
           div>

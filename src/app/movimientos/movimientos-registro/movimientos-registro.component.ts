@@ -82,7 +82,8 @@ export class MovimientoRegistroComponent implements OnInit {
       tipo: [ 'INGRESO', Validators.required ],
       fechaVencimiento: [ null, Validators.required ],
       fechaPago: [],
-      descripcion: [null, [ Validators.required, Validators.minLength(5) ]],
+      // descripcion: [null, [ Validators.required, Validators.minLength(5) ]],
+      descripcion: [null, [ this.validarObligatoriedad, this.validarTamanoMinimo(4) ]], // 21.11. Criando validações customizadas
       valor: [ null, Validators.required ],
       persona: this.formBuilder.group({
         codigo: [ null, Validators.required ],
@@ -94,6 +95,18 @@ export class MovimientoRegistroComponent implements OnInit {
       }),
       observacion: []
     });
+  }
+
+  /*
+    21.11. Criando validações customizadas
+  */
+  validarObligatoriedad(input: FormControl) {
+    return (input.value ? null : { obligatoriedad: true });
+  }
+  validarTamanoMinimo(valor: number) {
+    return (input: FormControl) => {
+      return (!input.value || input.value.length >= valor) ? null : { tamanoMinimo: { tamano: valor } };
+    };
   }
 
   /*
