@@ -101,6 +101,7 @@ export class MovimientoRegistroComponent implements OnInit {
     21.11. Criando validações customizadas
   */
   validarObligatoriedad(input: FormControl) {
+    // input.root.get('fechaVencimiento').value // se puede acceder a otros campos.
     return (input.value ? null : { obligatoriedad: true });
   }
   validarTamanoMinimo(valor: number) {
