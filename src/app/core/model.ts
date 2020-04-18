@@ -9,7 +9,7 @@ export class Movimiento {
 	fechaPago: Date;
 	valor: number;
 	observacion: string;
-	tipo =  'GASTO';
+	tipo =  'INGRESO';
 	persona = new Persona();
   categoria = new Categoria();
 }

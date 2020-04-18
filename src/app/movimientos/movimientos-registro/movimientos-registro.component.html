@@ -1,6 +1,8 @@
 <div class="container">
 
-    <form autocomplete="off" #instFormMovimiento="ngForm" (ngSubmit)="guardar(instFormMovimiento)">
+    <!--21.10. Configurando o HTML do formulário reativo-->
+
+    <form autocomplete="off" (ngSubmit)="guardar()" [formGroup]='formulario'>
 
     <div class="ui-g">
       <div class="ui-g-12">
@@ -8,30 +10,30 @@
       </div>
       <div class="ui-g-12">
         <p-selectButton [options]="tiposMovimiento"
-        name="movimiento" [(ngModel)]="movimiento.tipo" #instTiposMovimiento="ngModel"></p-selectButton>
+        name="movimiento" formControlName="tipo"></p-selectButton>
       </div>
       <div class="ui-g-6 ui-md-3 ui-fluid">
         <label>Vencimiento</label>
         <p-calendar dateFormat="dd/M/yy"
         [readonlyInput]="false" showIcon="true"
           [inline]="false"
-          name="vencimiento" [(ngModel)]="movimiento.fechaVencimiento" #instVencimiento="ngModel" required>
+          name="vencimiento" formControlName="fechaVencimiento">
         </p-calendar>
-        <app-mensajes-validacion [control]="instVencimiento" error="required" texto="Informe una Fecha."></app-mensajes-validacion>
+        <app-mensajes-validacion [control]="formulario.get('fechaVencimiento')" error="required" texto="Informe una Fecha."></app-mensajes-validacion>
       </div>
       <div class="ui-g-6 ui-md-3 ui-fluid">
-        <label>{{instTiposMovimiento.value==0?'Recibido':'Pagado'}}</label>
+        <label>{{formulario.get('tipo').value==='INGRESO'?'Recibido':'Pagado'}}</label>
         <p-calendar dateFormat="dd/M/yy"
         [readonlyInput]="false" showIcon="true" [inline]="false"
-          name="recibimiento" [(ngModel)]="movimiento.fechaPago" #instRecibimiento="ngModel"></p-calendar>
+          name="recibimiento" formControlName="fechaPago"></p-calendar>
       </div>
       <div class="ui-g-12 ui-md-9 ui-fluid">
-        <label>Descripción {{instDescripcion.errors | json}}</label>
+        <label>Descripción {{formulario.get('descripcion').errors | json}}</label>
         <input pInputText type="text"
-        name="descipcion" [(ngModel)]="movimiento.descripcion" #instDescripcion="ngModel" required minlength="5">
+        name="descipcion" formControlName="descripcion">
 
-        <app-mensajes-validacion [control]="instDescripcion" error="required" texto="Informe una Descripción."></app-mensajes-validacion>
-        <app-mensajes-validacion [control]="instDescripcion" error="minlength" texto="Mínimo de {{instDescripcion.errors?.minlength?.requiredLength}} caracteres."></app-mensajes-validacion>
+        <app-mensajes-validacion [control]="formulario.get('descripcion')" error="required" texto="Informe una Descripción."></app-mensajes-validacion>
+        <app-mensajes-validacion [control]="formulario.get('descripcion')" error="minlength" texto="Mínimo de {{formulario.get('descripcion').errors?.minlength?.requiredLength}} caracteres."></app-mensajes-validacion>
 
         <!--Se convierte en componentente app-mensajes-validacion
           div>
@@ -49,33 +51,33 @@
         <label>Valor</label>
         <input pInputText currencyMask placeholder="0,00"
         [options]="{ prefix: ' ', thousands: '.', decimal: ',', allowNegative: true }"
-        name="valor" [(ngModel)]="movimiento.valor" #instValor="ngModel" required/>
-        <app-mensajes-validacion [control]="instValor" error="required" texto="Informe Valor."></app-mensajes-validacion>
+        name="valor" formControlName="valor"/>
+        <app-mensajes-validacion [control]="formulario.get('valor')" error="required" texto="Informe Valor."></app-mensajes-validacion>
       </div>
-      <div class="ui-g-12 ui-md-6 ui-fluid">
-        <label>Categoria - {{instCategoria.value}}</label>
+      <div class="ui-g-12 ui-md-6 ui-fluid" formGroupName="categoria">
+        <label>Categoria - {{formulario.get('categoria.codigo').value}}</label>
         <p-dropdown [options]="categorias" [filter]="false" placeholder="Seleccione"
-        name="categoria" [(ngModel)]="movimiento.categoria.codigo" #instCategoria="ngModel" required></p-dropdown>
+        name="categoria" formControlName="codigo"></p-dropdown>
       </div>
-      <div class="ui-g-12 ui-md-6 ui-fluid">
-        <label>Persona - {{instPersona.value }}</label>
+      <div class="ui-g-12 ui-md-6 ui-fluid" formGroupName="persona">
+        <label>Persona - {{formulario.get('persona.codigo').value}}</label>
         <p-dropdown [options]="personas" [filter]="true" placeholder="Seleccione"
-        name="persona" [(ngModel)]="movimiento.persona.codigo" #instPersona="ngModel" required></p-dropdown>
+        name="persona" formControlName="codigo"></p-dropdown>
       </div>
       <div class="ui-g-12 ui-fluid">
         <label>Observación</label>
         <textarea pInputTextarea [rows]="5" [cols]="30" autoResize="autoResize"
-        name="observacion" [(ngModel)]="movimiento.observacion"></textarea>
+        name="observacion" formControlName="observacion"></textarea>
       </div>
       <div class="ui-g-12">
         <button pButton type="submit"
               label="Guardar"
-              [disabled]="!instFormMovimiento.valid || !authService.tienePermiso('ROLE_CADASTRAR_LANCAMENTO')"></button>
+              [disabled]="!formulario.valid || !authService.tienePermiso('ROLE_CADASTRAR_LANCAMENTO')"></button>
 
         <button pButton type="button"
         class="ui-button-info"
         label="Nuevo"
-        (click)="nuevoMovimiento(instFormMovimiento)"></button>
+        (click)="nuevoMovimiento()"></button>
 
         <a [routerLink]="['/movimientos']">Volver a Busqueda</a>
       </div>

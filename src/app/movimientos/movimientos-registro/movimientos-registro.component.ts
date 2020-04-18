@@ -21,7 +21,7 @@ export class MovimientoRegistroComponent implements OnInit {
   tiposMovimiento;
   categorias;
   personas;
-  movimiento = new Movimiento();
+  // movimiento = new Movimiento();
   // 21.8. Criando um formulário reativo
   formulario: FormGroup;
 
@@ -127,20 +127,21 @@ export class MovimientoRegistroComponent implements OnInit {
     .catch(error =>  this.errorHandlerService.handle(error));
   }
 
-  guardar(formMov: FormControl) {
+  // guardar(formMov: FormControl) {
+  guardar() {
     if(!this.esModificacion) {
-      this.agregrar(formMov);
+      this.agregrar();
     } else {
-      this.actualizar(formMov);
+      this.actualizar();
     }
   }
 
   /*
     17.20. Implementando o serviço de cadastro de lançamentos
   */
-  agregrar(formMov: FormControl) {
-    console.log('-MovimientoRegistroComponent.agregrar()- Agregando Movimiento...', this.movimiento);
-    this.movimientoService.agregrar(this.movimiento)
+  agregrar() {
+    console.log('-MovimientoRegistroComponent.agregrar()- Agregando Movimiento...', this.formulario.value);
+    this.movimientoService.agregrar(this.formulario.value)
     .then(movAgregado => {
       // this.grid.reset(); //Reseteando la tabla.
       console.log(`-MovimientosBusquedaComponent.agregrar - Movimiento.`);
@@ -158,14 +159,19 @@ export class MovimientoRegistroComponent implements OnInit {
   /*
     18.6. Desafio: implementando os serviços de atualização e busca por código
   */
-  actualizar(formMov: FormControl) {
+  actualizar() {
     console.log('-MovimientoRegistroComponent.actualizar().- Actualizando Movimiento...');
-    this.movimientoService.actualizar(this.movimiento)
+    this.movimientoService.actualizar(this.formulario.value)
     .then(mov => {
       // this.grid.reset(); //Reseteando la tabla.
-      this.movimiento = mov;
-      console.log(`-MovimientosBusquedaComponent.actualizar() - Movimiento ${this.movimiento.descripcion}.`);
-      this.toasty.success(`Movimiento ${this.movimiento.descripcion} Actualizado con Éxito.`);
+      // this.movimiento = mov;
+
+       // 21.9. Usando a propriedade formGroup
+       // this.formulario.setValue(mov);
+       this.formulario.patchValue(mov);
+
+      console.log(`-MovimientosBusquedaComponent.actualizar() - Movimiento ${this.formulario.get('descripcion').value}.`);
+      this.toasty.success(`Movimiento ${this.formulario.get('descripcion').value} Actualizado con Éxito.`);
     }).catch(error => {
       this.errorHandlerService.handle(error);
     });
@@ -176,8 +182,13 @@ export class MovimientoRegistroComponent implements OnInit {
 
     this.movimientoService.consultarPorCodigo(codigo)
       .then(mov => {
-        this.movimiento = mov;
-        console.log('-MovimientoRegistroComponent.consultarPorCodigo()- Consultado Movimiento:', JSON.stringify(this.movimiento));
+        // this.movimiento = mov;
+
+        // 21.9. Usando a propriedade formGroup
+        // this.formulario.setValue(mov); //da error: no tiene todos los campos a la vuelta.
+        this.formulario.patchValue(mov);
+
+        console.log('-MovimientoRegistroComponent.consultarPorCodigo()- Consultado Movimiento:', JSON.stringify(this.formulario.value));
       })
       .catch(error => {
         this.errorHandlerService.handle(error);
@@ -188,14 +199,18 @@ export class MovimientoRegistroComponent implements OnInit {
     18.7. Preenchendo os campos na edição de lançamentos
   */
   get esModificacion() {
-    return Boolean(this.movimiento.codigo);
+    // return Boolean(this.movimiento.codigo);
+
+    // 21.9. Usando a propriedade formGroup
+    return Boolean(this.formulario.get('codigo').value);
   }
 
   /*
     18.9. Implementando navegação imperativa
   */
-  nuevoMovimiento(formMov: FormControl) {
-    formMov.reset();
+  // nuevoMovimiento(formMov: FormControl) {
+  nuevoMovimiento() {
+    this.formulario.reset();
     // Se agrega por un bug para limpiar el nuevo movimiento.
     setTimeout(function() {
         this.movimiento = new Movimiento();
