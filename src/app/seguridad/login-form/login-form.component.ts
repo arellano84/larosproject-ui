@@ -32,7 +32,7 @@ export class LoginFormComponent implements OnInit {
 
     this.authService.login(usuario, contrasena)
     .then(() => {
-      this.router.navigate(['movimientos']);
+      this.router.navigate(['dashboard']); // 23.1. Criando o módulo Dashboard
     })
     .catch(error => {
       this.errorHandlerService.handle(error);

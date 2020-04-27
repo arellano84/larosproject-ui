@@ -17,6 +17,7 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { MovimientosModule } from './movimientos/movimientos.module';
 import { PersonasModule } from './personas/personas.module';
+import { DashboardModule } from './dashboard/dashboard.module';
 import { SeguridadModule } from './seguridad/seguridad.module';
 
 // 17.11. Alterando o locale da aplicação para pt-BR
@@ -51,6 +52,7 @@ const routes: Routes = [
     ToastyModule.forRoot(),
     ConfirmDialogModule,
     CoreModule,
+    DashboardModule, // 23.1. Criando o módulo Dashboard
     MovimientosModule,
     PersonasModule,
     SeguridadModule,

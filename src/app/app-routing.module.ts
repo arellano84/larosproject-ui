@@ -15,8 +15,14 @@ const routes: Routes = [
   {path: 'movimientos', loadChildren: 'app/movimientos/movimientos.module#MovimientosModule'},
   {path: 'personas', loadChildren: 'app/personas/personas.module#PersonasModule'},
   */
+  // {path: '', redirectTo: 'login', pathMatch: 'full'}, // prefix
 
-  {path: '', redirectTo: 'login', pathMatch: 'full'}, // prefix
+
+  // 23.1. Criando o módulo Dashboard
+  {path: 'dashboard', loadChildren: 'app/dashboard/dashboard.module#DashboardModule'}, // 23.1. Criando o módulo Dashboard
+  {path: '', redirectTo: 'dashboard', pathMatch: 'full'}, // prefix
+
+
   /*
   18.14. Criando um Routing Module para o módulo de funcionalidade
   {path: 'movimientos', component: MovimientosBusquedaComponent},
