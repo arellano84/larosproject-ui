@@ -1,1 +1,21 @@
-<p>dashboard works!</p>
+<div class="container">
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <h1>Dashboard</h1>
+    </div>
+
+    <!--23.2. Plotando gráficos com dados estáticos-->
+    <div class="ui-g-12 ui-md-6">
+      <p-panel header="Movimientos por categoria">
+        <p-chart type="pie" [data]="pieChartData"></p-chart>
+      </p-panel>
+    </div>
+
+    <div class="ui-g-12 ui-md-6">
+      <p-panel header="Movimientos por dia">
+        <p-chart type="line" [data]="lineChartData"></p-chart>
+      </p-panel>
+    </div>
+
+  </div>
+</div>
