@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DecimalPipe } from '@angular/common';
 import * as moment from 'moment';
 import { DashboardService } from './dashborad.service';
 import { ErrorHandlerService } from './../core/error-handler.service';
@@ -38,9 +39,25 @@ export class DashboardComponent implements OnInit {
     ]*/
   };
 
+  // 23.6. Formatando labels no Chart.JS
+  options = {
+    tooltips: {
+      callbacks: {
+        label: (tooltipItem, data) => {
+          const dataset = data.datasets[tooltipItem.datasetIndex];
+          const valor = dataset.data[tooltipItem.index];
+          const label = dataset.label ? (dataset.label + ': ') : '';
+
+          return label + this.decimalPipe.transform(valor, '1.2-2');
+        }
+      }
+    }
+  };
+
   constructor(
     private dashboardService: DashboardService,
-    private errorHandlerService: ErrorHandlerService) { }
+    private errorHandlerService: ErrorHandlerService,
+    private decimalPipe: DecimalPipe) { }
 
   ngOnInit(): void {
     // 23.4. Buscando dados do gráfico de pizza
