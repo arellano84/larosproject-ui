@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as moment from 'moment';
 import { DashboardService } from './dashborad.service';
 import { ErrorHandlerService } from './../core/error-handler.service';
 
@@ -23,7 +24,7 @@ export class DashboardComponent implements OnInit {
     ]*/
   };
   lineChartData = {
-    labels: ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'],
+    /*labels: ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'],
     datasets: [
       {
         label: 'Ingresos',
@@ -34,7 +35,7 @@ export class DashboardComponent implements OnInit {
         data: [10, 15, 8, 5, 1, 7, 9],
         borderColor: '#D62B00'
       }
-    ]
+    ]*/
   };
 
   constructor(
@@ -42,7 +43,9 @@ export class DashboardComponent implements OnInit {
     private errorHandlerService: ErrorHandlerService) { }
 
   ngOnInit(): void {
+    // 23.4. Buscando dados do gráfico de pizza
     this.cargarMovimientosPorCategorias();
+    this.cargarMovimientosPorDia();
   }
 
 
@@ -50,7 +53,7 @@ export class DashboardComponent implements OnInit {
     23.4. Buscando dados do gráfico de pizza
   */
  cargarMovimientosPorCategorias() {
-  console.log('-MovimientoRegistroComponent.cargarCategorias()- Cargando Movimientos por Categoria...');
+  console.log('-DashboardComponent.cargarMovimientosPorCategorias()- Cargando Movimientos por Categoria...');
 
   this.dashboardService.movimientosPorCategoria()
   .then(movCat => {
@@ -69,11 +72,84 @@ export class DashboardComponent implements OnInit {
   .catch(error =>  this.errorHandlerService.handle(error));
 }
 
-obtenerColorAleatorio() {
-  var rgb = ['#FF9900', '#109618', '#990099', '#3B3EAC', '#0099C6',
-            '#DD4477', '#3366CC', '#DC3912'];
-  return rgb;
-}
+  /*
+    23.5. Buscando dados do gráfico de linhas
+  */
+cargarMovimientosPorDia() {
+  console.log('-DashboardComponent.cargarMovimientosPorDia()- Cargando Movimientos por Día...');
 
+    this.dashboardService.movimientosPorDia()
+    .then(movDia => {
+
+      console.log(JSON.stringify(movDia));
+
+      const diasDelMes = this.configurarDiasMes();
+
+      const totalesIngresos = this.totalesPorCadaDiaMes(
+        movDia.filter(md => md.tipoLanzamiento === 'INGRESO'), diasDelMes);
+      const totalesGastos = this.totalesPorCadaDiaMes(
+        movDia.filter(md => md.tipoLanzamiento === 'GASTO'), diasDelMes);
+
+      this.lineChartData = {
+        labels: diasDelMes,
+        datasets: [
+          {
+            label: 'Ingresos',
+            data: totalesIngresos,
+            borderColor: '#3366CC'
+          }, {
+            label: 'Gastos',
+            data: totalesGastos,
+            borderColor: '#D62B00'
+          }
+        ]
+      }
+    })
+    .catch(error =>  this.errorHandlerService.handle(error));
+  }
+  // Obtiene array de dias del mes.
+  private totalesPorCadaDiaMes(datos, diasDelMes) {
+    const totales: number[] = [];
+    for (const dia of diasDelMes) {
+      let total = 0;
+
+      for (const dato of datos) {
+        if (dato.dia.getDate() === dia) {
+          total = dato.total;
+
+          break;
+        }
+      }
+
+      totales.push(total);
+    }
+
+    return totales;
+  }
+  // Obtiene array de dias del mes.
+  private configurarDiasMes() {
+    /* const mesReferencia = new Date();
+    mesReferencia.setMonth(mesReferencia.getMonth() + 1);
+    mesReferencia.setDate(0);
+
+    const quantidade = mesReferencia.getDate();*/
+
+    let quantidade: number = moment().daysInMonth();
+
+    const dias: number[] = [];
+
+    for (let i = 1; i <= quantidade; i++) {
+      dias.push(i);
+    }
+
+    return dias;
+  }
+
+
+  obtenerColorAleatorio() {
+    var rgb = ['#FF9900', '#109618', '#990099', '#3B3EAC', '#0099C6',
+              '#DD4477', '#3366CC', '#DC3912'];
+    return rgb;
+  }
 
 }
