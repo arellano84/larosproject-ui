@@ -28,7 +28,7 @@ export class DashboardService {
 
     console.log('-DashboardService.movimientosPorCategoria()- Consultado Movimientos por Catégoria...');
 
-    return this.httpClient.get(`${this.movimientosUrl}/estadisticas/por-categoria`)
+    return this.httpClient.get(`${this.movimientosUrl}estadisticas/por-categoria`)
       .toPromise()
       // .then(response => response.json());
       .then(response => response as Array<any>);
@@ -38,7 +38,7 @@ export class DashboardService {
 
     console.log('-DashboardService.movimientosPorDia()- Consultado Movimientos por Día...');
 
-    return this.httpClient.get(`${this.movimientosUrl}/estadisticas/por-dia`)
+    return this.httpClient.get(`${this.movimientosUrl}estadisticas/por-dia`)
       .toPromise()
       .then(response => {
         const datos = response as Array<any>; // response.json();
