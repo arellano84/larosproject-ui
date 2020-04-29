@@ -167,10 +167,10 @@
   <!--23.13. Criando o formulário de contato-->
   <form #frmContacto="ngForm">
     <div class="ui-g-12 ui-fluid">
-      <label>Nome</label>
+      <label>Nombre</label>
 
       <input pInputText type="text" name="nombre"
-        required [(ngModel)]="contacto.nombre" #contactoNome="ngModel"/>
+        required [(ngModel)]="contacto.nombre" #contactoNombre="ngModel"/>
 
       <app-message [control]="contactoNombre" error="required" text="Informe el nombre"></app-message>
     </div>
@@ -186,7 +186,7 @@
       </div>
 
       <div class="ui-g-12 ui-fluid">
-          <label>Telefone</label>
+          <label>Telefono</label>
 
           <p-inputMask name="telefono" [(ngModel)]="contacto.telefono"
             mask="(99) 999999999"></p-inputMask>
