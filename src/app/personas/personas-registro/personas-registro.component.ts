@@ -6,7 +6,7 @@ import { ToastyService } from 'ng2-toasty';
 import { AuthService } from './../../seguridad/auth.service';
 import { ErrorHandlerService } from './../../core/error-handler.service';
 import { PersonaService } from './../../personas/persona.service';
-import { Persona } from './../../core/model';
+import { Persona, Contactos } from './../../core/model';
 
 @Component({
   selector: 'app-personas-registro',
@@ -16,6 +16,7 @@ import { Persona } from './../../core/model';
 export class PersonasRegistroComponent implements OnInit {
 
   persona = new Persona();
+  contacto = new Contactos(); // 23.13. Criando o formulário de contato
   mostrandoFormularioContacto = false; // 23.12. Criando o diálogo de contato
 
   constructor(

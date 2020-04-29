@@ -155,8 +155,48 @@
 
     </div>
   </form>
-
-  <!--23.12. Criando o diálogo de contato-->
-  <p-dialog header="Nuevo Contacto" [(visible)]="mostrandoFormularioContacto" modal="modal"></p-dialog>
-
 </div>
+
+
+
+
+
+<!--23.12. Criando o diálogo de contato-->
+<p-dialog header="Nuevo Contacto" [(visible)]="mostrandoFormularioContacto" modal="modal" *ngIf="contacto">
+
+  <!--23.13. Criando o formulário de contato-->
+  <form #frmContacto="ngForm">
+    <div class="ui-g-12 ui-fluid">
+      <label>Nome</label>
+
+      <input pInputText type="text" name="nombre"
+        required [(ngModel)]="contacto.nombre" #contactoNome="ngModel"/>
+
+      <app-message [control]="contactoNombre" error="required" text="Informe el nombre"></app-message>
+    </div>
+
+    <div class="ui-g-12 ui-fluid">
+        <label>E-mail</label>
+
+        <input pInputText type="email" name="email"
+          required email [(ngModel)]="contacto.email" #contactoEmail="ngModel"/>
+
+        <app-message [control]="contactoEmail" error="required" text="Informe el email"></app-message>
+        <app-message [control]="contactoEmail" error="email" text="Informe un e-mail válido"></app-message>
+      </div>
+
+      <div class="ui-g-12 ui-fluid">
+          <label>Telefone</label>
+
+          <p-inputMask name="telefono" [(ngModel)]="contacto.telefono"
+            mask="(99) 999999999"></p-inputMask>
+      </div>
+
+      <div class="ui-g-12">
+        <button pButton type="submit" label="Confirmar" [disabled]="frmContacto.invalid"></button>
+      </div>
+  </form>
+</p-dialog>
+
+
+
