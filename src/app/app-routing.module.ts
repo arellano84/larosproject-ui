@@ -17,10 +17,12 @@ const routes: Routes = [
   */
   // {path: '', redirectTo: 'login', pathMatch: 'full'}, // prefix
 
+  {path: 'informes', loadChildren: 'app/informes/informes.module#InformesModule'}, // 23.7. Criando módulo de relatórios
 
-  // 23.1. Criando o módulo Dashboard
   {path: 'dashboard', loadChildren: 'app/dashboard/dashboard.module#DashboardModule'}, // 23.1. Criando o módulo Dashboard
+
   {path: '', redirectTo: 'dashboard', pathMatch: 'full'}, // prefix
+
 
 
   /*

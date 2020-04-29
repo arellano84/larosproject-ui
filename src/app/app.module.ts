@@ -19,6 +19,7 @@ import { MovimientosModule } from './movimientos/movimientos.module';
 import { PersonasModule } from './personas/personas.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { SeguridadModule } from './seguridad/seguridad.module';
+import { InformesModule } from './informes/informes.module';
 
 // 17.11. Alterando o locale da aplicação para pt-BR
 // 21.2. Corrigindo problemas com Locale
@@ -55,6 +56,7 @@ const routes: Routes = [
     DashboardModule, // 23.1. Criando o módulo Dashboard
     MovimientosModule,
     PersonasModule,
+    InformesModule, // 23.7. Criando módulo de relatórios
     SeguridadModule,
 
     /*Está escrito no manual do Angular que os módulos que importam rotas child (LancamentosModule)
