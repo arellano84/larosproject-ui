@@ -7,6 +7,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { AuthService } from './../seguridad/auth.service';
 import { ErrorHandlerService } from './error-handler.service';
 import { DashboardService } from './../dashboard/dashborad.service';
+import { InformesService } from './../informes/informes.service';
 import { BarraNavComponent } from './barra-nav/barra-nav.component';
 import { PaginaNoEncotradaComponent } from './pagina-no-encotrada.component';
 
@@ -23,6 +24,7 @@ import { PaginaNoEncotradaComponent } from './pagina-no-encotrada.component';
   ],
   providers: [
     DashboardService, // 23.3. Criando o serviço da Dashboard
+    InformesService, // 23.9. Exibindo o PDF para o usuário
     AuthService,
     JwtHelperService,
     ErrorHandlerService,
