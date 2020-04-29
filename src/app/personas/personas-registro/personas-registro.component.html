@@ -87,6 +87,50 @@
         <app-mensajes-validacion [control]="instPais" error="required" texto="Informe País."></app-mensajes-validacion>
       </div>
 
+      <!--23.11. Listando contatos na tela mestre-detalhe-->
+      <div class="ui-g-12">
+        <p-panel header="Contactos">
+          <div class="ui-g">
+            <div class="ui-g-12">
+              <p-table [value]="persona.contactos" [responsive]="true">
+                <ng-template pTemplate="header">
+                  <tr>
+                    <th>Nombre</th>
+                    <th>E-mail</th>
+                    <th>Telefono</th>
+                    <th class="col-actions-header"></th>
+                  </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-contacto>
+                  <tr>
+                    <td>{{ contacto.nombre }}</td>
+                    <td>{{ contacto.email }}</td>
+                    <td>{{ contacto.telefono }}</td>
+                    <td class="col-actions-content">
+                      <button pButton icon="pi pi-pencil" type="button"
+                        pTooltip="Editar" tooltipPosition="top"></button>
+
+                      <button pButton icon="pi pi-trash" type="button"
+                        pTooltip="Excluir" tooltipPosition="top"></button>
+                    </td>
+                  </tr>
+                </ng-template>
+
+                <ng-template pTemplate="emptymessage">
+                  <tr>
+                    <td colspan="4">
+                      Ningun contato registrado
+                    </td>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </div>
+          </div>
+        </p-panel>
+      </div>
+
+
       <div class="ui-g-12">
         <button pButton type="submit"
               label="Guardar"
