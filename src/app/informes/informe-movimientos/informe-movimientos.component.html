@@ -1,1 +1,28 @@
-<p>informe-movimientos works!</p>
+<!--23.8. Configurando formulário do relatório-->
+<div class="container">
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <h1>Informe de movimientos por persona</h1>
+    </div>
+
+    <form #formGenInfo="ngForm" (ngSubmit)="generar()">
+      <div class="ui-g-12">
+        <label>Vencimento </label>
+        <p-calendar dateFormat="dd/mm/yy" required
+          [inputStyle]="{ 'width': '95px'}"
+          [(ngModel)]="periodoInicio" name="periodoInicio"></p-calendar>
+
+        <label> hasta </label>
+
+        <p-calendar dateFormat="dd/mm/yy" required
+          [inputStyle]="{ 'width': '95px'}"
+          [(ngModel)]="periodoFin" name="periodoFin"></p-calendar>
+      </div>
+
+      <div class="ui-g-12">
+        <button pButton type="submit" label="Generar"
+          [disabled]="formGenInfo.invalid"></button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -10,9 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InformeMovimientosComponent implements OnInit {
 
+  periodoInicio: Date;
+  periodoFin: Date;
+
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+  }
+
+  generar() {
+    console.log(this.periodoInicio);
+    console.log(this.periodoFin);
   }
 
 }
