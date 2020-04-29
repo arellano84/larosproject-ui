@@ -92,6 +92,15 @@
         <p-panel header="Contactos">
           <div class="ui-g">
             <div class="ui-g-12">
+              <!--23.12. Criando o diálogo de contato-->
+                <button pButton type="button"
+                  class="ui-button-secondary"
+                  icon="pi pi-plus"
+                  label="Nuevo"
+                  (click)="prepararNuevoContacto()"></button>
+            </div>
+
+            <div class="ui-g-12">
               <p-table [value]="persona.contactos" [responsive]="true">
                 <ng-template pTemplate="header">
                   <tr>
@@ -146,5 +155,8 @@
 
     </div>
   </form>
+
+  <!--23.12. Criando o diálogo de contato-->
+  <p-dialog header="Nuevo Contacto" [(visible)]="mostrandoFormularioContacto" modal="modal"></p-dialog>
 
 </div>

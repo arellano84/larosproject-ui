@@ -16,6 +16,7 @@ import { Persona } from './../../core/model';
 export class PersonasRegistroComponent implements OnInit {
 
   persona = new Persona();
+  mostrandoFormularioContacto = false; // 23.12. Criando o diálogo de contato
 
   constructor(
     private personaService: PersonaService,
@@ -104,4 +105,10 @@ export class PersonasRegistroComponent implements OnInit {
     this.router.navigate(['personas/nuevo']);
   }
 
+  /*
+    23.12. Criando o diálogo de contato
+  */
+  prepararNuevoContacto() {
+    this.mostrandoFormularioContacto = true;
+  }
 }

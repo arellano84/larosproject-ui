@@ -10,6 +10,7 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputMaskModule } from 'primeng/inputmask';
 import { PanelModule } from 'primeng/panel';
+import { DialogModule } from 'primeng/dialog';
 
 import { CompartidoModule } from './../compartido/compartido.module';
 import { MovimientosRoutingModule } from './personas-routing.module';
@@ -35,6 +36,7 @@ import { PersonaService } from './persona.service';
     TooltipModule,
     InputMaskModule,
     PanelModule,
+    DialogModule,
 
     CompartidoModule,
     MovimientosRoutingModule

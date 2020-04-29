@@ -26,6 +26,7 @@ export class Persona {
   apellido2: string;
   activo = true;
   direccion = new Direccion();
+  contactos = new Contactos();
 }
 
 export class Direccion {
@@ -39,4 +40,8 @@ export class Direccion {
   pais: string;
 }
 
-
+export class Contactos {
+  nombre: string;
+  email: string;
+  telefono: string;
+}
