@@ -153,5 +153,13 @@ export class PersonasRegistroComponent implements OnInit {
     this.contactoIndex = index;
   }
 
+  /*
+    23.17. Removendo contato
+  */
+  eliminarContacto(index: number) {
+    console.log(`-PersonasRegistroComponent.eliminarContacto()- index ${index}.`);
+
+    this.persona.contactos.splice(index, 1);
+  }
 
 }
