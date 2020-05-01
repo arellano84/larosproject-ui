@@ -1,0 +1,96 @@
+<!--23.18. Criando componente de contatos-->
+
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <!--23.12. Criando o diálogo de contato-->
+          <button pButton type="button"
+            class="ui-button-secondary"
+            icon="pi pi-plus"
+            label="Nuevo"
+            (click)="prepararNuevoContacto()"></button>
+      </div>
+
+      <div class="ui-g-12">
+        <!--p-table [value]="persona.contactos" [responsive]="true"-->
+        <p-table [value]="contactos" [responsive]="true">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Nombre</th>
+              <th>E-mail</th>
+              <th>Telefono</th>
+              <th class="col-actions-header"></th>
+            </tr>
+          </ng-template>
+
+          <ng-template pTemplate="body" let-contacto let-rowIndex="rowIndex">
+            <tr>
+              <td>{{ contacto.nombre }}</td>
+              <td>{{ contacto.email }}</td>
+              <td>{{ contacto.telefono }}</td>
+              <td class="col-actions-content">
+                <button pButton icon="pi pi-pencil" type="button"
+                  pTooltip="Editar"
+                  tooltipPosition="top"
+                  (click)="prepararEdicionContacto(contacto, rowIndex)"></button>
+
+
+                <button pButton icon="pi pi-trash" type="button"
+                  pTooltip="Excluir" tooltipPosition="top"
+                  (click)="eliminarContacto(rowIndex)"></button>
+              </td>
+            </tr>
+          </ng-template>
+
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <td colspan="4">
+                Ningun contato registrado
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+
+
+
+
+
+<!--23.12. Criando o diálogo de contato-->
+<p-dialog header="{{esModificacion?'Modificar':'Nuevo'}} Contacto" [(visible)]="mostrandoFormularioContacto" modal="modal" *ngIf="contacto">
+
+  <!--23.13. Criando o formulário de contato-->
+  <form #frmContacto="ngForm" (ngSubmit)="confirmarContacto(frmContacto)">
+    <div class="ui-g-12 ui-fluid">
+      <label>Nombre</label>
+
+      <input pInputText type="text" name="nombre"
+        required [(ngModel)]="contacto.nombre" #contactoNombre="ngModel"/>
+
+      <app-mensajes-validacion [control]="contactoNombre" error="required" texto="Informe el nombre"></app-mensajes-validacion>
+    </div>
+
+    <div class="ui-g-12 ui-fluid">
+        <label>E-mail</label>
+
+        <input pInputText type="email" name="email"
+          required email [(ngModel)]="contacto.email" #contactoEmail="ngModel"/>
+
+        <app-mensajes-validacion [control]="contactoEmail" error="required" text="Informe el email"></app-mensajes-validacion>
+      </div>
+
+      <div class="ui-g-12 ui-fluid">
+          <label>Telefono</label>
+
+          <p-inputMask name="telefono"
+            [(ngModel)]="contacto.telefono"
+            required mask="(+99) 999999999" #telefono="ngModel"></p-inputMask>
+
+          <app-mensajes-validacion [control]="telefono" error="required" texto="Informe el teléfono"></app-mensajes-validacion>
+      </div>
+
+      <div class="ui-g-12">
+        <button pButton type="submit" label="Confirmar" [disabled]="frmContacto.invalid"></button>
+      </div>
+  </form>
+</p-dialog>

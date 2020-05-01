@@ -16,10 +16,11 @@ import { Persona, Contacto } from './../../core/model';
 export class PersonasRegistroComponent implements OnInit {
 
   persona = new Persona();
+  /*
   contacto = new Contacto(); // 23.13. Criando o formulário de contato
   mostrandoFormularioContacto = false; // 23.12. Criando o diálogo de contato
   contactoIndex: number; // 23.16. Editando contato
-
+*/
   constructor(
     private personaService: PersonaService,
     private errorHandlerService: ErrorHandlerService,
@@ -105,61 +106,6 @@ export class PersonasRegistroComponent implements OnInit {
         this.persona = new Persona();
     }.bind(this), 1);
     this.router.navigate(['personas/nuevo']);
-  }
-
-  /*
-    23.12. Criando o diálogo de contato
-  */
-  prepararNuevoContacto() {
-    this.mostrandoFormularioContacto = true;
-    this.contacto = new Contacto();
-    this.contactoIndex = this.persona.contactos.length;
-  }
-
-
-  /*
-    23.14. Incluindo um novo contato
-  */
-  confirmarContacto(frmContacto: FormControl) {
-
-    console.log('-PersonasRegistroComponent.confirmarContacto()- Confirmar Contacto...', this.contacto);
-
-    //this.persona.contactos.push(this.clonarContacto(this.contacto));
-    this.persona.contactos[this.contactoIndex] = this.clonarContacto(this.contacto); // 23.16. Editando contato
-
-    this.mostrandoFormularioContacto = false;
-
-    frmContacto.reset();
-  }
-
-  /*
-    Clonamos Contacto para poder resetear formulario.
-  */
-  clonarContacto(contacto: Contacto) {
-    return new Contacto(
-      contacto.codigo, contacto.nombre,
-      contacto.email, contacto.telefono);
-  }
-
-  /*
-    23.16. Editando contato
-  */
-  prepararEdicionContacto(contacto: Contacto, index: number) {
-
-    console.log(`-PersonasRegistroComponent.prepararEdicionContacto()- index ${index}.`);
-
-    this.contacto = this.clonarContacto(contacto);
-    this.mostrandoFormularioContacto = true;
-    this.contactoIndex = index;
-  }
-
-  /*
-    23.17. Removendo contato
-  */
-  eliminarContacto(index: number) {
-    console.log(`-PersonasRegistroComponent.eliminarContacto()- index ${index}.`);
-
-    this.persona.contactos.splice(index, 1);
   }
 
 }

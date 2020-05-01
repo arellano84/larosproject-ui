@@ -20,10 +20,11 @@ import { PersonasListaComponent } from './personas-lista/personas-lista.componen
 import { PersonasBusquedaComponent } from './personas-busqueda/personas-busqueda.component';
 
 import { PersonaService } from './persona.service';
+import { PersonasRegistroContactoComponent } from './personas-registro-contacto/personas-registro-contacto.component';
 
 
 @NgModule({
-  declarations: [PersonasBusquedaComponent, PersonasRegistroComponent, PersonasListaComponent],
+  declarations: [PersonasBusquedaComponent, PersonasRegistroComponent, PersonasListaComponent, PersonasRegistroContactoComponent],
   imports: [
     CommonModule,
     FormsModule,
