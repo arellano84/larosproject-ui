@@ -18,6 +18,7 @@ export class PersonasRegistroComponent implements OnInit {
   persona = new Persona();
   contacto = new Contacto(); // 23.13. Criando o formulário de contato
   mostrandoFormularioContacto = false; // 23.12. Criando o diálogo de contato
+  contactoIndex: number; // 23.16. Editando contato
 
   constructor(
     private personaService: PersonaService,
@@ -111,6 +112,8 @@ export class PersonasRegistroComponent implements OnInit {
   */
   prepararNuevoContacto() {
     this.mostrandoFormularioContacto = true;
+    this.contacto = new Contacto();
+    this.contactoIndex = this.persona.contactos.length;
   }
 
 
@@ -121,7 +124,8 @@ export class PersonasRegistroComponent implements OnInit {
 
     console.log('-PersonasRegistroComponent.confirmarContacto()- Confirmar Contacto...', this.contacto);
 
-    this.persona.contactos.push(this.clonarContacto(this.contacto));
+    //this.persona.contactos.push(this.clonarContacto(this.contacto));
+    this.persona.contactos[this.contactoIndex] = this.clonarContacto(this.contacto); // 23.16. Editando contato
 
     this.mostrandoFormularioContacto = false;
 
@@ -136,4 +140,18 @@ export class PersonasRegistroComponent implements OnInit {
       contacto.codigo, contacto.nombre,
       contacto.email, contacto.telefono);
   }
+
+  /*
+    23.16. Editando contato
+  */
+  prepararEdicionContacto(contacto: Contacto, index: number) {
+
+    console.log(`-PersonasRegistroComponent.prepararEdicionContacto()- index ${index}.`);
+
+    this.contacto = this.clonarContacto(contacto);
+    this.mostrandoFormularioContacto = true;
+    this.contactoIndex = index;
+  }
+
+
 }

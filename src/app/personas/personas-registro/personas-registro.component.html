@@ -111,14 +111,17 @@
                   </tr>
                 </ng-template>
 
-                <ng-template pTemplate="body" let-contacto>
+                <ng-template pTemplate="body" let-contacto let-rowIndex="rowIndex">
                   <tr>
                     <td>{{ contacto.nombre }}</td>
                     <td>{{ contacto.email }}</td>
                     <td>{{ contacto.telefono }}</td>
                     <td class="col-actions-content">
                       <button pButton icon="pi pi-pencil" type="button"
-                        pTooltip="Editar" tooltipPosition="top"></button>
+                        pTooltip="Editar"
+                        tooltipPosition="top"
+                        (click)="prepararEdicionContacto(contacto, rowIndex)"></button>
+
 
                       <button pButton icon="pi pi-trash" type="button"
                         pTooltip="Excluir" tooltipPosition="top"></button>
@@ -172,7 +175,7 @@
       <input pInputText type="text" name="nombre"
         required [(ngModel)]="contacto.nombre" #contactoNombre="ngModel"/>
 
-      <app-message [control]="contactoNombre" error="required" text="Informe el nombre"></app-message>
+      <app-mensajes-validacion [control]="contactoNombre" error="required" texto="Informe el nombre"></app-mensajes-validacion>
     </div>
 
     <div class="ui-g-12 ui-fluid">
@@ -181,15 +184,17 @@
         <input pInputText type="email" name="email"
           required email [(ngModel)]="contacto.email" #contactoEmail="ngModel"/>
 
-        <app-message [control]="contactoEmail" error="required" text="Informe el email"></app-message>
-        <app-message [control]="contactoEmail" error="email" text="Informe un e-mail válido"></app-message>
+        <app-mensajes-validacion [control]="contactoEmail" error="required" text="Informe el email"></app-mensajes-validacion>
       </div>
 
       <div class="ui-g-12 ui-fluid">
           <label>Telefono</label>
 
-          <p-inputMask name="telefono" [(ngModel)]="contacto.telefono"
-            mask="(99) 999999999"></p-inputMask>
+          <p-inputMask name="telefono"
+            [(ngModel)]="contacto.telefono"
+            required mask="(+99) 999999999" #telefono="ngModel"></p-inputMask>
+
+          <app-mensajes-validacion [control]="telefono" error="required" texto="Informe el teléfono"></app-mensajes-validacion>
       </div>
 
       <div class="ui-g-12">
