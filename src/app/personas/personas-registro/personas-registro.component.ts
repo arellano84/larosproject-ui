@@ -6,7 +6,7 @@ import { ToastyService } from 'ng2-toasty';
 import { AuthService } from './../../seguridad/auth.service';
 import { ErrorHandlerService } from './../../core/error-handler.service';
 import { PersonaService } from './../../personas/persona.service';
-import { Persona, Contactos } from './../../core/model';
+import { Persona, Contacto } from './../../core/model';
 
 @Component({
   selector: 'app-personas-registro',
@@ -16,7 +16,7 @@ import { Persona, Contactos } from './../../core/model';
 export class PersonasRegistroComponent implements OnInit {
 
   persona = new Persona();
-  contacto = new Contactos(); // 23.13. Criando o formulário de contato
+  contacto = new Contacto(); // 23.13. Criando o formulário de contato
   mostrandoFormularioContacto = false; // 23.12. Criando o diálogo de contato
 
   constructor(
@@ -58,8 +58,8 @@ export class PersonasRegistroComponent implements OnInit {
       console.log(`-PersonasRegistroComponent.agregrar - Persona Agregada:`, perAgregada);
       this.toasty.success(`Persona Guardada con Éxito.`);
 
-      //formMov.reset();
-      //this.persona = new Persona();
+      // formMov.reset();
+      // this.persona = new Persona();
       // Consultamos la persona...
       this.router.navigate(['/personas', perAgregada.codigo]);
     }).catch(error => {
@@ -111,5 +111,29 @@ export class PersonasRegistroComponent implements OnInit {
   */
   prepararNuevoContacto() {
     this.mostrandoFormularioContacto = true;
+  }
+
+
+  /*
+    23.14. Incluindo um novo contato
+  */
+  confirmarContacto(frmContacto: FormControl) {
+
+    console.log('-PersonasRegistroComponent.confirmarContacto()- Confirmar Contacto...', this.contacto);
+
+    this.persona.contactos.push(this.clonarContacto(this.contacto));
+
+    this.mostrandoFormularioContacto = false;
+
+    frmContacto.reset();
+  }
+
+  /*
+    Clonamos Contacto para poder resetear formulario.
+  */
+  clonarContacto(contacto: Contacto) {
+    return new Contacto(
+      contacto.codigo, contacto.nombre,
+      contacto.email, contacto.telefono);
   }
 }

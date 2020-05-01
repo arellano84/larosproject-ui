@@ -26,7 +26,7 @@ export class Persona {
   apellido2: string;
   activo = true;
   direccion = new Direccion();
-  contactos = new Contactos();
+  contactos = new Array< Contacto >();
 }
 
 export class Direccion {
@@ -40,8 +40,22 @@ export class Direccion {
   pais: string;
 }
 
-export class Contactos {
+/*
+  23.14. Incluindo um novo contato
+*/
+export class Contacto {
+  codigo: number;
   nombre: string;
   email: string;
   telefono: string;
+
+  constructor(codigo?: number,
+    nombre?: string,
+    email?: string,
+    telefono?: string) {
+      this.codigo = codigo;
+      this.nombre = nombre;
+      this.email = email;
+      this.telefono = telefono;
+  }
 }
