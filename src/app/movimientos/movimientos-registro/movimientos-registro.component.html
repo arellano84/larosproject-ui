@@ -73,11 +73,20 @@
       </div>
 
       <!--23.19. Upload com o componente FileUpload-->
-      <div class="ui-g-6 ui-g-offset-6 ui-md-2 ui-md-offset-10 ui-fluid">
+      <div class="ui-g-6 ui-g-offset-6 ui-md-2 ui-md-offset-10 ui-fluid"
+          *ngIf="!formulario.get('nomanexo').value">
         <p-fileUpload name="nomanexo" mode="basic" auto="true" maxFileSize="100000000"
           chooseLabel="Anexar" accept="image/*,application/*"
           [url]="urlUploadAnexo"
-          (onBeforeUpload)="antesUploadAnexo($event)"></p-fileUpload>
+          (onBeforeUpload)="antesUploadAnexo($event)"
+          (onUpload)="alTerminarUploadAnexo($event)"></p-fileUpload>
+      </div>
+
+      <!--23.20. Fazendo download do anexo-->
+      <div class="ui-g-12 ui-fluid" dir="rtl"
+        *ngIf="formulario.get('nomanexo').value">
+        <a target="_blank" pTooltip="Descargar anexo" tooltipPosition="top"
+          [href]="formulario.get('urlAnexo').value">{{ nombreAnexo }}</a>
       </div>
 
       <div class="ui-g-12">

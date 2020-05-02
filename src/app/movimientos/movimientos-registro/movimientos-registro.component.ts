@@ -93,7 +93,9 @@ export class MovimientoRegistroComponent implements OnInit {
         codigo: [ null, Validators.required ],
         nombre: []
       }),
-      observacion: []
+      observacion: [],
+      nomanexo: [],
+      urlAnexo: []
     });
   }
 
@@ -249,6 +251,29 @@ export class MovimientoRegistroComponent implements OnInit {
       Como esse componente também o utiliza, não precisaremos adicionar esse cabeçalho da forma mostrada na aula.
     */
     //event.xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('token'));
+  }
+
+  /*
+    23.20. Fazendo download do anexo
+  */
+  alTerminarUploadAnexo(event) {
+    /*Na versão mais atual do PrimeNG quando passamos o objeto event para nosso método, seu tipo é diferente do mostrado na aula.
+    O objeto que recebemos como argumento não tem a propriedade xhr.
+    Para obtermos acesso ao objeto de response, precisamos acessar a propriedade "originalEvent" e dentro da mesma, acessamos a propriedade "body"
+    Assim teremos acesso ao objeto da resposta*/
+    const anexo = event.originalEvent.body;
+
+    this.formulario.patchValue({
+      nomanexo: anexo.nombre,
+      urlAnexo: anexo.url
+    });
+  }
+  get nombreAnexo() {
+    const nombre = this.formulario.get('nomanexo').value;
+    if (nombre) {
+      return nombre.substring(nombre.indexOf('_') + 1, nombre.length);
+    }
+    return '';
   }
 
 }

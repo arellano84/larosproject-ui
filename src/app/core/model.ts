@@ -12,6 +12,8 @@ export class Movimiento {
 	tipo =  'INGRESO';
 	persona = new Persona();
   categoria = new Categoria();
+  nomanexo: string;
+  urlAnexo: string;
 }
 
 export class Categoria {
