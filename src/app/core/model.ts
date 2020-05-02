@@ -12,7 +12,7 @@ export class Movimiento {
 	tipo =  'INGRESO';
 	persona = new Persona();
   categoria = new Categoria();
-  nomanexo: string;
+  anexo: string;
   urlAnexo: string;
 }
 

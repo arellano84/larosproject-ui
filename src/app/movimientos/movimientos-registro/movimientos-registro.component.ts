@@ -95,7 +95,7 @@ export class MovimientoRegistroComponent implements OnInit {
         nombre: []
       }),
       observacion: [],
-      nomanexo: [],
+      anexo: [],
       urlAnexo: []
     });
   }
@@ -201,6 +201,9 @@ export class MovimientoRegistroComponent implements OnInit {
       .then(mov => {
         // this.movimiento = mov;
 
+        // TODO: 23.00.00 Modificando url, verificar si es eficiente esto.
+        mov.urlAnexo= mov.urlAnexo?(mov.urlAnexo as string).replace('\\', 'https://'):'';
+
         // 21.9. Usando a propriedade formGroup
         // this.formulario.setValue(mov); //da error: no tiene todos los campos a la vuelta.
         this.formulario.patchValue(mov);
@@ -266,7 +269,7 @@ export class MovimientoRegistroComponent implements OnInit {
     const anexo = event.originalEvent.body;
 
     this.formulario.patchValue({
-      nomanexo: anexo.nombre,
+      anexo: anexo.nombre,
       //urlAnexo: anexo.url
       urlAnexo: (anexo.url as string).replace('\\', 'https://')
     });
@@ -274,7 +277,7 @@ export class MovimientoRegistroComponent implements OnInit {
     this.uploadEnProceso = false;
   }
   get nombreAnexo() {
-    const nombre = this.formulario.get('nomanexo').value;
+    const nombre = this.formulario.get('anexo').value;
     if (nombre) {
       return nombre.substring(nombre.indexOf('_') + 1, nombre.length);
     }
@@ -289,5 +292,16 @@ export class MovimientoRegistroComponent implements OnInit {
 
     this.uploadEnProceso = false;
   }
+
+  /*
+    23.24. Salvando e removendo anexo
+  */
+  eliminarAnexo() {
+    this.formulario.patchValue({
+      anexo: null,
+      urlAnexo: null
+    });
+  }
+
 
 }
