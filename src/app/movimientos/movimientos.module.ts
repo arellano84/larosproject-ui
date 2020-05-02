@@ -13,6 +13,7 @@ import { TooltipModule } from 'primeng/tooltip';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
+import { FileUploadModule } from 'primeng/fileupload';
 
 import { NgxCurrencyModule } from 'ngx-currency';
 
@@ -46,6 +47,7 @@ import { PersonaService } from './../personas/persona.service';
     CalendarModule,
     SelectButtonModule,
     DropdownModule,
+    FileUploadModule,
 
     NgxCurrencyModule,
 

@@ -16,7 +16,6 @@ export class MovimientoService {
     this.movimientosUrl = `${environment.apiUrl}/movimientos/`;
   }
 
-
   consultar(filtro: MovimientoFiltro): Promise< any > {
 
     console.log('-MovimientoService.consultar()- Consultado Movimientos...');
@@ -137,6 +136,16 @@ export class MovimientoService {
         movimiento.fechaPago = moment(movimiento.fechaPago,'YYYY-MM-DD').toDate();
       }
     }
+  }
+
+
+
+  /*
+    23.19. Upload com o componente FileUpload
+  */
+  urlUploadAnexo(): string {
+    console.log('-MovimientoService.urlUploadAnexo()- Anexando...');
+    return `${this.movimientosUrl}anexo`;
   }
 
 }

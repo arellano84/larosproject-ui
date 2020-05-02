@@ -71,6 +71,15 @@
         <textarea pInputTextarea [rows]="5" [cols]="30" autoResize="autoResize"
         name="observacion" formControlName="observacion"></textarea>
       </div>
+
+      <!--23.19. Upload com o componente FileUpload-->
+      <div class="ui-g-6 ui-g-offset-6 ui-md-2 ui-md-offset-10 ui-fluid">
+        <p-fileUpload name="nomanexo" mode="basic" auto="true" maxFileSize="100000000"
+          chooseLabel="Anexar" accept="image/*,application/*"
+          [url]="urlUploadAnexo"
+          (onBeforeUpload)="antesUploadAnexo($event)"></p-fileUpload>
+      </div>
+
       <div class="ui-g-12">
         <button pButton type="submit"
               label="Guardar"

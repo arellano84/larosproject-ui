@@ -233,4 +233,22 @@ export class MovimientoRegistroComponent implements OnInit {
     this.router.navigate(['/movimientos/nuevo']);
   }
 
+
+  /*
+    23.19. Upload com o componente FileUpload
+  */
+  get urlUploadAnexo() {
+    console.log('-MovimientoRegistroComponent.urlUploadAnexo()- Anexando...');
+    return this.movimientoService.urlUploadAnexo();
+  }
+  antesUploadAnexo(event) {
+    /*
+      Na versão mais atual do PrimeNG a propriedade onBeforeSend é onBeforeUpload
+      Porém, como usamos o HttpClient, ao invés do Http, não precisaremos do método "antesUploadAnexo"
+      Definimos já um interceptador que fará esse papel antes de todas as requisições com HttpClient.
+      Como esse componente também o utiliza, não precisaremos adicionar esse cabeçalho da forma mostrada na aula.
+    */
+    //event.xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('token'));
+  }
+
 }
