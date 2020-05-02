@@ -41,6 +41,7 @@ export class PersonasRegistroComponent implements OnInit {
       this.consultarPorCodigo(codigoPersona);
     }
 
+    // 24.4. Preenchendo Dropdown de estados
     this.cargarEstados();
   }
 
@@ -111,6 +112,9 @@ export class PersonasRegistroComponent implements OnInit {
     this.router.navigate(['personas/nuevo']);
   }
 
+  /*
+    24.4. Preenchendo Dropdown de estados
+  */
   cargarEstados() {
     this.personaService.consultarEstados()
     .then(lista => {
@@ -119,14 +123,6 @@ export class PersonasRegistroComponent implements OnInit {
     .catch(error => {
       this.errorHandlerService.handle(error);
     });
-    /*this.estados = [
-      {label:'Select City', value:null},
-      {label:'New York', value:{id:1, name: 'New York', code: 'NY'}},
-      {label:'Rome', value:{id:2, name: 'Rome', code: 'RM'}},
-      {label:'London', value:{id:3, name: 'London', code: 'LDN'}},
-      {label:'Istanbul', value:{id:4, name: 'Istanbul', code: 'IST'}},
-      {label:'Paris', value:{id:5, name: 'Paris', code: 'PRS'}}
-    ];*/
   }
 
 }
