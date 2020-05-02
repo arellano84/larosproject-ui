@@ -56,16 +56,30 @@
         <app-mensajes-validacion [control]="instNumero" error="required" texto="Informe  Número."></app-mensajes-validacion>
       </div>
 
-      <div class="ui-g-12 ui-md-4 ui-fluid">
+      <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Complemento</label>
         <input pInputText type="text" name="complemento"
           [(ngModel)]="persona.direccion.complemento" #instComplemento="ngModel">
       </div>
+
+      <div class="ui-g-12 ui-md-6 ui-fluid">
+        <label>País</label>
+        <input pInputText type="text" name="pais"
+          [(ngModel)]="persona.direccion.pais" #instPais="ngModel" required>
+        <app-mensajes-validacion [control]="instPais" error="required" texto="Informe País."></app-mensajes-validacion>
+      </div>
+
       <div class="ui-g-12 ui-md-4 ui-fluid">
-        <!--label>Municipio</label>
-        <input pInputText type="text" name="municipio"
-          [(ngModel)]="persona.direccion.municipio" #instMunicipio="ngModel" required>
-        <app-mensajes-validacion [control]="instMunicipio" error="required" texto="Informe Municipio."></app-mensajes-validacion-->
+        <label>Estado</label>
+        <p-dropdown placeholder="Selecione..."
+          [filter]="true" [options]="estados"></p-dropdown>
+      </div>
+      <div class="ui-g-12 ui-md-4 ui-fluid">
+        <label>Ciudad</label>
+        <input pInputText type="text" name="ciudad"
+          [(ngModel)]="persona.direccion.ciudad"
+          #instCiudad="ngModel" required>
+          <app-mensajes-validacion [control]="instCiudad" error="required" texto="Informe Ciudad."></app-mensajes-validacion>
       </div>
       <div class="ui-g-12 ui-md-4 ui-fluid">
         <label>CP</label>
@@ -74,18 +88,18 @@
         <app-mensajes-validacion [control]="instCp" error="required" texto="Informe Código Postal."></app-mensajes-validacion>
       </div>
 
-      <div class="ui-g-12 ui-md-6 ui-fluid">
+       <!--div class="ui-g-12 ui-md-4 ui-fluid">
+        <label>Municipio</label>
+        <input pInputText type="text" name="municipio"
+          [(ngModel)]="persona.direccion.municipio" #instMunicipio="ngModel" required>
+        <app-mensajes-validacion [control]="instMunicipio" error="required" texto="Informe Municipio."></app-mensajes-validacion>
+      </div-->
+      <!--div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Ciudad</label>
         <input pInputText type="text" name="ciudad"
           [(ngModel)]="persona.direccion.ciudad" #instCiudad="ngModel" required>
         <app-mensajes-validacion [control]="instCiudad" error="required" texto="Informe Ciudad."></app-mensajes-validacion>
-      </div>
-      <div class="ui-g-12 ui-md-6 ui-fluid">
-        <label>País</label>
-        <input pInputText type="text" name="pais"
-          [(ngModel)]="persona.direccion.pais" #instPais="ngModel" required>
-        <app-mensajes-validacion [control]="instPais" error="required" texto="Informe País."></app-mensajes-validacion>
-      </div>
+      </div-->
 
       <!--23.11. Listando contatos na tela mestre-detalhe-->
       <div class="ui-g-12">

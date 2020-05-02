@@ -6,7 +6,7 @@ import { ToastyService } from 'ng2-toasty';
 import { AuthService } from './../../seguridad/auth.service';
 import { ErrorHandlerService } from './../../core/error-handler.service';
 import { PersonaService } from './../../personas/persona.service';
-import { Persona, Contacto } from './../../core/model';
+import { Persona, Contacto, Estado, Ciudad } from './../../core/model';
 
 @Component({
   selector: 'app-personas-registro',
@@ -16,6 +16,7 @@ import { Persona, Contacto } from './../../core/model';
 export class PersonasRegistroComponent implements OnInit {
 
   persona = new Persona();
+  estados: any[]; // 24.4. Preenchendo Dropdown de estados
   /*
   contacto = new Contacto(); // 23.13. Criando o formulário de contato
   mostrandoFormularioContacto = false; // 23.12. Criando o diálogo de contato
@@ -39,6 +40,8 @@ export class PersonasRegistroComponent implements OnInit {
       this.title.setTitle(`Modificar Persona [${codigoPersona}]`);
       this.consultarPorCodigo(codigoPersona);
     }
+
+    this.cargarEstados();
   }
 
   guardar(formMov: FormControl) {
@@ -106,6 +109,24 @@ export class PersonasRegistroComponent implements OnInit {
         this.persona = new Persona();
     }.bind(this), 1);
     this.router.navigate(['personas/nuevo']);
+  }
+
+  cargarEstados() {
+    this.personaService.consultarEstados()
+    .then(lista => {
+      this.estados = lista.map(uf => ({ label: uf.nombre, value: uf.codigo }));
+    })
+    .catch(error => {
+      this.errorHandlerService.handle(error);
+    });
+    /*this.estados = [
+      {label:'Select City', value:null},
+      {label:'New York', value:{id:1, name: 'New York', code: 'NY'}},
+      {label:'Rome', value:{id:2, name: 'Rome', code: 'RM'}},
+      {label:'London', value:{id:3, name: 'London', code: 'LDN'}},
+      {label:'Istanbul', value:{id:4, name: 'Istanbul', code: 'IST'}},
+      {label:'Paris', value:{id:5, name: 'Paris', code: 'PRS'}}
+    ];*/
   }
 
 }

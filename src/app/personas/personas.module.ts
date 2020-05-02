@@ -11,6 +11,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputMaskModule } from 'primeng/inputmask';
 import { PanelModule } from 'primeng/panel';
 import { DialogModule } from 'primeng/dialog';
+import { DropdownModule } from 'primeng/dropdown';
 
 import { CompartidoModule } from './../compartido/compartido.module';
 import { MovimientosRoutingModule } from './personas-routing.module';
@@ -38,6 +39,7 @@ import { PersonasRegistroContactoComponent } from './personas-registro-contacto/
     InputMaskModule,
     PanelModule,
     DialogModule,
+    DropdownModule,
 
     CompartidoModule,
     MovimientosRoutingModule

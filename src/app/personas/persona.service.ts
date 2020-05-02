@@ -157,11 +157,12 @@ export class PersonaService {
     return this.httpClient
       .get(`${this.estadosUrl}`)
       .toPromise()
-      .then(response => {
+      .then(response => response as Estado[]);
+      /*.then(response => {
         const estado = response as Estado[];
         console.log('-PersonaService.consultarEstados()- Consultado Estados:', estado);
         return estado;
-      });
+      });*/
   }
   consultarCiudades(estado: string): Promise< Ciudad[] > {
     console.log('-PersonaService.consultarCiudades()- Consultado Ciudades...');
