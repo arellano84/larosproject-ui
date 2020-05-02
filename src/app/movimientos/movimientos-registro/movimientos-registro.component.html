@@ -79,7 +79,8 @@
           chooseLabel="Anexar" accept="image/*,application/*"
           [url]="urlUploadAnexo"
           (onBeforeUpload)="antesUploadAnexo($event)"
-          (onUpload)="alTerminarUploadAnexo($event)"></p-fileUpload>
+          (onUpload)="alTerminarUploadAnexo($event)"
+          (onError)="errorUpload($event)"></p-fileUpload>
       </div>
 
       <!--23.20. Fazendo download do anexo-->

@@ -265,7 +265,8 @@ export class MovimientoRegistroComponent implements OnInit {
 
     this.formulario.patchValue({
       nomanexo: anexo.nombre,
-      urlAnexo: anexo.url
+      //urlAnexo: anexo.url
+      urlAnexo: (anexo.url as string).replace('\\', 'https://')
     });
   }
   get nombreAnexo() {
@@ -274,6 +275,13 @@ export class MovimientoRegistroComponent implements OnInit {
       return nombre.substring(nombre.indexOf('_') + 1, nombre.length);
     }
     return '';
+  }
+
+  /*
+    23.21. Tratando erro de upload
+  */
+  errorUpload(event) {
+    this.toasty.error("Error al intentar enviar anexo!");
   }
 
 }
