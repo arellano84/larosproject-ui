@@ -85,7 +85,6 @@
         <!--23.22. Utilizando componente ProgressSpinner-->
         <p-progressSpinner [hidden]="!uploadEnProceso"
         [style]="{ width: '25px', height: '25px' }"></p-progressSpinner>
-
       </div>
 
       <!--23.20. Fazendo download do anexo-->
@@ -93,12 +92,15 @@
         *ngIf="formulario.get('nomanexo').value">
         <a target="_blank" pTooltip="Descargar anexo" tooltipPosition="top"
           [href]="formulario.get('urlAnexo').value">{{ nombreAnexo }}</a>
+
+          <!--img ng-src="URL_IMAGEM_S3" width="200px" height="200px" Cargar Imagen-->
+
       </div>
 
       <div class="ui-g-12">
         <button pButton type="submit"
               label="Guardar"
-              [disabled]="!formulario.valid || !authService.tienePermiso('ROLE_CADASTRAR_LANCAMENTO')"></button>
+              [disabled]="!formulario.valid || uploadEnProceso || !authService.tienePermiso('ROLE_CADASTRAR_LANCAMENTO')"></button>
 
         <button pButton type="button"
         class="ui-button-info"
