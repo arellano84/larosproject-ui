@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from './../../environments/environment';
-import { Persona } from './../core/model';
+import { Persona, Estado, Ciudad } from './../core/model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,10 +9,13 @@ import { Persona } from './../core/model';
 export class PersonaService {
 
   personasUrl: string; // http://localhost:8080/personas/
-
+  ciudadesUrl: string; // 24.3. Buscando estados e cidades
+  estadosUrl: string;
 
   constructor(private httpClient: HttpClient) {
     this.personasUrl = `${environment.apiUrl}/personas/`;
+    this.ciudadesUrl = `${environment.apiUrl}/ciudades/`;
+    this.estadosUrl = `${environment.apiUrl}/estados/`;
   }
 
 
@@ -143,6 +146,33 @@ export class PersonaService {
         console.log('-PersonaService.consultarPorCodigo()- Consultado Persona:', persona);
         return persona;
       });
+  }
+
+  /*
+    24.3. Buscando estados e cidades
+  */
+  consultarEstados(): Promise< Estado[] > {
+    console.log('-PersonaService.consultarEstados()- Consultado Estados...');
+
+    return this.httpClient
+      .get(`${this.estadosUrl}`)
+      .toPromise()
+      .then(response => {
+        const estado = response as Estado[];
+        console.log('-PersonaService.consultarEstados()- Consultado Estados:', estado);
+        return estado;
+      });
+  }
+  consultarCiudades(estado: string): Promise< Ciudad[] > {
+    console.log('-PersonaService.consultarCiudades()- Consultado Ciudades...');
+    // Lembrando que, pelo fato de ser imutável, é necessário reatribuir o valor sempre que um método que altere seu estado for invocado
+    let params = new HttpParams();
+    params = params.set('estado', estado)
+
+    return this.httpClient
+      .get(`${this.estadosUrl}`, {params})
+      .toPromise()
+      .then(response => response as Ciudad[]);
   }
 
 }

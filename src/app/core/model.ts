@@ -31,16 +31,33 @@ export class Persona {
   contactos = new Array< Contacto >();
 }
 
+/*
+  24.3. Buscando estados e cidades
+*/
+export class Estado {
+  codigo: string;
+  nombre: string;
+}
+/*
+  24.3. Buscando estados e cidades
+*/
+export class Ciudad {
+  codigo: string;
+  nombre: string;
+  estado = new Estado();
+}
+
 export class Direccion {
   tipo: string;
   calle: string;
   numero: string;
   complemento: string;
   cp: string;
-  municipio: string;
-  ciudad: string;
+  // municipio: string;
+  ciudad = new Ciudad();
   pais: string;
 }
+
 
 /*
   23.14. Incluindo um novo contato
