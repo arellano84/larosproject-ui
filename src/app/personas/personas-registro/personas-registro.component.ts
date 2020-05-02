@@ -97,6 +97,14 @@ export class PersonasRegistroComponent implements OnInit {
     this.personaService.consultarPorCodigo(codigo)
       .then(per => {
         this.persona = per;
+
+        // 24.6. Validando cidade e estado, e salvando pessoa
+        this.estadoSelecionado = (this.persona.direccion.ciudad) ?
+                    this.persona.direccion.ciudad.estado.codigo : null;
+        if(this.estadoSelecionado) {
+          this.cargarCiudades();
+        }
+
         console.log('-PersonasRegistroComponent.consultarPorCodigo()- Consultado Persona:', JSON.stringify(this.persona));
       })
       .catch(error => {
@@ -119,6 +127,8 @@ export class PersonasRegistroComponent implements OnInit {
     24.4. Preenchendo Dropdown de estados
   */
   cargarEstados() {
+    console.log('-PersonasRegistroComponent.cargarCiudades()- Cargando Estados...');
+
     this.personaService.consultarEstados()
     .then(lista => {
       this.estados = lista.map(uf => ({ label: uf.nombre, value: uf.codigo }));
@@ -131,7 +141,9 @@ export class PersonasRegistroComponent implements OnInit {
   /*
     24.5. Carregando Dropdown de cidades
   */
- cargarCidades() {
+ cargarCiudades() {
+  console.log('-PersonasRegistroComponent.cargarCiudades()- Cargando Ciudades...');
+
     this.personaService.consultarCiudades(this.estadoSelecionado)
     .then(lista => {
       this.ciudades = lista.map(c => ({ label: c.nombre, value: c.codigo }));

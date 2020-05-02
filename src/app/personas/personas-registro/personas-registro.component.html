@@ -75,14 +75,20 @@
         <p-dropdown placeholder="Selecione..."
           [filter]="true" [options]="estados"
           [(ngModel)]="estadoSelecionado" name="estadoSelecionado"
-          (onChange)="cargarCidades()"></p-dropdown>
+          (onChange)="cargarCiudades()"
+          #instEstado="ngModel" required></p-dropdown>
+          <app-mensajes-validacion [control]="instEstado" error="required" texto="Informe Estado."></app-mensajes-validacion>
       </div>
       <!--24.5. Carregando Dropdown de cidades-->
       <div class="ui-g-12 ui-md-4 ui-fluid">
         <label>Ciudad</label>
+        <!--24.6. Validando cidade e estado, e salvando pessoa-->
         <p-dropdown placeholder="Selecione..."
-            [filter]="true" [options]="ciudades"></p-dropdown>
-          <!--app-mensajes-validacion [control]="instCiudad" error="required" texto="Informe Ciudad."></app-mensajes-validacion-->
+            [filter]="true" [options]="ciudades"
+            [(ngModel)]="persona.direccion.ciudad.codigo" name="ciudad"
+             #instCiudad="ngModel" required
+             [disabled]="!estadoSelecionado"></p-dropdown>
+          <app-mensajes-validacion [control]="instCiudad" error="required" texto="Informe Ciudad."></app-mensajes-validacion>
       </div>
       <div class="ui-g-12 ui-md-4 ui-fluid">
         <label>CP</label>

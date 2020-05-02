@@ -35,14 +35,14 @@ export class Persona {
   24.3. Buscando estados e cidades
 */
 export class Estado {
-  codigo: string;
+  codigo: number;
   nombre: string;
 }
 /*
   24.3. Buscando estados e cidades
 */
 export class Ciudad {
-  codigo: string;
+  codigo: number;
   nombre: string;
   estado = new Estado();
 }
