@@ -35,6 +35,7 @@
                           <th>Documento</th>
                           <th>Nombre</th>
                           <th>Apellidos</th>
+                          <th>Ciudad</th>
                           <th>Activo</th>
                           <th class="col-actions-header"></th>
                       </tr>
@@ -44,6 +45,7 @@
                           <td>{{persona.documento}}</td>
                           <td>{{persona.nombre}}</td>
                           <td>{{persona.apellido1}} {{persona.apellido2}}</td>
+                          <td>{{persona.direccion.ciudad?.nombre}}, {{persona.direccion.ciudad?.estado.nombre}}</td>
                           <td>
                             <a href="javascript:;"
                               [style.color]="!persona.activo ? 'red' : 'blue'"
