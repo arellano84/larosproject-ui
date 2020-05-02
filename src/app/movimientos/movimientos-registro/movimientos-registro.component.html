@@ -81,6 +81,11 @@
           (onBeforeUpload)="antesUploadAnexo($event)"
           (onUpload)="alTerminarUploadAnexo($event)"
           (onError)="errorUpload($event)"></p-fileUpload>
+
+        <!--23.22. Utilizando componente ProgressSpinner-->
+        <p-progressSpinner [hidden]="!uploadEnProceso"
+        [style]="{ width: '25px', height: '25px' }"></p-progressSpinner>
+
       </div>
 
       <!--23.20. Fazendo download do anexo-->

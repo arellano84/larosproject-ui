@@ -24,6 +24,7 @@ export class MovimientoRegistroComponent implements OnInit {
   // movimiento = new Movimiento();
   // 21.8. Criando um formulário reativo
   formulario: FormGroup;
+  uploadEnProceso = false; // 23.22. Utilizando componente ProgressSpinner
 
   constructor(
     private categoriaService: CategoriaService,
@@ -251,6 +252,7 @@ export class MovimientoRegistroComponent implements OnInit {
       Como esse componente também o utiliza, não precisaremos adicionar esse cabeçalho da forma mostrada na aula.
     */
     //event.xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('token'));
+    this.uploadEnProceso = true;
   }
 
   /*
@@ -268,6 +270,8 @@ export class MovimientoRegistroComponent implements OnInit {
       //urlAnexo: anexo.url
       urlAnexo: (anexo.url as string).replace('\\', 'https://')
     });
+
+    this.uploadEnProceso = false;
   }
   get nombreAnexo() {
     const nombre = this.formulario.get('nomanexo').value;
@@ -282,6 +286,8 @@ export class MovimientoRegistroComponent implements OnInit {
   */
   errorUpload(event) {
     this.toasty.error("Error al intentar enviar anexo!");
+
+    this.uploadEnProceso = false;
   }
 
 }

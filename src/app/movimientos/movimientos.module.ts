@@ -14,6 +14,7 @@ import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { FileUploadModule } from 'primeng/fileupload';
+import { ProgressSpinnerModule } from 'primeng/progressSpinner';
 
 import { NgxCurrencyModule } from 'ngx-currency';
 
@@ -48,6 +49,7 @@ import { PersonaService } from './../personas/persona.service';
     SelectButtonModule,
     DropdownModule,
     FileUploadModule,
+    ProgressSpinnerModule,
 
     NgxCurrencyModule,
 
