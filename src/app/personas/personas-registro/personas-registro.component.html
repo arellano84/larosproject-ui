@@ -73,14 +73,16 @@
       <div class="ui-g-12 ui-md-4 ui-fluid">
         <label>Estado</label>
         <p-dropdown placeholder="Selecione..."
-          [filter]="true" [options]="estados"></p-dropdown>
+          [filter]="true" [options]="estados"
+          [(ngModel)]="estadoSelecionado" name="estadoSelecionado"
+          (onChange)="cargarCidades()"></p-dropdown>
       </div>
+      <!--24.5. Carregando Dropdown de cidades-->
       <div class="ui-g-12 ui-md-4 ui-fluid">
         <label>Ciudad</label>
-        <input pInputText type="text" name="ciudad"
-          [(ngModel)]="persona.direccion.ciudad"
-          #instCiudad="ngModel" required>
-          <app-mensajes-validacion [control]="instCiudad" error="required" texto="Informe Ciudad."></app-mensajes-validacion>
+        <p-dropdown placeholder="Selecione..."
+            [filter]="true" [options]="ciudades"></p-dropdown>
+          <!--app-mensajes-validacion [control]="instCiudad" error="required" texto="Informe Ciudad."></app-mensajes-validacion-->
       </div>
       <div class="ui-g-12 ui-md-4 ui-fluid">
         <label>CP</label>

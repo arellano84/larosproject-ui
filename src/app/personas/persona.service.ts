@@ -164,14 +164,14 @@ export class PersonaService {
         return estado;
       });*/
   }
-  consultarCiudades(estado: string): Promise< Ciudad[] > {
+  consultarCiudades(estado): Promise< Ciudad[] > {
     console.log('-PersonaService.consultarCiudades()- Consultado Ciudades...');
     // Lembrando que, pelo fato de ser imutável, é necessário reatribuir o valor sempre que um método que altere seu estado for invocado
     let params = new HttpParams();
     params = params.set('estado', estado)
 
     return this.httpClient
-      .get(`${this.estadosUrl}`, {params})
+      .get(`${this.ciudadesUrl}`, {params})
       .toPromise()
       .then(response => response as Ciudad[]);
   }

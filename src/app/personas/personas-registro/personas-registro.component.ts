@@ -17,6 +17,9 @@ export class PersonasRegistroComponent implements OnInit {
 
   persona = new Persona();
   estados: any[]; // 24.4. Preenchendo Dropdown de estados
+  ciudades: any[]; // 24.5. Carregando Dropdown de cidades
+  estadoSelecionado: number;
+
   /*
   contacto = new Contacto(); // 23.13. Criando o formulário de contato
   mostrandoFormularioContacto = false; // 23.12. Criando o diálogo de contato
@@ -119,6 +122,19 @@ export class PersonasRegistroComponent implements OnInit {
     this.personaService.consultarEstados()
     .then(lista => {
       this.estados = lista.map(uf => ({ label: uf.nombre, value: uf.codigo }));
+    })
+    .catch(error => {
+      this.errorHandlerService.handle(error);
+    });
+  }
+
+  /*
+    24.5. Carregando Dropdown de cidades
+  */
+ cargarCidades() {
+    this.personaService.consultarCiudades(this.estadoSelecionado)
+    .then(lista => {
+      this.ciudades = lista.map(c => ({ label: c.nombre, value: c.codigo }));
     })
     .catch(error => {
       this.errorHandlerService.handle(error);
