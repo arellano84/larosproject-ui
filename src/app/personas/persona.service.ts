@@ -89,7 +89,7 @@ export class PersonaService {
 
     const headers = new HttpHeaders()
     // .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
-    .append('Content-Type', 'application/json');
+    .append('Content-Type', 'application/json'); // 25.10. Corrigindo o link de mudança de status
 
     return this.httpClient.put(`${this.personasUrl}${codigo}/activo`, activo, { headers })
                           .toPromise()
