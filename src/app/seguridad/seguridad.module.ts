@@ -16,6 +16,7 @@ import { environment } from './../../environments/environment';
 
 /*
   19.7. Adicionando o Access Token nas chamadas HTTP
+    25.7. Atualizando o módulo JWT
 */
 export function obtenerToken(): string {
   return localStorage.getItem('token');
