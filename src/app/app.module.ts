@@ -10,6 +10,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {ToastyModule} from 'ng2-toasty';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {ConfirmationService} from 'primeng/api';
+// import {ToastModule} from 'primeng/toast'; // TODO: Pendiente Migrar de ng2-toasty a primeng/toast
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
