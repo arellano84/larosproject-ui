@@ -1,6 +1,6 @@
 {
   "name": "larosproject-ui",
-  "version": "0.0.0",
+  "version": "2.1.2-SNAPSHOT",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
