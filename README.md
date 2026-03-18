@@ -1,27 +1,58 @@
-# LarosprojectUi
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.2.
+# larosproject-ui
 
-## Development server
+**Última modificación:** 18/03/2026
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Descripción
 
-## Code scaffolding
+**larosproject-ui** es una aplicación **FrontEnd** que permite consumir las APIs REST desarrolladas durante el curso **AlgaWorks - Fullstack Angular e Spring**.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+La aplicación se conecta con el servicio **larosproject-api**, que expone endpoints para la gestión de recursos como **movimientos/lanzamientos**, **categorías** y **personas**.
 
-## Build
+---
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Ejecución del servicio
 
-## Running unit tests
+Una vez iniciado el proyecto, la aplicación FrontEnd se ejecuta en:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+http://localhost:4200/login
 
-## Running end-to-end tests
+---
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+## Integración con Backend
 
-## Further help
+El cliente se conecta con el servicio **larosproject-api**, que expone los siguientes endpoints:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+```
+GET http://localhost:8080/lanzamientos/
+GET http://localhost:8080/personas
+...
+```
+
+Para más información sobre el servicio Backend, consulte:
+
+```
+larosproject-api/README.md
+```
+
+---
+
+## Instalación y ejecución
+
+### Instalación de dependencias
+
+```bash
+npm install
+```
+
+### Ejecutar la aplicación
+
+```bash
+npm start
+```
+
+---
+
+## Requisitos
+
+- Node.js 10
